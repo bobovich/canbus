@@ -42,6 +42,10 @@
 
 #define PORT_NORMAL 0
 #define PORT_REMAP  1
+
+#define RX_EVENT  1
+#define TX_EVENT  1
+#define QUEUE_SIZE 	1
 /*
  * @info
  * refer to how calc bitbang address
@@ -50,7 +54,7 @@
  *
  */
 
-
+#define FREERTOS
 typedef uint32_t btype_t;
 
 void ARadioTask (void* pvParameters);
@@ -78,9 +82,17 @@ void ARadioTaskS (void* pvParameters);
 {
 	uint32_t pTaskSerial;
 	uint8_t xTaskPortH;
-	QueueHandle_t xQCommRX;
-	QueueHandle_t xQCommTX;
-	QueueHandle_t xQErr;
+	uint32_t* pRxEvet;//bit bang input pin of event
+	uint32_t* pTxEvet;
+#ifdef FREERTOS
+	QueueHandle_t xCommRX;
+	QueueHandle_t xCommTX;
+	QueueHandle_t xErr;
+#else
+	uint32_t *xCommRX;
+	uint32_t *xCommTX;
+	uint32_t *xErr;
+#endif
 
 };
 
@@ -94,6 +106,8 @@ void ARadioTaskS (void* pvParameters);
 	  uint32_t *NSS_set; //address for only set or reset
 	  uint32_t *NSS_get; //adress for read nss
 	  uint32_t *NSS_reset;
+	  uint32_t *rxEvent;
+	  uint32_t *txEvent;
 	  uint32_t *MISO_lv; // can only read via BB
 	  btype_t selectChip(void);// return 1 if success bit set
 	  btype_t deselectChip(void);// return 1 if success bit set
@@ -103,13 +117,32 @@ void ARadioTaskS (void* pvParameters);
 
 
   public:
+
+	#ifdef FREERTOS
+	  QueueHandle_t pRX;
+	  QueueHandle_t pTX;
+	  QueueHandle_t pErr;
+	#else
+	  uint32_t *pRX;
+	  uint32_t *pTX;
+	  uint32_t *pErr;
+	#endif
 	  cc11xx_class(xTaskParam * pPortParam, uint8_t set_len, uint8_t *rfSettings);
 	  btype_t sendCmd(uint8_t address, uint8_t  cmd);
 	  btype_t sendBurstCmd(uint8_t sAddress, uint8_t  cmdCount, uint8_t* cmds);
 	  btype_t chekStatus(void);
 	  btype_t txPack(void);
 	  btype_t rxPack(void);
+	  pack* getRxPack(void);
 	  btype_t sendSTB(uint8_t stb);
+	  btype_t rxEventHook(void);
+#ifdef FREERTOS
+	  btype_t txEventHook(void);
+
+#else
+	  btype_t txEventHook(pack* TXPACK);
+
+#endif
 
   };
 #endif

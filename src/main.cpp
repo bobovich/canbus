@@ -11,6 +11,8 @@
 #include "stm32f10x.h"
 #include "CC1101.h"
 #define DEBUG
+#define FREERTOS
+//#define FREERTOS
 
 void prvClockCoreInit (void);
 void prvCommunicationInit(void);

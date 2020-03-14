@@ -1,7 +1,7 @@
 /*
  * CC1101.cpp
  *
- *  Created on: 23 Feb 2020 ã.
+ *  Created on: 23 Feb 2020 ï¿½.
  *      Author: Ivan Bobovich
  *
  *      This source licensed GPL3
@@ -21,7 +21,7 @@
 #include "cc1101_conf.h"
 #define NSS 4
 #define MISO 6
-
+//#define FREERTOS
 /*
  * pack leng
  * Packet structure
@@ -54,6 +54,13 @@ void ARadioTask (void* pvParameters)
 			*pt=1;
 		else *pt=0;
 		vTaskDelay(3000 / portTICK_PERIOD_MS);
+
+		if (cc1101->rxEventHook())
+		{
+			cc1101->rxPack();
+			xQueueSend(cc1101->pRX,(const void *)cc1101->getRxPack(), 3 / portTICK_PERIOD_MS);
+		};
+
 	};
 }
 

@@ -1,8 +1,8 @@
 /*
  * cc11x_class.cpp
  *
- *  Created on: 10 мар. 2020 г.
- *      Author: Иван
+ *  Created on: 10 пїЅпїЅпїЅ. 2020 пїЅ.
+ *      Author: пїЅпїЅпїЅпїЅ
  */
 
 #include "CC1101.h"
@@ -13,8 +13,11 @@ cc11xx_class::cc11xx_class(xTaskParam * pPortParam, uint8_t set_len, uint8_t *rf
 {
 	SP=(SPI_TypeDef*)pPortParam->pTaskSerial;
 	xPortHW= pPortParam->xTaskPortH;
+	pRX=pPortParam->xCommRX;
+	pTX=pPortParam->xCommTX;
+	pErr=pPortParam->xErr;
 	switch  (xPortHW)
-		{
+	{
 		case PORT_NORMAL:
 		{
 			if (SP == (SPI_TypeDef*)SPI1_BASE)
@@ -69,7 +72,7 @@ cc11xx_class::cc11xx_class(xTaskParam * pPortParam, uint8_t set_len, uint8_t *rf
 			};
 			break;
 		}
-		};
+	};
 	SP->CR1=0;
 	SP->CR1=(0x6<<3);
 	SP->CR1|=SPI_CR1_SSM|SPI_CR1_SSI;
@@ -232,6 +235,11 @@ btype_t cc11xx_class::rxPack(void)
 			return 1;
 }
 
+pack* cc11xx_class::getRxPack(void)
+{
+	return this->rxp;
+}
+
 btype_t cc11xx_class::sendSTB(uint8_t stb)
 {
 	deselectChip();
@@ -243,3 +251,15 @@ btype_t cc11xx_class::sendSTB(uint8_t stb)
 	return 1;
 }
 
+btype_t cc11xx_class::rxEventHook(void)
+{
+	if (*rxEvent == RX_EVENT) return 1;
+	else return 0;
+}
+
+btype_t cc11xx_class::txEventHook(void)
+{
+	if (uxQueueSpacesAvailable( this->pTX) < QUEUE_SIZE )
+	if (*txEvent == TX_EVENT) return 1;
+	else return 0;
+}
