@@ -42,8 +42,8 @@ int main(void)
 	prvClockCoreInit();
 	prvCommunicationInit();
 	GPIOC->CRL|= 0x4<<16;
-	RTask1.xCommRX=xQueueCreate(QUEUE_SIZE, sizeof(struct pack*));
-	RTask1.xCommTX=xQueueCreate(QUEUE_SIZE, sizeof(struct pack*));
+	RTask1.xCommRX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
+	RTask1.xCommTX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
 	RTask2.xCommRX=RTask1.xCommRX;
 	RTask2.xCommTX=RTask1.xCommTX;
 

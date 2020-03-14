@@ -88,7 +88,7 @@ cc11xx_class::cc11xx_class(xTaskParam * pPortParam, uint8_t set_len, uint8_t *rf
 	selectChip();
 	while (getMISO()==1);
 	deselectChip();
-	sendCmd( SRES,0);// reset chip
+	sendSTB( SRES);// reset chip
 	deselectChip();
 	vTaskDelay(10 / portTICK_PERIOD_MS);
 	selectChip();
@@ -196,14 +196,12 @@ btype_t cc11xx_class::txPack(void)
 		for (uint32_t i=0; i<sizeof(pack); i++)
 		{
 			while  (!(SP->SR & (SPI_SR_TXE)));
-			SP->DR=*((uint8_t*)(txp+i));
+			stsb=*(((uint8_t*)txp+i));
+			SP->DR=stsb;
 			while  (!(SP->SR & (SPI_SR_TXE)));
 		}
 		deselectChip();
-		selectChip();
-		while (getMISO());
-		SP->DR=STX;
-		while  (!(SP->SR & (SPI_SR_TXE)));
+		this->sendSTB(STX);
 
 		return 1;
 }
@@ -268,9 +266,9 @@ btype_t cc11xx_class::txEventHook(void)
 {
 	if ( (uxQueueSpacesAvailable( this->pTX) < QUEUE_SIZE) )
 	{
-		xQueueReceive(this->pTX, this->txp, 1 / portTICK_PERIOD_MS);
+		if (xQueueReceive(this->pTX, (void*)this->txp, 1 / portTICK_PERIOD_MS)==pdTRUE)
 		this->txPack();
-		this->sendSTB(SRX);
+		///this->sendSTB(SRX);
 		return TX_EVENT;
 	}
 	else
