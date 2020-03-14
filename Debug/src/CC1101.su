@@ -1,0 +1,2 @@
+CC1101.cpp:37:6:void ARadioTask(void*)	40	static
+CC1101.cpp:60:6:void ARadioTaskS(void*)	40	static

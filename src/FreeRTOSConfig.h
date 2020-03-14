@@ -1,6 +1,6 @@
 /*
- * FreeRTOS Kernel V10.1.1
- * Copyright (C) 2018 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+ * FreeRTOS Kernel V10.3.0
+ * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -31,8 +31,6 @@
  * executed from within CCS4!  Once it has been executed, re-open or refresh 
  * the CCS4 project and remove the #error line below.
  */
-//#error Ensure CreateProjectDirectoryStructure.bat has been executed before building.  See comment immediately above.
-
 
 #ifndef FREERTOS_CONFIG_H
 #define FREERTOS_CONFIG_H
@@ -50,13 +48,13 @@
  *----------------------------------------------------------*/
 
 #define configUSE_PREEMPTION			1
-#define configUSE_IDLE_HOOK				0
+#define configUSE_IDLE_HOOK				0//1
 #define configUSE_TICK_HOOK				0
 #define configCPU_CLOCK_HZ				( 56000000UL )
 #define configTICK_RATE_HZ				( ( TickType_t ) 1000 )
-#define configMAX_PRIORITIES			( 5 )
+#define configMAX_PRIORITIES			( 2 )
 #define configMINIMAL_STACK_SIZE		( ( unsigned short ) 70 )
-#define configTOTAL_HEAP_SIZE			( ( size_t ) ( 7 * 1024 ) )
+#define configTOTAL_HEAP_SIZE			( ( size_t ) ( 8 * 1024 ) )
 #define configMAX_TASK_NAME_LEN			( 10 )
 #define configUSE_TRACE_FACILITY		0
 #define configUSE_16_BIT_TICKS			0
@@ -66,12 +64,12 @@
 #define configGENERATE_RUN_TIME_STATS	0
 #define configCHECK_FOR_STACK_OVERFLOW	0//2
 #define configUSE_RECURSIVE_MUTEXES		0
-#define configUSE_MALLOC_FAILED_HOOK	0
+#define configUSE_MALLOC_FAILED_HOOK	0//1
 #define configUSE_APPLICATION_TASK_TAG	0
 #define configUSE_COUNTING_SEMAPHORES	0
-//#define portTICK_RATE_MS	1
+
 /* Co-routine definitions. */
-#define configUSE_CO_ROUTINES 		0
+#define configUSE_CO_ROUTINES 		10
 #define configMAX_CO_ROUTINE_PRIORITIES ( 2 )
 
 /* Software timer definitions. */
