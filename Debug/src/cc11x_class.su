@@ -10,4 +10,4 @@ cc11x_class.cpp:211:9:btype_t cc11xx_class::rxPack()	24	static
 cc11x_class.cpp:238:7:pack* cc11xx_class::getRxPack()	16	static
 cc11x_class.cpp:243:9:btype_t cc11xx_class::sendSTB(uint8_t)	16	static
 cc11x_class.cpp:254:9:btype_t cc11xx_class::rxEventHook()	16	static
-cc11x_class.cpp:260:9:btype_t cc11xx_class::txEventHook()	16	static
+cc11x_class.cpp:268:9:btype_t cc11xx_class::txEventHook()	16	static

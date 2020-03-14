@@ -253,13 +253,32 @@ btype_t cc11xx_class::sendSTB(uint8_t stb)
 
 btype_t cc11xx_class::rxEventHook(void)
 {
-	if (*rxEvent == RX_EVENT) return 1;
-	else return 0;
+	if (*rxEvent == RX_EVENT)
+	{
+		this->rxPack();
+		xQueueSend(this->pRX, (const void *) this->rxp, 1 / portTICK_PERIOD_MS );
+		this->sendSTB(SRX);
+		return RX_EVENT;
+	}
+	else
+		return 0;
+
 }
 
 btype_t cc11xx_class::txEventHook(void)
 {
-	if (uxQueueSpacesAvailable( this->pTX) < QUEUE_SIZE )
-	if (*txEvent == TX_EVENT) return 1;
-	else return 0;
+	if ( (uxQueueSpacesAvailable( this->pTX) < QUEUE_SIZE) )
+	{
+		xQueueReceive(this->pTX, this->txp, 1 / portTICK_PERIOD_MS);
+		this->txPack();
+		this->sendSTB(SRX);
+		return TX_EVENT;
+	}
+	else
+	{
+		this->sendSTB(SRX);
+		return 0;
+	}
 }
+
+

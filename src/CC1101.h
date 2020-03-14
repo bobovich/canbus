@@ -83,7 +83,7 @@ void ARadioTaskS (void* pvParameters);
 	uint32_t pTaskSerial;
 	uint8_t xTaskPortH;
 	uint32_t* pRxEvet;//bit bang input pin of event
-	uint32_t* pTxEvet;
+	uint32_t* pTxcEvet;
 #ifdef FREERTOS
 	QueueHandle_t xCommRX;
 	QueueHandle_t xCommTX;
@@ -107,7 +107,7 @@ void ARadioTaskS (void* pvParameters);
 	  uint32_t *NSS_get; //adress for read nss
 	  uint32_t *NSS_reset;
 	  uint32_t *rxEvent;
-	  uint32_t *txEvent;
+	  uint32_t *txcEvent;
 	  uint32_t *MISO_lv; // can only read via BB
 	  btype_t selectChip(void);// return 1 if success bit set
 	  btype_t deselectChip(void);// return 1 if success bit set

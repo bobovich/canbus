@@ -49,18 +49,14 @@ void ARadioTask (void* pvParameters)
 	for (;;)
 	{
 		cc1101->chekStatus();
-		cc1101->txPack();
+#ifdef DEBUG
 		if (*pt==0)
 			*pt=1;
 		else *pt=0;
 		vTaskDelay(3000 / portTICK_PERIOD_MS);
-
-		if (cc1101->rxEventHook())
-		{
-			cc1101->rxPack();
-			xQueueSend(cc1101->pRX,(const void *)cc1101->getRxPack(), 3 / portTICK_PERIOD_MS);
-		};
-
+#endif
+		cc1101->rxEventHook();
+		cc1101->txEventHook();
 	};
 }
 
