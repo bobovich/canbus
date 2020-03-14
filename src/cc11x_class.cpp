@@ -16,6 +16,8 @@ cc11xx_class::cc11xx_class(xTaskParam * pPortParam, uint8_t set_len, uint8_t *rf
 	pRX=pPortParam->xCommRX;
 	pTX=pPortParam->xCommTX;
 	pErr=pPortParam->xErr;
+	this->rxEvent=pPortParam->pRxEvent;
+	this->txcEvent=pPortParam->pTxcEvent;
 	switch  (xPortHW)
 	{
 		case PORT_NORMAL:
@@ -95,12 +97,9 @@ cc11xx_class::cc11xx_class(xTaskParam * pPortParam, uint8_t set_len, uint8_t *rf
 	selectChip();
 	while (getMISO()==1);
 	deselectChip();
+	this->sendBurstCmd(0,62, rfSettings);
 
 
-	txp->addrdst=100;
-	txp->addrsrc=120;
-	txp->bLeng=12;
-	txp->data[0]=0xae;
 
 
 

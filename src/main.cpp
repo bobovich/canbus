@@ -25,7 +25,9 @@ void run2Task(void *pvParameters);
 static  xTaskParam  RTask1 =
 {
 		.pTaskSerial= SPI1_BASE,
-		.xTaskPortH=PORT_NORMAL
+		.xTaskPortH=PORT_NORMAL,
+		.pRxEvent=	(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x08)  * 32) + (4 * 4)),
+		.pTxcEvent=	(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x08)  * 32) + (4 * 4))
 };
 static  xTaskParam  RTask2 =
 {
@@ -39,6 +41,11 @@ int main(void)
 {
 	prvClockCoreInit();
 	prvCommunicationInit();
+	GPIOC->CRL|= 0x4<<16;
+	RTask1.xCommRX=xQueueCreate(QUEUE_SIZE, sizeof(struct pack*));
+	RTask1.xCommTX=xQueueCreate(QUEUE_SIZE, sizeof(struct pack*));
+	RTask2.xCommRX=RTask1.xCommRX;
+	RTask2.xCommTX=RTask1.xCommTX;
 
 //xTaskCreate(ATaskCanBus, "CAN Task",  100, NULL, tskIDLE_PRIORITY,  NULL);
 	xTaskCreate(ARadioTask, "RF Task1",  500,(void*) &RTask1 ,2,  NULL);

@@ -75,8 +75,8 @@ void ARadioTaskS (void* pvParameters)
 	for (;;)
 	{
 		cc1101->chekStatus();
-		cc1101->sendSTB(SRX);
-		cc1101->rxPack();
+		//cc1101->sendSTB(SRX);
+		cc1101->txEventHook();
 		//cc1101->txPack();
 		if (*pt==0)
 			*pt=1;

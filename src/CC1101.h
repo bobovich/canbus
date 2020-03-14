@@ -82,8 +82,8 @@ void ARadioTaskS (void* pvParameters);
 {
 	uint32_t pTaskSerial;
 	uint8_t xTaskPortH;
-	uint32_t* pRxEvet;//bit bang input pin of event
-	uint32_t* pTxcEvet;
+	uint32_t* pRxEvent;//bit bang input pin of event
+	uint32_t* pTxcEvent;
 #ifdef FREERTOS
 	QueueHandle_t xCommRX;
 	QueueHandle_t xCommTX;
