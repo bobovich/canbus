@@ -72,7 +72,7 @@ void ARadioTaskS (void* pvParameters)
 	//base task loop
 pack* rr= new pack;
 rr->addrdst=255;
-rr->bLeng=255;
+rr->bLeng=10;
 rr->addrsrc=255;
 rr->crc8d=255;
 rr->data[0]=255;
