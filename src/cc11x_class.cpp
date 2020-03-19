@@ -224,12 +224,6 @@ btype_t cc11xx_class::rxPack(void)
 		//while  (!(SP->SR & (SPI_SR_TXE)));
 		}
 	deselectChip();
-	selectChip();
-	while (getMISO());
-	SP->DR=STX;
-	while  (!(SP->SR & (SPI_SR_TXE)));
-
-			return 1;
 }
 
 pack* cc11xx_class::getRxPack(void)

@@ -69,6 +69,8 @@ void ARadioTaskS (void* pvParameters);
 	uint8_t data[6];
 	uint8_t crc8d;
 	uint8_t rssi;
+	uint8_t rssi_r;
+	uint8_t lqi;
 };
  struct  cc1101Status
 {

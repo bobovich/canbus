@@ -7,7 +7,7 @@ cc11x_class.cpp:145:9:btype_t cc11xx_class::sendBurstCmd(uint8_t, uint8_t, uint8
 cc11x_class.cpp:164:9:btype_t cc11xx_class::chekStatus()	24	static
 cc11x_class.cpp:187:9:btype_t cc11xx_class::txPack()	24	static
 cc11x_class.cpp:208:9:btype_t cc11xx_class::rxPack()	24	static
-cc11x_class.cpp:235:7:pack* cc11xx_class::getRxPack()	16	static
-cc11x_class.cpp:240:9:btype_t cc11xx_class::sendSTB(uint8_t)	16	static
-cc11x_class.cpp:251:9:btype_t cc11xx_class::rxEventHook()	16	static
-cc11x_class.cpp:265:9:btype_t cc11xx_class::txEventHook()	16	static
+cc11x_class.cpp:229:7:pack* cc11xx_class::getRxPack()	16	static
+cc11x_class.cpp:234:9:btype_t cc11xx_class::sendSTB(uint8_t)	16	static
+cc11x_class.cpp:245:9:btype_t cc11xx_class::rxEventHook()	16	static
+cc11x_class.cpp:259:9:btype_t cc11xx_class::txEventHook()	16	static

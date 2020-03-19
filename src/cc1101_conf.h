@@ -13,12 +13,12 @@ uint8_t rfSettings[] =
 {
     0x29,  // IOCFG2             0x0000  GDO2 Output Pin Configuration
     0x2e,  // IOCFG1             0x0001  GDO1 Output Pin Configuration
-    0x06,  // IOCFG0             0x0002  GDO0 Output Pin Configuration
+    0x07,  // IOCFG0             0x0002  GDO0 Output Pin Configuration
     0x47,  // FIFOTHR            0x0003  RX FIFO and TX FIFO Thresholds
     0xD3,  // SYNC1              0x0004  Sync Word, High Byte
     0x91,  // SYNC0              0x0005  Sync Word, Low Byte
     0xFF,  // PKTLEN             0x0006  Packet Length
-    0x04,  // PKTCTRL1           0x0007  Packet Automation Control
+    0x0C,  // PKTCTRL1           0x0007  Packet Automation Control
     0x05,  // PKTCTRL0           0x0008  Packet Automation Control
     0x00,  // ADDR               0x0009  Device Address
     0x00,  // CHANNR             0x000A  Channel Number
@@ -34,7 +34,7 @@ uint8_t rfSettings[] =
     0xF8,  // MDMCFG0            0x0014  Modem Configuration
     0x34,  // DEVIATN            0x0015  Modem Deviation Setting
     0x07,  // MCSM2              0x0016  Main Radio Control State Machine Configuration
-    0x30,  // MCSM1              0x0017  Main Radio Control State Machine Configuration
+    0x3F,  // MCSM1              0x0017  Main Radio Control State Machine Configuration
     0x18,  // MCSM0              0x0018  Main Radio Control State Machine Configuration
     0x16,  // FOCCFG             0x0019  Frequency Offset Compensation Configuration
     0x6C,  // BSCFG              0x001A  Bit Synchronization Configuration
