@@ -1,8 +1,8 @@
 /*
  * cc1101_conf.h
  *
- *  Created on: 27 февр. 2020 г.
- *      Author: Иван
+ *  Created on: 27 пїЅпїЅпїЅпїЅ. 2020 пїЅ.
+ *      Author: пїЅпїЅпїЅпїЅ
  */
 
 #ifndef CC1101_CONF_H_
@@ -57,21 +57,27 @@ uint8_t rfSettings[] =
     0x3F,  // AGCTEST            0x002B  AGC Test
     0x81,  // TEST2              0x002C  Various Test Settings
     0x35,  // TEST1              0x002D  Various Test Settings
-    0x09,  // TEST0              0x002E  Various Test Settings
-    0x00,  // PARTNUM            0x0030  Chip ID
-    0x04,  // VERSION            0x0031  Chip ID
-    0x00,  // FREQEST            0x0032  Frequency Offset Estimate from Demodulator
-    0x00,  // LQI                0x0033  Demodulator Estimate for Link Quality
-    0x00,  // RSSI               0x0034  Received Signal Strength Indication
-    0x00,  // MARCSTATE          0x0035  Main Radio Control State Machine State
-    0x00,  // WORTIME1           0x0036  High Byte of WOR Time
-    0x00,  // WORTIME0           0x0037  Low Byte of WOR Time
-    0x00,  // PKTSTATUS          0x0038  Current GDOx Status and Packet Status
-    0x00,  // VCO_VC_DAC         0x0039  Current Setting from PLL Calibration Module
-    0x00,  // TXBYTES            0x003A  Underflow and Number of Bytes
-    0x00,  // RXBYTES            0x003B  Overflow and Number of Bytes
-    0x00,  // RCCTRL1_STATUS     0x003C  Last RC Oscillator Calibration Result
-    0x00,  // RCCTRL0_STATUS     0x003D  Last RC Oscillator Calibration Result
+    0x09  // TEST0              0x002E  Various Test Settings
+		   // PARTNUM            0x0030  Chip ID
+      	   // VERSION            0x0031  Chip ID
+      // FREQEST            0x0032  Frequency Offset Estimate from Demodulator
+      // LQI                0x0033  Demodulator Estimate for Link Quality
+      // RSSI               0x0034  Received Signal Strength Indication
+      // MARCSTATE          0x0035  Main Radio Control State Machine State
+      // WORTIME1           0x0036  High Byte of WOR Time
+			// WORTIME0           0x0037  Low Byte of WOR Time
+      // PKTSTATUS          0x0038  Current GDOx Status and Packet Status
+	// VCO_VC_DAC         0x0039  Current Setting from PLL Calibration Module
+      	  // TXBYTES            0x003A  Underflow and Number of Bytes
+      	// RXBYTES            0x003B  Overflow and Number of Bytes
+      	// RCCTRL1_STATUS     0x003C  Last RC Oscillator Calibration Result
+		// RCCTRL0_STATUS     0x003D  Last RC Oscillator Calibration Result
+};
+
+
+uint8_t patable868[] =
+{
+
 };
 
 

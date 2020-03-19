@@ -1,13 +1,16 @@
-cc11x_class.cpp:12:1:cc11xx_class::cc11xx_class(xTaskParam*, uint8_t, uint8_t*)	24	static
-cc11x_class.cpp:108:9:btype_t cc11xx_class::selectChip()	16	static
-cc11x_class.cpp:114:9:btype_t cc11xx_class::deselectChip()	16	static
-cc11x_class.cpp:120:9:btype_t cc11xx_class::getMISO()	16	static
-cc11x_class.cpp:126:9:btype_t cc11xx_class::sendCmd(uint8_t, uint8_t)	24	static
-cc11x_class.cpp:145:9:btype_t cc11xx_class::sendBurstCmd(uint8_t, uint8_t, uint8_t*)	32	static
-cc11x_class.cpp:164:9:btype_t cc11xx_class::chekStatus()	24	static
-cc11x_class.cpp:187:9:btype_t cc11xx_class::txPack()	24	static
-cc11x_class.cpp:208:9:btype_t cc11xx_class::rxPack()	24	static
-cc11x_class.cpp:229:7:pack* cc11xx_class::getRxPack()	16	static
-cc11x_class.cpp:234:9:btype_t cc11xx_class::sendSTB(uint8_t)	16	static
-cc11x_class.cpp:245:9:btype_t cc11xx_class::rxEventHook()	16	static
-cc11x_class.cpp:259:9:btype_t cc11xx_class::txEventHook()	16	static
+CC1101.h:69:9:pack::pack()	16	static
+cc11x_class.cpp:12:1:cc11xx_class::cc11xx_class(xTaskParam*, uint8_t, uint8_t*)	32	static
+cc11x_class.cpp:109:9:btype_t cc11xx_class::selectChip()	16	static
+cc11x_class.cpp:115:9:btype_t cc11xx_class::deselectChip()	16	static
+cc11x_class.cpp:121:9:btype_t cc11xx_class::getMISO()	16	static
+cc11x_class.cpp:127:9:btype_t cc11xx_class::sendByte(uint8_t, uint8_t)	24	static
+cc11x_class.cpp:146:9:uint8_t cc11xx_class::readByte(uint8_t)	24	static
+cc11x_class.cpp:167:9:btype_t cc11xx_class::sendBurst(uint8_t, uint8_t, uint8_t*)	32	static
+cc11x_class.cpp:190:9:btype_t cc11xx_class::readBurst(uint8_t, uint8_t, uint8_t*)	32	static
+cc11x_class.cpp:216:9:btype_t cc11xx_class::chekStatus()	24	static
+cc11x_class.cpp:239:9:btype_t cc11xx_class::txPack()	24	static
+cc11x_class.cpp:260:9:btype_t cc11xx_class::rxPack()	24	static
+cc11x_class.cpp:282:7:pack* cc11xx_class::getRxPack()	16	static
+cc11x_class.cpp:287:9:btype_t cc11xx_class::sendSTB(uint8_t)	16	static
+cc11x_class.cpp:299:9:btype_t cc11xx_class::rxEventHook()	16	static
+cc11x_class.cpp:312:9:btype_t cc11xx_class::txEventHook()	24	static

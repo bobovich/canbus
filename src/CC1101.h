@@ -22,6 +22,7 @@
 #define SNOP 	0x3D // No operation. May be used to get access to the chip status byte.
 
 #define FIFO 	0x3F
+#define PATAB 	0x3E
 #define READ 	0x80
 #define WRITE 	0x00
 #define BURST 	0x40
@@ -46,6 +47,10 @@
 #define RX_EVENT  1
 #define TX_EVENT  1
 #define QUEUE_SIZE 	1
+#define PACK_SIZE 	6
+#define PACK_ADD	7
+#define PACK_RX_COUNT PACK_SIZE + PACK_ADD
+#define PACK_TX_COUNT PACK_SIZE + PACK_ADD - 2
 /*
  * @info
  * refer to how calc bitbang address
@@ -63,10 +68,10 @@ void ARadioTaskS (void* pvParameters);
 // Rf settings for CC1101
  struct pack
 {
-	uint8_t bLeng;
+	uint8_t bLeng=(PACK_SIZE+PACK_ADD)-3;
 	uint8_t addrdst;
 	uint8_t addrsrc;
-	uint8_t data[6];
+	uint8_t data[PACK_SIZE];
 	uint8_t crc8d;
 	uint8_t rssi;
 	uint8_t rssi_r;
@@ -130,8 +135,10 @@ void ARadioTaskS (void* pvParameters);
 	  uint32_t *pErr;
 	#endif
 	  cc11xx_class(xTaskParam * pPortParam, uint8_t set_len, uint8_t *rfSettings);
-	  btype_t sendCmd(uint8_t address, uint8_t  cmd);
-	  btype_t sendBurstCmd(uint8_t sAddress, uint8_t  cmdCount, uint8_t* cmds);
+	  btype_t sendByte(uint8_t address, uint8_t  cmd);
+	  uint8_t readByte(uint8_t address);
+	  btype_t sendBurst(uint8_t sAddress, uint8_t  cmdCount, uint8_t* cmds);
+	  btype_t readBurst(uint8_t sAddress, uint8_t  cmdCount, uint8_t* cmds);
 	  btype_t chekStatus(void);
 	  btype_t txPack(void);
 	  btype_t rxPack(void);
