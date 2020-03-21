@@ -97,7 +97,7 @@ cc11xx_class::cc11xx_class(xTaskParam * pPortParam, uint8_t set_len, uint8_t *rf
 	selectChip();
 	while (getMISO()==1);
 	deselectChip();
-	this->sendBurst(0,46, rfSettings);
+	this->sendBurst(0,set_len, rfSettings);
 	this->sendByte(PATAB, 0x50);
 
 
@@ -156,11 +156,11 @@ uint8_t cc11xx_class::readByte (uint8_t address)
 	cStatus->rdy= stsb>>7;
 	cStatus->state=(stsb>>4) & 0x7;
 	cStatus->fifo_rx_av = stsb & 0x0f;
-	SP->DR=SNOP;
-	while  (!(SP->SR & (SPI_SR_TXE)));
-	stsb=SP->DR;
+	SP->DR=READ;
+	while  (!(SP->SR & (SPI_SR_TXE))&&(SP->SR & SPI_SR_RXNE));
+
 	deselectChip();
-	return stsb;
+	return SP->DR;
 }
 
 

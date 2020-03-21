@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include "stm32f10x.h"
 #include "CC1101.h"
+#include "uart_com.h"
 #define DEBUG
 #define FREERTOS
 //#define FREERTOS
@@ -34,6 +35,7 @@ static  xTaskParam  RTask2 =
 		.pTaskSerial= SPI2_BASE,
 		.xTaskPortH=PORT_NORMAL
 };
+static pQueueComm pQComm;
 
 
 
@@ -44,8 +46,12 @@ int main(void)
 	GPIOC->CRL|= 0x4<<16;
 	RTask1.xCommRX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
 	RTask1.xCommTX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
-	RTask2.xCommRX=RTask1.xCommRX;
-	RTask2.xCommTX=RTask1.xCommTX;
+	RTask2.xCommRX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
+	RTask2.xCommTX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
+	pQComm.a1RX=RTask1.xCommRX;
+	pQComm.a1TX = RTask1.xCommTX;
+	pQComm.a2RX = RTask2.xCommRX;
+	pQComm.a2TX = RTask2.xCommTX;
 
 //xTaskCreate(ATaskCanBus, "CAN Task",  100, NULL, tskIDLE_PRIORITY,  NULL);
 	xTaskCreate(ARadioTask, "RF Task1",  500,(void*) &RTask1 ,2,  NULL);
@@ -53,6 +59,7 @@ int main(void)
 	//delete RTask1;
 	xTaskCreate(run1Task, "Run1 Task",  100, NULL,2,  NULL);
 	xTaskCreate(run1Task, "Run2 Task",  100, NULL,2,  NULL);
+	xTaskCreate(aTaskUart, "Run2 Task",  100, &pQComm,2,  NULL);
 	vTaskStartScheduler();
 
 
@@ -91,14 +98,14 @@ void prvClockCoreInit (void)
 
 void prvCommunicationInit(void)
 {
-	RCC->APB1ENR|=RCC_APB1ENR_CAN1EN; //CAN clk EN
+	//RCC->APB1ENR|=RCC_APB1ENR_CAN1EN; //CAN clk EN
 	RCC->APB2ENR|=RCC_APB2ENR_USART1EN; //UART1 clk EN
 	// uart init definition
 	USART1->BRR=((0x1e<<4)|4);//115200
 	USART1->CR1|=USART_CR1_RE | USART_CR1_TE | USART_CR1_UE;
 
 	// CAN bus definition
-	CAN1->MCR=0;
+	//CAN1->MCR=0;
 
     //SPI Definition
 	/*RCC->APB2ENR|=RCC_APB2ENR_SPI1EN  ;
