@@ -1,8 +1,8 @@
 /*
  * uart_com.h
  *
- *  Created on: 18 мар. 2020 г.
- *      Author: Иван
+ *  Created on: 18 пїЅпїЅпїЅ. 2020 пїЅ.
+ *      Author: пїЅпїЅпїЅпїЅ
  */
 
 #ifndef UART_COM_H_
@@ -10,7 +10,7 @@
 
 #include "FreeRTOS.h"
 #include "queue.h"
-#include "cc1101.h"
+#include "CC1101.h"
 
 
 void aTaskUart(void * pvParameters);
