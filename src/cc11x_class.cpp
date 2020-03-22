@@ -129,7 +129,7 @@ btype_t cc11xx_class::sendByte (uint8_t address, uint8_t  cmd)
 	deselectChip();
 	selectChip();
 	while (getMISO());
-	while  (!(SP->SR & (SPI_SR_TXE)));
+	while  (!(SP->SR & (SPI_SR_BSY)));
 	SP->DR=WRITE|address;
 	while  (!(SP->SR & (SPI_SR_TXE))&&(SP->SR & SPI_SR_RXNE));
 	uint8_t stsb;
@@ -148,7 +148,7 @@ uint8_t cc11xx_class::readByte (uint8_t address)
 	deselectChip();
 	selectChip();
 	while (getMISO());
-	while  (!(SP->SR & (SPI_SR_TXE)));
+	while  (!(SP->SR & (SPI_SR_BSY)));
 	SP->DR=READ|address;
 	while  (!(SP->SR & (SPI_SR_TXE))&&(SP->SR & SPI_SR_RXNE));
 	uint8_t stsb;
@@ -156,7 +156,7 @@ uint8_t cc11xx_class::readByte (uint8_t address)
 	cStatus->rdy= stsb>>7;
 	cStatus->state=(stsb>>4) & 0x7;
 	cStatus->fifo_rx_av = stsb & 0x0f;
-	SP->DR=READ;
+	SP->DR=0;
 	while  (!(SP->SR & (SPI_SR_TXE))&&(SP->SR & SPI_SR_RXNE));
 
 	deselectChip();
@@ -170,7 +170,7 @@ btype_t cc11xx_class::sendBurst(uint8_t sAddress, uint8_t  cmdCount, uint8_t* cm
 	deselectChip();
 	selectChip();
 	while (getMISO());
-	while  (!(SP->SR & SPI_SR_TXE));
+	while  (!(SP->SR & SPI_SR_BSY));
 	stsb=SP->DR;
 	SP->DR=BURST|sAddress;
 	for (int i=0; i<cmdCount; i++)
@@ -192,7 +192,7 @@ btype_t cc11xx_class::readBurst (uint8_t address, uint8_t  cmdCount, uint8_t* cm
 	deselectChip();
 	selectChip();
 	while (getMISO());
-	while  (!(SP->SR & (SPI_SR_TXE)));
+	while  (!(SP->SR & (SPI_SR_BSY)));
 	SP->DR=READ|BURST|address;
 	while  (!(SP->SR & (SPI_SR_TXE))&&(SP->SR & SPI_SR_RXNE));
 	uint8_t stsb;
@@ -202,7 +202,7 @@ btype_t cc11xx_class::readBurst (uint8_t address, uint8_t  cmdCount, uint8_t* cm
 	cStatus->fifo_rx_av = stsb & 0x0f;
 	for (int i=0; i<cmdCount; i++)
 	{
-	SP->DR=SNOP;
+	SP->DR=0;
 	while  (!(SP->SR & (SPI_SR_TXE))&&(SP->SR & SPI_SR_RXNE));
 	*(cmds+i)=SP->DR;
 	}
@@ -219,7 +219,7 @@ btype_t cc11xx_class::chekStatus()
 	deselectChip();
 	selectChip();
 	while (getMISO());
-	while  (!(SP->SR & SPI_SR_TXE));
+	while  (!(SP->SR & SPI_SR_BSY));
 	stsb=SP->DR;
 	SP->DR=WRITE|SNOP;
 	while  (!((SP->SR & SPI_SR_TXE)&&(SP->SR & SPI_SR_RXNE)));
@@ -242,7 +242,7 @@ btype_t cc11xx_class::txPack(void)
 	deselectChip();
 	selectChip();
 	while (getMISO());
-	while  (!(SP->SR & SPI_SR_TXE));
+	while  (!(SP->SR & SPI_SR_BSY));
 	stsb=SP->DR;
 	SP->DR=WRITE|BURST|FIFO;
 		for (uint32_t i=0; i<PACK_TX_COUNT; i++)
@@ -263,7 +263,7 @@ btype_t cc11xx_class::rxPack(void)
 	deselectChip();
 	selectChip();
 	while (getMISO());
-	while  (!(SP->SR & SPI_SR_TXE));
+	while  (!(SP->SR & SPI_SR_BSY));
 	stsb=SP->DR;
 	SP->DR=READ|BURST|FIFO;
 	while  (!(SP->SR & (SPI_SR_TXE)));
@@ -289,7 +289,7 @@ btype_t cc11xx_class::sendSTB(uint8_t stb)
 	deselectChip();
 	selectChip();
 	while (getMISO());
-	while  (!(SP->SR & SPI_SR_TXE));
+	while  (!(SP->SR & SPI_SR_BSY));
 	SP->DR=stb;
 	while  (!(SP->SR & (SPI_SR_TXE)));
 
