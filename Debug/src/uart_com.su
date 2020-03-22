@@ -1,2 +1,2 @@
-cc1101.h:69:9:pack::pack()	16	static
-uart_com.cpp:15:6:void aTaskUart(void*)	56	static
+CC1101.h:69:9:pack::pack()	16	static
+uart_com.cpp:7:6:void aTaskUart(void*)	56	static

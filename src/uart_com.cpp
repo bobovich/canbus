@@ -1,11 +1,3 @@
-/*
- * uart_com.cpp
- *
- *  Created on: 18 мар. 2020 г.
- *      Author: Иван
- */
-
-
 
 
 #include "stm32f10x.h"

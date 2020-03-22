@@ -1,16 +1,10 @@
-/*
- * uart_com.h
- *
- *  Created on: 18 мар. 2020 г.
- *      Author: Иван
- */
 
 #ifndef UART_COM_H_
 #define UART_COM_H_
 
 #include "FreeRTOS.h"
 #include "queue.h"
-#include "cc1101.h"
+#include "CC1101.h"
 
 
 void aTaskUart(void * pvParameters);
