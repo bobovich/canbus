@@ -99,11 +99,6 @@ cc11xx_class::cc11xx_class(xTaskParam * pPortParam, uint8_t set_len, uint8_t *rf
 	deselectChip();
 	this->sendBurst(0,set_len, rfSettings);
 	this->sendByte(PATAB, 0x50);
-
-
-
-
-
 }
 
 btype_t cc11xx_class::selectChip()
@@ -229,7 +224,6 @@ btype_t cc11xx_class::readBurst (uint8_t address, uint8_t  cmdCount, uint8_t* cm
 	while  (!((SP->SR & SPI_SR_TXE)&& (SP->SR &SPI_SR_RXNE)));
 	*(cmds+i)=SP->DR;
 	}
-
 	deselectChip();
 	return 1;
 }
@@ -277,11 +271,10 @@ btype_t cc11xx_class::txPack(void)
 	};
 	//stsb=SP->DR;
 	SP->DR=WRITE|BURST|FIFO;
+	while  ( ! ((SP->SR & SPI_SR_TXE) && (SP->SR & SPI_SR_RXNE)) );
 	stsb=SP->DR;
-	while  (!((SP->SR & SPI_SR_TXE)&& (SP->SR &SPI_SR_RXNE)));
 		for (uint32_t i=0; i<PACK_TX_COUNT; i++)
 		{
-
 			SP->DR=*(((uint8_t*)txp+i));
 			while  (!((SP->SR & SPI_SR_TXE)&& (SP->SR &SPI_SR_RXNE)));
 			stsb=SP->DR;
@@ -351,7 +344,6 @@ btype_t cc11xx_class::rxEventHook(void)
 	}
 	else
 		return 0;
-
 }
 
 btype_t cc11xx_class::txEventHook(void)
@@ -362,14 +354,13 @@ btype_t cc11xx_class::txEventHook(void)
 		this->txPack();
 		this->chekStatus();
 		int i=0;
-		while((cStatus->state != TX_MODE ) || (i<3))
+		while((cStatus->state != TX_MODE ) && (i<3))
 		{
 			this->sendSTB(STX);
 			this->chekStatus();
 			i++;
 		};
 		if (i>3)return 0;  else return 1;
-
 	}
 	else
 	{

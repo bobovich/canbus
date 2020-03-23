@@ -21,25 +21,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
   8 .ARM.attributes 00000029  00000000  00000000  000200d0  2**0
                   CONTENTS, READONLY
-  9 .debug_info   0000a0a5  00000000  00000000  000200f9  2**0
+  9 .debug_info   0000a09c  00000000  00000000  000200f9  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_abbrev 00001961  00000000  00000000  0002a19e  2**0
+ 10 .debug_abbrev 00001949  00000000  00000000  0002a195  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_aranges 00000620  00000000  00000000  0002bb00  2**3
+ 11 .debug_aranges 00000620  00000000  00000000  0002bae0  2**3
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000558  00000000  00000000  0002c120  2**3
+ 12 .debug_ranges 00000558  00000000  00000000  0002c100  2**3
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_line   00003a1e  00000000  00000000  0002c678  2**0
+ 13 .debug_line   00003a8c  00000000  00000000  0002c658  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    0000264e  00000000  00000000  00030096  2**0
+ 14 .debug_str    00002644  00000000  00000000  000300e4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .comment      0000007c  00000000  00000000  000326e4  2**0
+ 15 .comment      0000007c  00000000  00000000  00032728  2**0
                   CONTENTS, READONLY
- 16 .debug_frame  00001a0c  00000000  00000000  00032760  2**2
+ 16 .debug_frame  00001a0c  00000000  00000000  000327a4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 17 .stab         0000003c  00000000  00000000  0003416c  2**2
+ 17 .stab         0000003c  00000000  00000000  000341b0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 18 .stabstr      000000ac  00000000  00000000  000341a8  2**0
+ 18 .stabstr      000000ac  00000000  00000000  000341ec  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -96,7 +96,7 @@ void vListInitialise( List_t * const pxList )
 	ensure it remains at the end of the list. */
 	pxList->xListEnd.xItemValue = portMAX_DELAY;
  8000162:	687b      	ldr	r3, [r7, #4]
- 8000164:	f04f 32ff 	mov.w	r2, #4294967295
+ 8000164:	f04f 32ff 	mov.w	r2, #4294967295	; 0xffffffff
  8000168:	609a      	str	r2, [r3, #8]
 
 	/* The list end next and previous pointers point to itself so we know
@@ -237,7 +237,7 @@ const TickType_t xValueOfInsertion = pxNewListItem->xItemValue;
 	first, and the algorithm slightly modified if necessary. */
 	if( xValueOfInsertion == portMAX_DELAY )
  80001fc:	68bb      	ldr	r3, [r7, #8]
- 80001fe:	f1b3 3fff 	cmp.w	r3, #4294967295
+ 80001fe:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
  8000202:	d103      	bne.n	800020c <vListInsert+0x20>
 	{
 		pxIterator = pxList->xListEnd.pxPrevious;
@@ -462,7 +462,7 @@ volatile uint32_t ulDummy = 0UL;
 	configASSERT( uxCriticalNesting == ~0UL );
  8000312:	4b10      	ldr	r3, [pc, #64]	; (8000354 <prvTaskExitError+0x4c>)
  8000314:	681b      	ldr	r3, [r3, #0]
- 8000316:	f1b3 3fff 	cmp.w	r3, #4294967295
+ 8000316:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
  800031a:	d009      	beq.n	8000330 <prvTaskExitError+0x28>
 
 portFORCE_INLINE static void vPortRaiseBASEPRI( void )
@@ -1637,7 +1637,7 @@ Queue_t * const pxQueue = xQueue;
  8000972:	6b3b      	ldr	r3, [r7, #48]	; 0x30
  8000974:	f893 3044 	ldrb.w	r3, [r3, #68]	; 0x44
  8000978:	b25b      	sxtb	r3, r3
- 800097a:	f1b3 3fff 	cmp.w	r3, #4294967295
+ 800097a:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
  800097e:	d103      	bne.n	8000988 <xQueueGenericSend+0x164>
  8000980:	6b3b      	ldr	r3, [r7, #48]	; 0x30
  8000982:	2200      	movs	r2, #0
@@ -1645,7 +1645,7 @@ Queue_t * const pxQueue = xQueue;
  8000988:	6b3b      	ldr	r3, [r7, #48]	; 0x30
  800098a:	f893 3045 	ldrb.w	r3, [r3, #69]	; 0x45
  800098e:	b25b      	sxtb	r3, r3
- 8000990:	f1b3 3fff 	cmp.w	r3, #4294967295
+ 8000990:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
  8000994:	d103      	bne.n	800099e <xQueueGenericSend+0x17a>
  8000996:	6b3b      	ldr	r3, [r7, #48]	; 0x30
  8000998:	2200      	movs	r2, #0
@@ -1863,7 +1863,7 @@ Queue_t * const pxQueue = xQueue;
 			be done when the queue is unlocked later. */
 			if( cTxLock == queueUNLOCKED )
  8000ae8:	f997 3033 	ldrsb.w	r3, [r7, #51]	; 0x33
- 8000aec:	f1b3 3fff 	cmp.w	r3, #4294967295
+ 8000aec:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
  8000af0:	d112      	bne.n	8000b18 <xQueueGenericSendFromISR+0x100>
 						}
 					}
@@ -2134,7 +2134,7 @@ Queue_t * const pxQueue = xQueue;
  8000c4e:	6abb      	ldr	r3, [r7, #40]	; 0x28
  8000c50:	f893 3044 	ldrb.w	r3, [r3, #68]	; 0x44
  8000c54:	b25b      	sxtb	r3, r3
- 8000c56:	f1b3 3fff 	cmp.w	r3, #4294967295
+ 8000c56:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
  8000c5a:	d103      	bne.n	8000c64 <xQueueReceive+0x11c>
  8000c5c:	6abb      	ldr	r3, [r7, #40]	; 0x28
  8000c5e:	2200      	movs	r2, #0
@@ -2142,7 +2142,7 @@ Queue_t * const pxQueue = xQueue;
  8000c64:	6abb      	ldr	r3, [r7, #40]	; 0x28
  8000c66:	f893 3045 	ldrb.w	r3, [r3, #69]	; 0x45
  8000c6a:	b25b      	sxtb	r3, r3
- 8000c6c:	f1b3 3fff 	cmp.w	r3, #4294967295
+ 8000c6c:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
  8000c70:	d103      	bne.n	8000c7a <xQueueReceive+0x132>
  8000c72:	6abb      	ldr	r3, [r7, #40]	; 0x28
  8000c74:	2200      	movs	r2, #0
@@ -2772,7 +2772,7 @@ BaseType_t xReturn;
  8000f78:	697b      	ldr	r3, [r7, #20]
  8000f7a:	f893 3044 	ldrb.w	r3, [r3, #68]	; 0x44
  8000f7e:	b25b      	sxtb	r3, r3
- 8000f80:	f1b3 3fff 	cmp.w	r3, #4294967295
+ 8000f80:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
  8000f84:	d103      	bne.n	8000f8e <vQueueWaitForMessageRestricted+0x2a>
  8000f86:	697b      	ldr	r3, [r7, #20]
  8000f88:	2200      	movs	r2, #0
@@ -2780,7 +2780,7 @@ BaseType_t xReturn;
  8000f8e:	697b      	ldr	r3, [r7, #20]
  8000f90:	f893 3045 	ldrb.w	r3, [r3, #69]	; 0x45
  8000f94:	b25b      	sxtb	r3, r3
- 8000f96:	f1b3 3fff 	cmp.w	r3, #4294967295
+ 8000f96:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
  8000f9a:	d103      	bne.n	8000fa4 <vQueueWaitForMessageRestricted+0x40>
  8000f9c:	697b      	ldr	r3, [r7, #20]
  8000f9e:	2200      	movs	r2, #0
@@ -2917,7 +2917,7 @@ BaseType_t xReturn;
 		else
 		{
 			xReturn = errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY;
- 800103e:	f04f 33ff 	mov.w	r3, #4294967295
+ 800103e:	f04f 33ff 	mov.w	r3, #4294967295	; 0xffffffff
  8001042:	61bb      	str	r3, [r7, #24]
 		}
 
@@ -3449,7 +3449,7 @@ void vTaskStartScheduler( void )
 
 		xNextTaskUnblockTime = portMAX_DELAY;
  80012d8:	4b12      	ldr	r3, [pc, #72]	; (8001324 <vTaskStartScheduler+0x8c>)
- 80012da:	f04f 32ff 	mov.w	r2, #4294967295
+ 80012da:	f04f 32ff 	mov.w	r2, #4294967295	; 0xffffffff
  80012de:	601a      	str	r2, [r3, #0]
 		xSchedulerRunning = pdTRUE;
  80012e0:	4b11      	ldr	r3, [pc, #68]	; (8001328 <vTaskStartScheduler+0x90>)
@@ -3475,7 +3475,7 @@ void vTaskStartScheduler( void )
  80012f0:	e00d      	b.n	800130e <vTaskStartScheduler+0x76>
 		configASSERT( xReturn != errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY );
  80012f2:	68fb      	ldr	r3, [r7, #12]
- 80012f4:	f1b3 3fff 	cmp.w	r3, #4294967295
+ 80012f4:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
  80012f8:	d109      	bne.n	800130e <vTaskStartScheduler+0x76>
  80012fa:	f04f 0350 	mov.w	r3, #80	; 0x50
  80012fe:	f383 8811 	msr	BASEPRI, r3
@@ -3891,7 +3891,7 @@ BaseType_t xSwitchRequired = pdFALSE;
 					next time through. */
 					xNextTaskUnblockTime = portMAX_DELAY; /*lint !e961 MISRA exception as the casts are only redundant for some ports. */
  800151c:	4b36      	ldr	r3, [pc, #216]	; (80015f8 <xTaskIncrementTick+0x158>)
- 800151e:	f04f 32ff 	mov.w	r2, #4294967295
+ 800151e:	f04f 32ff 	mov.w	r2, #4294967295	; 0xffffffff
  8001522:	601a      	str	r2, [r3, #0]
 					break;
  8001524:	e03e      	b.n	80015a4 <xTaskIncrementTick+0x104>
@@ -4265,7 +4265,7 @@ void vTaskPlaceOnEventList( List_t * const pxEventList, const TickType_t xTicksT
  8001744:	d002      	beq.n	800174c <vTaskPlaceOnEventListRestricted+0x40>
 		{
 			xTicksToWait = portMAX_DELAY;
- 8001746:	f04f 33ff 	mov.w	r3, #4294967295
+ 8001746:	f04f 33ff 	mov.w	r3, #4294967295	; 0xffffffff
  800174a:	60bb      	str	r3, [r7, #8]
 		}
 
@@ -4499,7 +4499,7 @@ BaseType_t xReturn;
 			if( *pxTicksToWait == portMAX_DELAY )
  80018a2:	683b      	ldr	r3, [r7, #0]
  80018a4:	681b      	ldr	r3, [r3, #0]
- 80018a6:	f1b3 3fff 	cmp.w	r3, #4294967295
+ 80018a6:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
  80018aa:	d102      	bne.n	80018b2 <xTaskCheckForTimeOut+0x62>
 			{
 				/* If INCLUDE_vTaskSuspend is set to 1 and the block time
@@ -4854,7 +4854,7 @@ TCB_t *pxTCB;
 		there is an item in the delayed list. */
 		xNextTaskUnblockTime = portMAX_DELAY;
  8001a60:	4b0a      	ldr	r3, [pc, #40]	; (8001a8c <prvResetNextTaskUnblockTime+0x3c>)
- 8001a62:	f04f 32ff 	mov.w	r2, #4294967295
+ 8001a62:	f04f 32ff 	mov.w	r2, #4294967295	; 0xffffffff
  8001a66:	601a      	str	r2, [r3, #0]
 		which the task at the head of the delayed list should be removed
 		from the Blocked state. */
@@ -5170,7 +5170,7 @@ const TickType_t xConstTickCount = xTickCount;
 	{
 		if( ( xTicksToWait == portMAX_DELAY ) && ( xCanBlockIndefinitely != pdFALSE ) )
  8001c0e:	687b      	ldr	r3, [r7, #4]
- 8001c10:	f1b3 3fff 	cmp.w	r3, #4294967295
+ 8001c10:	f1b3 3fff 	cmp.w	r3, #4294967295	; 0xffffffff
  8001c14:	d10a      	bne.n	8001c2c <prvAddCurrentTaskToDelayedList+0x58>
  8001c16:	683b      	ldr	r3, [r7, #0]
  8001c18:	2b00      	cmp	r3, #0
@@ -6916,11 +6916,6 @@ cc11xx_class::cc11xx_class(xTaskParam * pPortParam, uint8_t set_len, uint8_t *rf
  8002648:	213e      	movs	r1, #62	; 0x3e
  800264a:	68f8      	ldr	r0, [r7, #12]
  800264c:	f000 f84e 	bl	80026ec <_ZN12cc11xx_class8sendByteEhh>
-
-
-
-
-
 }
  8002650:	68fb      	ldr	r3, [r7, #12]
  8002652:	4618      	mov	r0, r3
@@ -7685,33 +7680,33 @@ btype_t cc11xx_class::txPack(void)
  8002ba8:	68db      	ldr	r3, [r3, #12]
  8002baa:	227f      	movs	r2, #127	; 0x7f
  8002bac:	819a      	strh	r2, [r3, #12]
-	stsb=SP->DR;
+	while  ( ! ((SP->SR & SPI_SR_TXE) && (SP->SR & SPI_SR_RXNE)) );
  8002bae:	687b      	ldr	r3, [r7, #4]
  8002bb0:	68db      	ldr	r3, [r3, #12]
- 8002bb2:	899b      	ldrh	r3, [r3, #12]
+ 8002bb2:	891b      	ldrh	r3, [r3, #8]
  8002bb4:	b29b      	uxth	r3, r3
- 8002bb6:	72fb      	strb	r3, [r7, #11]
-	while  (!((SP->SR & SPI_SR_TXE)&& (SP->SR &SPI_SR_RXNE)));
- 8002bb8:	687b      	ldr	r3, [r7, #4]
- 8002bba:	68db      	ldr	r3, [r3, #12]
- 8002bbc:	891b      	ldrh	r3, [r3, #8]
- 8002bbe:	b29b      	uxth	r3, r3
- 8002bc0:	f003 0302 	and.w	r3, r3, #2
- 8002bc4:	2b00      	cmp	r3, #0
- 8002bc6:	d007      	beq.n	8002bd8 <_ZN12cc11xx_class6txPackEv+0xbc>
- 8002bc8:	687b      	ldr	r3, [r7, #4]
- 8002bca:	68db      	ldr	r3, [r3, #12]
- 8002bcc:	891b      	ldrh	r3, [r3, #8]
- 8002bce:	b29b      	uxth	r3, r3
- 8002bd0:	f003 0301 	and.w	r3, r3, #1
+ 8002bb6:	f003 0302 	and.w	r3, r3, #2
+ 8002bba:	2b00      	cmp	r3, #0
+ 8002bbc:	d007      	beq.n	8002bce <_ZN12cc11xx_class6txPackEv+0xb2>
+ 8002bbe:	687b      	ldr	r3, [r7, #4]
+ 8002bc0:	68db      	ldr	r3, [r3, #12]
+ 8002bc2:	891b      	ldrh	r3, [r3, #8]
+ 8002bc4:	b29b      	uxth	r3, r3
+ 8002bc6:	f003 0301 	and.w	r3, r3, #1
+ 8002bca:	2b00      	cmp	r3, #0
+ 8002bcc:	d101      	bne.n	8002bd2 <_ZN12cc11xx_class6txPackEv+0xb6>
+ 8002bce:	2301      	movs	r3, #1
+ 8002bd0:	e000      	b.n	8002bd4 <_ZN12cc11xx_class6txPackEv+0xb8>
+ 8002bd2:	2300      	movs	r3, #0
  8002bd4:	2b00      	cmp	r3, #0
- 8002bd6:	d101      	bne.n	8002bdc <_ZN12cc11xx_class6txPackEv+0xc0>
- 8002bd8:	2301      	movs	r3, #1
- 8002bda:	e000      	b.n	8002bde <_ZN12cc11xx_class6txPackEv+0xc2>
- 8002bdc:	2300      	movs	r3, #0
- 8002bde:	2b00      	cmp	r3, #0
- 8002be0:	d000      	beq.n	8002be4 <_ZN12cc11xx_class6txPackEv+0xc8>
- 8002be2:	e7e9      	b.n	8002bb8 <_ZN12cc11xx_class6txPackEv+0x9c>
+ 8002bd6:	d000      	beq.n	8002bda <_ZN12cc11xx_class6txPackEv+0xbe>
+ 8002bd8:	e7e9      	b.n	8002bae <_ZN12cc11xx_class6txPackEv+0x92>
+	stsb=SP->DR;
+ 8002bda:	687b      	ldr	r3, [r7, #4]
+ 8002bdc:	68db      	ldr	r3, [r3, #12]
+ 8002bde:	899b      	ldrh	r3, [r3, #12]
+ 8002be0:	b29b      	uxth	r3, r3
+ 8002be2:	72fb      	strb	r3, [r7, #11]
 		for (uint32_t i=0; i<PACK_TX_COUNT; i++)
  8002be4:	2300      	movs	r3, #0
  8002be6:	60fb      	str	r3, [r7, #12]
@@ -7719,7 +7714,6 @@ btype_t cc11xx_class::txPack(void)
  8002bea:	2b0a      	cmp	r3, #10
  8002bec:	d827      	bhi.n	8002c3e <_ZN12cc11xx_class6txPackEv+0x122>
 		{
-
 			SP->DR=*(((uint8_t*)txp+i));
  8002bee:	687b      	ldr	r3, [r7, #4]
  8002bf0:	68db      	ldr	r3, [r3, #12]
@@ -8113,7 +8107,6 @@ btype_t cc11xx_class::rxEventHook(void)
 	else
 		return 0;
  8002e9c:	2300      	movs	r3, #0
-
 }
  8002e9e:	4618      	mov	r0, r3
  8002ea0:	3708      	adds	r7, #8
@@ -8167,12 +8160,12 @@ btype_t cc11xx_class::txEventHook(void)
 		int i=0;
  8002ef4:	2300      	movs	r3, #0
  8002ef6:	60fb      	str	r3, [r7, #12]
-		while((cStatus->state != TX_MODE ) || (i<3))
+		while((cStatus->state != TX_MODE ) && (i<3))
  8002ef8:	687b      	ldr	r3, [r7, #4]
  8002efa:	689b      	ldr	r3, [r3, #8]
  8002efc:	785b      	ldrb	r3, [r3, #1]
  8002efe:	2b01      	cmp	r3, #1
- 8002f00:	d102      	bne.n	8002f08 <_ZN12cc11xx_class11txEventHookEv+0x62>
+ 8002f00:	d00d      	beq.n	8002f1e <_ZN12cc11xx_class11txEventHookEv+0x78>
  8002f02:	68fb      	ldr	r3, [r7, #12]
  8002f04:	2b02      	cmp	r3, #2
  8002f06:	dc0a      	bgt.n	8002f1e <_ZN12cc11xx_class11txEventHookEv+0x78>
@@ -8188,7 +8181,7 @@ btype_t cc11xx_class::txEventHook(void)
  8002f16:	68fb      	ldr	r3, [r7, #12]
  8002f18:	3301      	adds	r3, #1
  8002f1a:	60fb      	str	r3, [r7, #12]
-		while((cStatus->state != TX_MODE ) || (i<3))
+		while((cStatus->state != TX_MODE ) && (i<3))
  8002f1c:	e7ec      	b.n	8002ef8 <_ZN12cc11xx_class11txEventHookEv+0x52>
 		};
 		if (i>3)return 0;  else return 1;
@@ -8199,7 +8192,6 @@ btype_t cc11xx_class::txEventHook(void)
  8002f26:	e002      	b.n	8002f2e <_ZN12cc11xx_class11txEventHookEv+0x88>
  8002f28:	2301      	movs	r3, #1
  8002f2a:	e000      	b.n	8002f2e <_ZN12cc11xx_class11txEventHookEv+0x88>
-
 	}
 	else
 	{
@@ -9470,7 +9462,7 @@ void aTaskUart(void * pvParameters)
  80036e8:	d904      	bls.n	80036f4 <_raise_r+0x14>
  80036ea:	2316      	movs	r3, #22
  80036ec:	6003      	str	r3, [r0, #0]
- 80036ee:	f04f 30ff 	mov.w	r0, #4294967295
+ 80036ee:	f04f 30ff 	mov.w	r0, #4294967295	; 0xffffffff
  80036f2:	bd38      	pop	{r3, r4, r5, pc}
  80036f4:	6c42      	ldr	r2, [r0, #68]	; 0x44
  80036f6:	b112      	cbz	r2, 80036fe <_raise_r+0x1e>
@@ -9536,7 +9528,7 @@ void aTaskUart(void * pvParameters)
 0800376c <_getpid>:
  800376c:	2258      	movs	r2, #88	; 0x58
  800376e:	4b02      	ldr	r3, [pc, #8]	; (8003778 <_getpid+0xc>)
- 8003770:	f04f 30ff 	mov.w	r0, #4294967295
+ 8003770:	f04f 30ff 	mov.w	r0, #4294967295	; 0xffffffff
  8003774:	601a      	str	r2, [r3, #0]
  8003776:	4770      	bx	lr
  8003778:	20000218 	.word	0x20000218
@@ -9544,7 +9536,7 @@ void aTaskUart(void * pvParameters)
 0800377c <_kill>:
  800377c:	2258      	movs	r2, #88	; 0x58
  800377e:	4b02      	ldr	r3, [pc, #8]	; (8003788 <_kill+0xc>)
- 8003780:	f04f 30ff 	mov.w	r0, #4294967295
+ 8003780:	f04f 30ff 	mov.w	r0, #4294967295	; 0xffffffff
  8003784:	601a      	str	r2, [r3, #0]
  8003786:	4770      	bx	lr
  8003788:	20000218 	.word	0x20000218
