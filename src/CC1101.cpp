@@ -44,7 +44,7 @@ void ARadioTask (void* pvParameters)
     uint32_t* pt=(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x0C)  * 32) + (13 * 4));
 #endif
 	//base task loop
-
+    cc1101->sendSTB(SCAL);
     cc1101->sendSTB(SRX);
 	for (;;)
 	{
@@ -54,7 +54,7 @@ void ARadioTask (void* pvParameters)
 		if (*pt==0)
 			*pt=1;
 		else *pt=0;
-		vTaskDelay(300 / portTICK_PERIOD_MS);
+		vTaskDelay(1500 / portTICK_PERIOD_MS);
 #endif
 
 		cc1101->rxEventHook();
@@ -73,13 +73,15 @@ void ARadioTaskS (void* pvParameters)
 #endif
 	//base task loop
     //USART1->DR=0x30;
+    cc1101->sendSTB(SCAL);
+    //while (cc1101->cStatus)
 	for (;;)
 	{
 		cc1101->chekStatus();
 		//cc1101->rxEventHook();
 		//USART1->DR=cc1101->readByte(0x11);
 		cc1101->txEventHook();
-		vTaskDelay(3000 / portTICK_PERIOD_MS);
+		vTaskDelay(1500 / portTICK_PERIOD_MS);
 
 		//xQueueSend(xPort->xCommTX, (const void*)rr, 3);
 		//cc1101->sendSTB(SRX);

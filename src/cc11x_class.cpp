@@ -304,7 +304,7 @@ btype_t cc11xx_class::rxPack(void)
 		{
 			SP->DR=0;
 			while  (!((SP->SR & SPI_SR_TXE)&& (SP->SR &SPI_SR_RXNE)));
-			*(((uint8_t*)txp+i))=SP->DR;
+			* ( ((uint8_t*) rxp) +i  )=SP->DR;
 		}
 	deselectChip();
 	return 1;

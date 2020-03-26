@@ -30,8 +30,8 @@
 
 
 #define IDLE_MODE 			0x0 // IDLE state
-#define TX_MODE 			0x1 // Receive mode
-#define RX_MODE 			0x2 // Transmit mode
+#define RX_MODE 			0x1 // Receive mode
+#define TX_MODE 			0x2 // Transmit mode
 #define FSTXON_MODE 		0x3 // Fast TX ready
 #define CALIBRATE_MODE 		0x4 // Frequency synthesizer calibration is running
 #define SETTLING_MODE 		0x5 // PLL is settling

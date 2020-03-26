@@ -15,7 +15,7 @@ void aTaskUart(void * pvParameters)
 	RCC->APB2ENR|=RCC_APB2ENR_USART1EN;
 	USART1->BRR=((0x1e<<4)|4);//115200
 	USART1->CR1|=USART_CR1_RE | USART_CR1_TE | USART_CR1_UE;
-	tx.addrdst=255;
+	tx.addrdst=137;
 	tx.bLeng=10;
 	tx.addrsrc=255;
 	tx.crc8d=255;
@@ -28,8 +28,8 @@ void aTaskUart(void * pvParameters)
 	tx.rssi=255;
 	while(1)
 	{
-		vTaskDelay(3000 / portTICK_PERIOD_MS);
-		USART1->DR= 0x30;
+		vTaskDelay(50 / portTICK_PERIOD_MS);
+		//USART1->DR= 0x30;
 		if(uxQueueSpacesAvailable(pQComm->a2TX))
 		{
 			xQueueSend(pQComm->a2TX,&tx,3);
@@ -42,6 +42,8 @@ void aTaskUart(void * pvParameters)
 				while (!(USART1->SR & USART_SR_TXE));
 				USART1->DR=*(((uint8_t*)&rx + i));
 			}
+			while (!(USART1->SR & USART_SR_TXE));
+			USART1->DR=0xd;
 		}
 	}
 
