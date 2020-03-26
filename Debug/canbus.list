@@ -9109,8 +9109,8 @@ void aTaskUart(void * pvParameters)
  800340a:	74bb      	strb	r3, [r7, #18]
 	while(1)
 	{
-		vTaskDelay(50 / portTICK_PERIOD_MS);
- 800340c:	2032      	movs	r0, #50	; 0x32
+		vTaskDelay(100 / portTICK_PERIOD_MS);
+ 800340c:	2064      	movs	r0, #100	; 0x64
  800340e:	f7fd ff0f 	bl	8001230 <vTaskDelay>
 		//USART1->DR= 0x30;
 		if(uxQueueSpacesAvailable(pQComm->a2TX))

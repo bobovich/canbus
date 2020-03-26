@@ -68,7 +68,7 @@ int main(void)
   {
 
 	  //error loop  hook? make harvesting errors and reboots
-	  //spiReg=(uint8_t)(*(rfSettings+1));
+
 
   }
 }

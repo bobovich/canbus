@@ -28,7 +28,7 @@ void aTaskUart(void * pvParameters)
 	tx.rssi=255;
 	while(1)
 	{
-		vTaskDelay(50 / portTICK_PERIOD_MS);
+		vTaskDelay(100 / portTICK_PERIOD_MS);
 		//USART1->DR= 0x30;
 		if(uxQueueSpacesAvailable(pQComm->a2TX))
 		{
