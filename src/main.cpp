@@ -33,7 +33,8 @@ static  xTaskParam  RTask1 =
 static  xTaskParam  RTask2 =
 {
 		.pTaskSerial= SPI2_BASE,
-		.xTaskPortH=PORT_NORMAL
+		.xTaskPortH=PORT_NORMAL,
+		.pRxEvent=	(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x08)  * 32) + (6 * 4))
 };
 static pQueueComm pQComm;
 

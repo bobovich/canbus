@@ -1,7 +1,7 @@
 /*
  * CC1101.cpp
  *
- *  Created on: 23 Feb 2020 �.
+ *  Created on: 23 Feb 2020
  *      Author: Ivan Bobovich
  *
  *      This source licensed GPL3
@@ -71,25 +71,15 @@ void ARadioTaskS (void* pvParameters)
     GPIOC->CRH|=0x2<<20;
     uint32_t* pt=(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x0C)  * 32) + (13 * 4));
 #endif
-	//base task loop
-    //USART1->DR=0x30;
+
     cc1101->sendSTB(SCAL);
-    //while (cc1101->cStatus)
-	for (;;)
+   	for (;;)
 	{
 		cc1101->chekStatus();
-		//cc1101->rxEventHook();
-		//USART1->DR=cc1101->readByte(0x11);
 		cc1101->txEventHook();
+		cc1101->rxEventHook();
 		vTaskDelay(1500 / portTICK_PERIOD_MS);
 
-		//xQueueSend(xPort->xCommTX, (const void*)rr, 3);
-		//cc1101->sendSTB(SRX);
-		//cc1101->txEventHook();
-		//cc1101->txPack();
-		/*if (*pt==0)
-			*pt=1;
-		else *pt=0;
-		//vTaskDelay(1000 / portTICK_PERIOD_MS);*/
+
 	};
 }
