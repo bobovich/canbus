@@ -9493,21 +9493,21 @@ char* rawtohex(void* data, uint32_t count,  char * str)
 	while (i<count)
  80036d6:	e791      	b.n	80035fc <_Z8rawtohexPvmPc+0x14>
 	}
-	str[is]=0;
- 80036d8:	687a      	ldr	r2, [r7, #4]
- 80036da:	69bb      	ldr	r3, [r7, #24]
- 80036dc:	4413      	add	r3, r2
- 80036de:	2200      	movs	r2, #0
- 80036e0:	701a      	strb	r2, [r3, #0]
+	str[is-1]=0;
+ 80036d8:	69bb      	ldr	r3, [r7, #24]
+ 80036da:	3b01      	subs	r3, #1
+ 80036dc:	687a      	ldr	r2, [r7, #4]
+ 80036de:	4413      	add	r3, r2
+ 80036e0:	2200      	movs	r2, #0
+ 80036e2:	701a      	strb	r2, [r3, #0]
 	return str;
- 80036e2:	687b      	ldr	r3, [r7, #4]
+ 80036e4:	687b      	ldr	r3, [r7, #4]
 }
- 80036e4:	4618      	mov	r0, r3
- 80036e6:	3724      	adds	r7, #36	; 0x24
- 80036e8:	46bd      	mov	sp, r7
- 80036ea:	bc80      	pop	{r7}
- 80036ec:	4770      	bx	lr
- 80036ee:	bf00      	nop
+ 80036e6:	4618      	mov	r0, r3
+ 80036e8:	3724      	adds	r7, #36	; 0x24
+ 80036ea:	46bd      	mov	sp, r7
+ 80036ec:	bc80      	pop	{r7}
+ 80036ee:	4770      	bx	lr
 
 080036f0 <_Znwj>:
  80036f0:	b510      	push	{r4, lr}

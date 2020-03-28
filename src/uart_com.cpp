@@ -105,6 +105,6 @@ char* rawtohex(void* data, uint32_t count,  char * str)
 		is++;
 		i++;
 	}
-	str[is]=0;
+	str[is-1]=0;
 	return str;
 }
