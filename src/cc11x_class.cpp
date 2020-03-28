@@ -254,6 +254,11 @@ btype_t cc11xx_class::chekStatus()
 	cStatus->state=(stsb>>4) & 0x7;
 	cStatus->fifo_rx_av= stsb & 0x0f;
 	deselectChip();
+	switch (cStatus->state)
+	{
+	case RXFIFO_OVERFLOW: this->sendSTB(SFRX); break;
+	case TXFIFO_UNDERFLOW:this->sendSTB(SFTX); break;
+	}
 	return 1;
 }
 

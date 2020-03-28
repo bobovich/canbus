@@ -57,8 +57,8 @@ void ARadioTask (void* pvParameters)
 		vTaskDelay(1500 / portTICK_PERIOD_MS);
 #endif
 
-		cc1101->rxEventHook();
 		cc1101->txEventHook();
+		cc1101->rxEventHook();
 	};
 }
 

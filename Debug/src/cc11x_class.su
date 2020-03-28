@@ -8,9 +8,9 @@ cc11x_class.cpp:147:9:uint8_t cc11xx_class::readByte(uint8_t)	24	static
 cc11x_class.cpp:174:9:btype_t cc11xx_class::sendBurst(uint8_t, uint8_t, uint8_t*)	32	static
 cc11x_class.cpp:203:9:btype_t cc11xx_class::readBurst(uint8_t, uint8_t, uint8_t*)	32	static
 cc11x_class.cpp:231:9:btype_t cc11xx_class::chekStatus()	24	static
-cc11x_class.cpp:260:9:btype_t cc11xx_class::txPack()	24	static
-cc11x_class.cpp:287:9:btype_t cc11xx_class::rxPack()	24	static
-cc11x_class.cpp:313:7:pack* cc11xx_class::getRxPack()	16	static
-cc11x_class.cpp:318:9:btype_t cc11xx_class::sendSTB(uint8_t)	24	static
-cc11x_class.cpp:337:9:btype_t cc11xx_class::rxEventHook()	16	static
-cc11x_class.cpp:349:9:btype_t cc11xx_class::txEventHook()	24	static
+cc11x_class.cpp:265:9:btype_t cc11xx_class::txPack()	24	static
+cc11x_class.cpp:292:9:btype_t cc11xx_class::rxPack()	24	static
+cc11x_class.cpp:318:7:pack* cc11xx_class::getRxPack()	16	static
+cc11x_class.cpp:323:9:btype_t cc11xx_class::sendSTB(uint8_t)	24	static
+cc11x_class.cpp:342:9:btype_t cc11xx_class::rxEventHook()	16	static
+cc11x_class.cpp:354:9:btype_t cc11xx_class::txEventHook()	24	static
