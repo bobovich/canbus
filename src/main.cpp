@@ -60,7 +60,7 @@ int main(void)
 	//delete RTask1;
 	xTaskCreate(run1Task, "Run1 Task",  100, NULL,2,  NULL);
 	xTaskCreate(run1Task, "Run2 Task",  100, NULL,2,  NULL);
-	xTaskCreate(aTaskUart, "Run2 Task",  100, &pQComm,2,  NULL);
+	xTaskCreate(aTaskUart, "Run2 Task",  300, &pQComm,2,  NULL);
 	vTaskStartScheduler();
 
 

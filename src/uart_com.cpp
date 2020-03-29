@@ -20,13 +20,13 @@ void aTaskUart(void * pvParameters)
 	RCC->APB2ENR|=RCC_APB2ENR_USART1EN;
 	USART1->BRR=((0x1e<<4)|4);//115200
 	USART1->CR1|=USART_CR1_RE | USART_CR1_TE | USART_CR1_UE;
-	tx.addrdst=137;
+	tx.addrdst=87;
 	tx.bLeng=10;
 	tx.addrsrc=255;
 	tx.crc8d=255;
-	tx.data[0]=255;
+	tx.data[0]=127;
 	tx.data[1]=255;
-	tx.data[2]=255;
+	tx.data[2]=127;
 	tx.data[3]=255;
 	tx.data[4]=255;
 	tx.data[5]=255;
@@ -38,7 +38,13 @@ void aTaskUart(void * pvParameters)
 		//USART1->DR= 0x30;
 		if(uxQueueSpacesAvailable(pQComm->a2TX))
 		{
+			tx.addrdst=87;
 			xQueueSend(pQComm->a2TX,&tx,3);
+		};
+		if(uxQueueSpacesAvailable(pQComm->a1TX))
+		{
+			tx.addrdst=88;
+			xQueueSend(pQComm->a1TX,&tx,3);
 		};
 		if(!uxQueueSpacesAvailable(pQComm->a1RX))
 		{

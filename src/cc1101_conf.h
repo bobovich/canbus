@@ -18,7 +18,7 @@ uint8_t rfSettings[] =
     0xD3,  // SYNC1              0x0004  Sync Word, High Byte
     0x91,  // SYNC0              0x0005  Sync Word, Low Byte
     0xFF,  // PKTLEN             0x0006  Packet Length
-    0x0C,  // PKTCTRL1           0x0007  Packet Automation Control
+    0x0F,  // PKTCTRL1           0x0007  Packet Automation Control
     0x05,  // PKTCTRL0           0x0008  Packet Automation Control
     0x00,  // ADDR               0x0009  Device Address
     0x00,  // CHANNR             0x000A  Channel Number

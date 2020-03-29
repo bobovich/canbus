@@ -44,6 +44,7 @@ void ARadioTask (void* pvParameters)
     uint32_t* pt=(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x0C)  * 32) + (13 * 4));
 #endif
 	//base task loop
+    cc1101->sendByte(9,  87);
     cc1101->sendSTB(SCAL);
     cc1101->sendSTB(SRX);
 	for (;;)
@@ -71,7 +72,7 @@ void ARadioTaskS (void* pvParameters)
     GPIOC->CRH|=0x2<<20;
     uint32_t* pt=(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x0C)  * 32) + (13 * 4));
 #endif
-
+    cc1101->sendByte(9,  88);
     cc1101->sendSTB(SCAL);
    	for (;;)
 	{
