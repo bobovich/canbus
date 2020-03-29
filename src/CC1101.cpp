@@ -46,20 +46,21 @@ void ARadioTask (void* pvParameters)
 	//base task loop
     cc1101->sendByte(9,  87);
     cc1101->sendSTB(SCAL);
-    cc1101->sendSTB(SRX);
+   // cc1101->sendSTB(SRX);
 	for (;;)
 	{
-		cc1101->chekStatus();
-		//USART1->DR=cc1101->readByte(0x00);
+
+
 #ifdef DEBUG
 		if (*pt==0)
 			*pt=1;
 		else *pt=0;
-		vTaskDelay(1500 / portTICK_PERIOD_MS);
-#endif
 
+#endif
+		cc1101->chekStatus();
 		cc1101->txEventHook();
 		cc1101->rxEventHook();
+		vTaskDelay(1500 / portTICK_PERIOD_MS);
 	};
 }
 
@@ -74,6 +75,7 @@ void ARadioTaskS (void* pvParameters)
 #endif
     cc1101->sendByte(9,  88);
     cc1101->sendSTB(SCAL);
+    //cc1101->sendSTB(SRX);
    	for (;;)
 	{
 		cc1101->chekStatus();

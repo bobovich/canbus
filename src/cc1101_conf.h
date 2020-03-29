@@ -35,7 +35,7 @@ uint8_t rfSettings[] =
     0x34,  // DEVIATN            0x0015  Modem Deviation Setting
     0x07,  // MCSM2              0x0016  Main Radio Control State Machine Configuration
     0x3F,  // MCSM1              0x0017  Main Radio Control State Machine Configuration
-    0x18,  // MCSM0              0x0018  Main Radio Control State Machine Configuration
+    0x38,  // MCSM0              0x0018  Main Radio Control State Machine Configuration
     0x16,  // FOCCFG             0x0019  Frequency Offset Compensation Configuration
     0x6C,  // BSCFG              0x001A  Bit Synchronization Configuration
     0x43,  // AGCCTRL2           0x001B  AGC Control
