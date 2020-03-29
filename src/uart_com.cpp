@@ -39,12 +39,12 @@ void aTaskUart(void * pvParameters)
 		if(uxQueueSpacesAvailable(pQComm->a2TX))
 		{
 			tx.addrdst=87;
-			xQueueSend(pQComm->a2TX,&tx,3);
+			xQueueSend(pQComm->a2TX,&tx,0);
 		};
 		if(uxQueueSpacesAvailable(pQComm->a1TX))
 		{
 			tx.addrdst=88;
-			xQueueSend(pQComm->a1TX,&tx,3);
+			xQueueSend(pQComm->a1TX,&tx,0);
 		};
 		if(!uxQueueSpacesAvailable(pQComm->a1RX))
 		{

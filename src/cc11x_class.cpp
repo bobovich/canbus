@@ -341,7 +341,7 @@ btype_t cc11xx_class::sendSTB(uint8_t stb)
 
 btype_t cc11xx_class::rxEventHook(void)
 {
-	if (*rxEvent == RX_EVENT)
+	if ((*rxEvent == RX_EVENT) || ( this->cStatus->fifo_rx_av >= sizeof(pack)) )
 	{
 		this->rxPack();
 		xQueueSend(this->pRX, (const void *) this->rxp, 1 / portTICK_PERIOD_MS );
