@@ -46,7 +46,7 @@ void ARadioTask (void* pvParameters)
 	//base task loop
     cc1101->sendByte(9,  87);
     cc1101->sendSTB(SCAL);
-   // cc1101->sendSTB(SRX);
+    cc1101->sendSTB(SRX);
 	for (;;)
 	{
 
@@ -60,7 +60,7 @@ void ARadioTask (void* pvParameters)
 		cc1101->chekStatus();
 		cc1101->txEventHook();
 		cc1101->rxEventHook();
-		vTaskDelay(1500 / portTICK_PERIOD_MS);
+		//vTaskDelay(50 / portTICK_PERIOD_MS);
 	};
 }
 
@@ -69,19 +69,19 @@ void ARadioTaskS (void* pvParameters)
 	xTaskParam * xPort=(xTaskParam *) pvParameters;
 	cc11xx_class *cc1101= new cc11xx_class(xPort, 46, rfSettings);
 #ifdef DEBUG
-    RCC->APB2ENR|= RCC_APB2ENR_IOPCEN;
+   /* RCC->APB2ENR|= RCC_APB2ENR_IOPCEN;
     GPIOC->CRH|=0x2<<20;
-    uint32_t* pt=(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x0C)  * 32) + (13 * 4));
+    uint32_t* pt=(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x0C)  * 32) + (13 * 4));*/
 #endif
     cc1101->sendByte(9,  88);
     cc1101->sendSTB(SCAL);
-    //cc1101->sendSTB(SRX);
+    cc1101->sendSTB(SRX);
    	for (;;)
 	{
 		cc1101->chekStatus();
 		cc1101->txEventHook();
 		cc1101->rxEventHook();
-		vTaskDelay(1500 / portTICK_PERIOD_MS);
+	//	vTaskDelay(50 / portTICK_PERIOD_MS);
 
 
 	};

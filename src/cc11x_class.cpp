@@ -258,6 +258,9 @@ btype_t cc11xx_class::chekStatus()
 	{
 	case RXFIFO_OVERFLOW: this->sendSTB(SFRX);this->sendSTB(SRX); break;
 	case TXFIFO_UNDERFLOW:this->sendSTB(SFTX); this->sendSTB(SRX); break;
+#ifdef FREERTOS
+	case CALIBRATE_MODE: case SETTLING_MODE: vTaskDelay(1 / portTICK_PERIOD_MS); break;
+#endif
 	}
 	return 1;
 }

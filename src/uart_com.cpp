@@ -32,20 +32,19 @@ void aTaskUart(void * pvParameters)
 	tx.data[5]=255;
 	tx.rssi=255;
 	bufTx[0]=0;
+	vTaskDelay(1000 / portTICK_PERIOD_MS);
+	if(uxQueueSpacesAvailable(pQComm->a1TX))
+				{
+					tx.addrdst=88;
+					tx.rssi=rx.rssi_r;
+					xQueueSend(pQComm->a1TX,&tx,0);
+				};
 	while(1)
 	{
-		vTaskDelay(100 / portTICK_PERIOD_MS);
+		vTaskDelay(1000 / portTICK_PERIOD_MS);
 		//USART1->DR= 0x30;
-		if(uxQueueSpacesAvailable(pQComm->a2TX))
-		{
-			tx.addrdst=87;
-			xQueueSend(pQComm->a2TX,&tx,0);
-		};
-		if(uxQueueSpacesAvailable(pQComm->a1TX))
-		{
-			tx.addrdst=88;
-			xQueueSend(pQComm->a1TX,&tx,0);
-		};
+
+
 		if(!uxQueueSpacesAvailable(pQComm->a1RX))
 		{
 			xQueueReceive( pQComm->a1RX, &rx,0);
@@ -53,14 +52,27 @@ void aTaskUart(void * pvParameters)
 			strcat(bufTx, rawtohex( (void*)&rx, sizeof( pack ), bufTmp ));
 			strcat(bufTx, "\n");
 			printUart(bufTx);
-		};
-		if(!uxQueueSpacesAvailable(pQComm->a2RX))
+			if(uxQueueSpacesAvailable(pQComm->a1TX))
+			{
+				tx.addrdst=88;
+				tx.rssi=rx.rssi_r;
+				xQueueSend(pQComm->a1TX,&tx,0);
+			};
+
+
+		}else if(!uxQueueSpacesAvailable(pQComm->a2RX))
 		{
 			xQueueReceive( pQComm->a2RX, &rx,0);
 			strcat(bufTx, "APP2 data:\0");
 			strcat(bufTx, rawtohex( (void*)&rx, sizeof( pack ), bufTmp ));
 			strcat(bufTx, "\n\0");
 			printUart(bufTx);
+			if(uxQueueSpacesAvailable(pQComm->a2TX))
+			{
+				tx.addrdst=87;
+				tx.rssi=rx.rssi_r;
+				xQueueSend(pQComm->a2TX,&tx,0);
+			};
 		};
 
 	}
