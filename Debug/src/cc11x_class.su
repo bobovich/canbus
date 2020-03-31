@@ -12,5 +12,6 @@ cc11x_class.cpp:268:9:btype_t cc11xx_class::txPack()	24	static
 cc11x_class.cpp:295:9:btype_t cc11xx_class::rxPack()	24	static
 cc11x_class.cpp:321:7:pack* cc11xx_class::getRxPack()	16	static
 cc11x_class.cpp:326:9:btype_t cc11xx_class::sendSTB(uint8_t)	24	static
-cc11x_class.cpp:345:9:btype_t cc11xx_class::rxEventHook()	16	static
-cc11x_class.cpp:357:9:btype_t cc11xx_class::txEventHook()	24	static
+cc11x_class.cpp:345:9:uint8_t cc11xx_class::crc8(uint8_t*, uint8_t)	32	static
+cc11x_class.cpp:359:9:btype_t cc11xx_class::rxEventHook()	16	static
+cc11x_class.cpp:380:9:btype_t cc11xx_class::txEventHook()	32	static

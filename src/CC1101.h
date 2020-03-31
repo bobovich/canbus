@@ -72,8 +72,8 @@ void ARadioTaskS (void* pvParameters);
 	uint8_t addrdst;
 	uint8_t addrsrc;
 	uint8_t data[PACK_SIZE];
-	uint8_t crc8d;
 	uint8_t rssi;
+	uint8_t crc8d;
 	uint8_t rssi_r;
 	uint8_t lqi;
 };
@@ -144,6 +144,7 @@ void ARadioTaskS (void* pvParameters);
 	  btype_t rxPack(void);
 	  pack* getRxPack(void);
 	  btype_t sendSTB(uint8_t stb);
+	  uint8_t crc8(uint8_t *pcBlock, uint8_t len);
 	  btype_t rxEventHook(void);
 #ifdef FREERTOS
 	  btype_t txEventHook(void);

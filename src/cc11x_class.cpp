@@ -342,13 +342,36 @@ btype_t cc11xx_class::sendSTB(uint8_t stb)
 	return 1;
 }
 
+uint8_t cc11xx_class::crc8(uint8_t * pcBlock, uint8_t len)
+{
+
+	uint8_t crc = 0xFF;
+	uint32_t i;
+    while (len--)
+	{
+	  crc ^= *pcBlock++;
+      for (i = 0; i < 8; i++)
+	  crc = crc & 0x80 ? (crc << 1) ^ 0x31 : crc << 1;
+	}
+    return crc;
+}
+
 btype_t cc11xx_class::rxEventHook(void)
 {
 	if ((*rxEvent == RX_EVENT) || ( this->cStatus->fifo_rx_av >= sizeof(pack)) )
 	{
 		this->rxPack();
+		if (this->crc8((uint8_t*)this->rxp, sizeof(pack)-3) == this->rxp->crc8d )
+		{
 		xQueueSend(this->pRX, (const void *) this->rxp, 1 / portTICK_PERIOD_MS );
 		return 1;
+		} else
+		{
+			this->sendSTB(SIDLE);
+			this->sendSTB(SFRX);
+			this->sendSTB(SRX);
+			return 0;
+		}
 	}
 	else
 		return 0;
@@ -359,6 +382,7 @@ btype_t cc11xx_class::txEventHook(void)
 	if ( (uxQueueSpacesAvailable( this->pTX) < QUEUE_SIZE) )
 	{
 		if (xQueueReceive(this->pTX, (void*)this->txp, 1 / portTICK_PERIOD_MS)==pdTRUE)
+		this->txp->crc8d=this->crc8((uint8_t*)this->txp, sizeof(pack)-3);
 		this->txPack();
 		this->chekStatus();
 		int i=0;
