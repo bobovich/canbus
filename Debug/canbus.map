@@ -1617,6 +1617,18 @@ Discarded input sections
                 0x00000000      0x170 src\cc11x_class.o
  .text._ZN12cc11xx_class9getRxPackEv
                 0x00000000       0x16 src\cc11x_class.o
+ .text          0x00000000        0x0 src\i2c_sensor.o
+ .data          0x00000000        0x0 src\i2c_sensor.o
+ .bss           0x00000000        0x0 src\i2c_sensor.o
+ .debug_info    0x00000000       0xc6 src\i2c_sensor.o
+ .debug_abbrev  0x00000000       0x63 src\i2c_sensor.o
+ .debug_aranges
+                0x00000000       0x18 src\i2c_sensor.o
+ .debug_line    0x00000000      0x14a src\i2c_sensor.o
+ .debug_str     0x00000000      0x20a src\i2c_sensor.o
+ .comment       0x00000000       0x7d src\i2c_sensor.o
+ .ARM.attributes
+                0x00000000       0x33 src\i2c_sensor.o
  .text          0x00000000        0x0 src\main.o
  .data          0x00000000        0x0 src\main.o
  .bss           0x00000000        0x0 src\main.o
@@ -1824,6 +1836,7 @@ LOAD Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_wwdg.o
 LOAD src\CC1101.o
 LOAD src\canbustask.o
 LOAD src\cc11x_class.o
+LOAD src\i2c_sensor.o
 LOAD src\main.o
 LOAD src\startup_stm32f10x_md.o
 LOAD src\stm32f1xx_it.o
