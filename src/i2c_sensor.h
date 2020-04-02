@@ -17,29 +17,33 @@
  *
  */
 
+void aIAQCore(void *parameter);
+
+struct iaq_data {
+	uint32_t co2;
+	uint32_t tvoc;
+
+};
 
 class iaq_core
 {
 
 private:
 	uint8_t iaq_pack[9];
-	const uint8_t addr=0x5a;
+	const uint8_t addr=0xb5;
+	iaq_data sVal;
+	uint8_t status;
 public:
-	uint32_t hookRecievePack( uint8_t* pData);
+	iaq_core();
+	void i2c_init(void);
+	uint32_t readI2C(void);
+	uint32_t hookRecievePack( QueueHandle_t qHandle);
 	int8_t getTemp (void);
 	uint8_t getHumiduty(void);
 	uint8_t getStatus(void);
 	uint32_t getCO2(void);
 	uint32_t getTVOC(void);
 };
-
-
-
-
-
-
-
-
 
 
 

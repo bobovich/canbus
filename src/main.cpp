@@ -8,9 +8,11 @@
 
 #include <stddef.h>
 #include <stdio.h>
+
 #include "stm32f10x.h"
 #include "CC1101.h"
 #include "uart_com.h"
+#include "i2c_sensor.h"
 #define DEBUG
 #define FREERTOS
 //#define FREERTOS
@@ -37,6 +39,7 @@ static  xTaskParam  RTask2 =
 		.pRxEvent=	(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x08)  * 32) + (6 * 4))
 };
 static pQueueComm pQComm;
+QueueHandle_t sQueue;
 
 
 
@@ -49,16 +52,18 @@ int main(void)
 	RTask1.xCommTX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
 	RTask2.xCommRX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
 	RTask2.xCommTX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
+	sQueue= xQueueCreate(3, sizeof(iaq_data));
 	pQComm.a1RX=RTask1.xCommRX;
 	pQComm.a1TX = RTask1.xCommTX;
 	pQComm.a2RX = RTask2.xCommRX;
 	pQComm.a2TX = RTask2.xCommTX;
+	pQComm.qSensorIAQ= sQueue;
 
 //xTaskCreate(ATaskCanBus, "CAN Task",  100, NULL, tskIDLE_PRIORITY,  NULL);
 	xTaskCreate(ARadioTask, "RF Task1",  500,(void*) &RTask1 ,2,  NULL);
 	xTaskCreate(ARadioTaskS, "RF Task2",  500,(void*) &RTask2 ,2,  NULL);
 	//delete RTask1;
-	xTaskCreate(run1Task, "Run1 Task",  100, NULL,2,  NULL);
+	xTaskCreate(aIAQCore, "TaskSensor",  100, (void*)sQueue, 2,  NULL);
 	xTaskCreate(run1Task, "Run2 Task",  100, NULL,2,  NULL);
 	xTaskCreate(aTaskUart, "Run2 Task",  300, &pQComm,2,  NULL);
 	vTaskStartScheduler();

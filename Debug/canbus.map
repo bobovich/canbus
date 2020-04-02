@@ -8,6 +8,8 @@ d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/
                               d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_op.o) (abort)
 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-init.o)
                               src\startup_stm32f10x_md.o (__libc_init_array)
+d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-itoa.o)
+                              src\uart_com.o (itoa)
 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-malloc.o)
                               FreeRTOS_Source\portable\MemMang\heap_3.o (malloc)
 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-memcpy-stub.o)
@@ -28,6 +30,8 @@ d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/
                               src\uart_com.o (strcat)
 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-strlen.o)
                               src\tiny_printf.o (strlen)
+d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-utoa.o)
+                              d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-itoa.o) (__utoa)
 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-impure.o)
                               d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-malloc.o) (_impure_ptr)
 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-mlock.o)
@@ -1620,15 +1624,6 @@ Discarded input sections
  .text          0x00000000        0x0 src\i2c_sensor.o
  .data          0x00000000        0x0 src\i2c_sensor.o
  .bss           0x00000000        0x0 src\i2c_sensor.o
- .debug_info    0x00000000       0xc6 src\i2c_sensor.o
- .debug_abbrev  0x00000000       0x63 src\i2c_sensor.o
- .debug_aranges
-                0x00000000       0x18 src\i2c_sensor.o
- .debug_line    0x00000000      0x14a src\i2c_sensor.o
- .debug_str     0x00000000      0x20a src\i2c_sensor.o
- .comment       0x00000000       0x7d src\i2c_sensor.o
- .ARM.attributes
-                0x00000000       0x33 src\i2c_sensor.o
  .text          0x00000000        0x0 src\main.o
  .data          0x00000000        0x0 src\main.o
  .bss           0x00000000        0x0 src\main.o
@@ -1699,6 +1694,9 @@ Discarded input sections
  .text          0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-init.o)
  .data          0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-init.o)
  .bss           0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-init.o)
+ .text          0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-itoa.o)
+ .data          0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-itoa.o)
+ .bss           0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-itoa.o)
  .text          0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-malloc.o)
  .data          0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-malloc.o)
  .bss           0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-malloc.o)
@@ -1743,6 +1741,10 @@ Discarded input sections
  .bss           0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-strcat.o)
  .data          0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-strlen.o)
  .bss           0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-strlen.o)
+ .text          0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-utoa.o)
+ .data          0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-utoa.o)
+ .bss           0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-utoa.o)
+ .text.utoa     0x00000000        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-utoa.o)
  .text          0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-impure.o)
  .data          0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-impure.o)
  .bss           0x00000000        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-impure.o)
@@ -1878,7 +1880,7 @@ LOAD d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-
                 0x08000000                g_pfnVectors
                 0x0800010c                . = ALIGN (0x4)
 
-.text           0x08000110     0x3aa8
+.text           0x08000110     0x3eb4
                 0x08000110                . = ALIGN (0x4)
  *(.text)
  .text          0x08000110       0x40 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtbegin.o
@@ -2113,227 +2115,250 @@ LOAD d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-
  .text._ZN12cc11xx_class11txEventHookEv
                 0x08002fbc       0xa6 src\cc11x_class.o
                 0x08002fbc                cc11xx_class::txEventHook()
- *fill*         0x08003062        0x2 
- .text.main     0x08003064      0x11c src\main.o
-                0x08003064                main
+ .text._Z8aIAQCorePv
+                0x08003062       0x36 src\i2c_sensor.o
+                0x08003062                aIAQCore(void*)
+ .text._ZN8iaq_coreC2Ev
+                0x08003098       0x1c src\i2c_sensor.o
+                0x08003098                iaq_core::iaq_core()
+                0x08003098                iaq_core::iaq_core()
+ .text._ZN8iaq_core8i2c_initEv
+                0x080030b4       0x80 src\i2c_sensor.o
+                0x080030b4                iaq_core::i2c_init()
+ .text._ZN8iaq_core7readI2CEv
+                0x08003134      0x150 src\i2c_sensor.o
+                0x08003134                iaq_core::readI2C()
+ .text._ZN8iaq_core15hookRecievePackEP15QueueDefinition
+                0x08003284       0x6a src\i2c_sensor.o
+                0x08003284                iaq_core::hookRecievePack(QueueDefinition*)
+ *fill*         0x080032ee        0x2 
+ .text.main     0x080032f0      0x140 src\main.o
+                0x080032f0                main
  .text._Z16prvClockCoreInitv
-                0x08003180       0xb4 src\main.o
-                0x08003180                prvClockCoreInit()
+                0x08003430       0xb4 src\main.o
+                0x08003430                prvClockCoreInit()
  .text._Z20prvCommunicationInitv
-                0x08003234       0x3c src\main.o
-                0x08003234                prvCommunicationInit()
+                0x080034e4       0x3c src\main.o
+                0x080034e4                prvCommunicationInit()
  .text._Z8run1TaskPv
-                0x08003270       0x38 src\main.o
-                0x08003270                run1Task(void*)
+                0x08003520       0x38 src\main.o
+                0x08003520                run1Task(void*)
  .text.Reset_Handler
-                0x080032a8       0x50 src\startup_stm32f10x_md.o
-                0x080032a8                Reset_Handler
+                0x08003558       0x50 src\startup_stm32f10x_md.o
+                0x08003558                Reset_Handler
  .text.Default_Handler
-                0x080032f8        0x2 src\startup_stm32f10x_md.o
-                0x080032f8                EXTI2_IRQHandler
-                0x080032f8                TIM1_CC_IRQHandler
-                0x080032f8                PVD_IRQHandler
-                0x080032f8                EXTI3_IRQHandler
-                0x080032f8                EXTI0_IRQHandler
-                0x080032f8                I2C2_EV_IRQHandler
-                0x080032f8                ADC1_2_IRQHandler
-                0x080032f8                SPI1_IRQHandler
-                0x080032f8                TAMPER_IRQHandler
-                0x080032f8                DMA1_Channel4_IRQHandler
-                0x080032f8                USART3_IRQHandler
-                0x080032f8                RTC_IRQHandler
-                0x080032f8                DMA1_Channel7_IRQHandler
-                0x080032f8                CAN1_RX1_IRQHandler
-                0x080032f8                TIM4_IRQHandler
-                0x080032f8                I2C1_EV_IRQHandler
-                0x080032f8                DMA1_Channel6_IRQHandler
-                0x080032f8                TIM3_IRQHandler
-                0x080032f8                RCC_IRQHandler
-                0x080032f8                TIM1_TRG_COM_IRQHandler
-                0x080032f8                DMA1_Channel1_IRQHandler
-                0x080032f8                Default_Handler
-                0x080032f8                EXTI15_10_IRQHandler
-                0x080032f8                EXTI9_5_IRQHandler
-                0x080032f8                SPI2_IRQHandler
-                0x080032f8                DMA1_Channel5_IRQHandler
-                0x080032f8                EXTI4_IRQHandler
-                0x080032f8                USB_LP_CAN1_RX0_IRQHandler
-                0x080032f8                USB_HP_CAN1_TX_IRQHandler
-                0x080032f8                DMA1_Channel3_IRQHandler
-                0x080032f8                TIM1_UP_IRQHandler
-                0x080032f8                WWDG_IRQHandler
-                0x080032f8                TIM2_IRQHandler
-                0x080032f8                TIM1_BRK_IRQHandler
-                0x080032f8                EXTI1_IRQHandler
-                0x080032f8                RTCAlarm_IRQHandler
-                0x080032f8                USART2_IRQHandler
-                0x080032f8                I2C2_ER_IRQHandler
-                0x080032f8                DMA1_Channel2_IRQHandler
-                0x080032f8                CAN1_SCE_IRQHandler
-                0x080032f8                FLASH_IRQHandler
-                0x080032f8                USART1_IRQHandler
-                0x080032f8                I2C1_ER_IRQHandler
-                0x080032f8                USBWakeUp_IRQHandler
+                0x080035a8        0x2 src\startup_stm32f10x_md.o
+                0x080035a8                EXTI2_IRQHandler
+                0x080035a8                TIM1_CC_IRQHandler
+                0x080035a8                PVD_IRQHandler
+                0x080035a8                EXTI3_IRQHandler
+                0x080035a8                EXTI0_IRQHandler
+                0x080035a8                I2C2_EV_IRQHandler
+                0x080035a8                ADC1_2_IRQHandler
+                0x080035a8                SPI1_IRQHandler
+                0x080035a8                TAMPER_IRQHandler
+                0x080035a8                DMA1_Channel4_IRQHandler
+                0x080035a8                USART3_IRQHandler
+                0x080035a8                RTC_IRQHandler
+                0x080035a8                DMA1_Channel7_IRQHandler
+                0x080035a8                CAN1_RX1_IRQHandler
+                0x080035a8                TIM4_IRQHandler
+                0x080035a8                I2C1_EV_IRQHandler
+                0x080035a8                DMA1_Channel6_IRQHandler
+                0x080035a8                TIM3_IRQHandler
+                0x080035a8                RCC_IRQHandler
+                0x080035a8                TIM1_TRG_COM_IRQHandler
+                0x080035a8                DMA1_Channel1_IRQHandler
+                0x080035a8                Default_Handler
+                0x080035a8                EXTI15_10_IRQHandler
+                0x080035a8                EXTI9_5_IRQHandler
+                0x080035a8                SPI2_IRQHandler
+                0x080035a8                DMA1_Channel5_IRQHandler
+                0x080035a8                EXTI4_IRQHandler
+                0x080035a8                USB_LP_CAN1_RX0_IRQHandler
+                0x080035a8                USB_HP_CAN1_TX_IRQHandler
+                0x080035a8                DMA1_Channel3_IRQHandler
+                0x080035a8                TIM1_UP_IRQHandler
+                0x080035a8                WWDG_IRQHandler
+                0x080035a8                TIM2_IRQHandler
+                0x080035a8                TIM1_BRK_IRQHandler
+                0x080035a8                EXTI1_IRQHandler
+                0x080035a8                RTCAlarm_IRQHandler
+                0x080035a8                USART2_IRQHandler
+                0x080035a8                I2C2_ER_IRQHandler
+                0x080035a8                DMA1_Channel2_IRQHandler
+                0x080035a8                CAN1_SCE_IRQHandler
+                0x080035a8                FLASH_IRQHandler
+                0x080035a8                USART1_IRQHandler
+                0x080035a8                I2C1_ER_IRQHandler
+                0x080035a8                USBWakeUp_IRQHandler
  .text.NMI_Handler
-                0x080032fa        0xc src\stm32f1xx_it.o
-                0x080032fa                NMI_Handler
+                0x080035aa        0xc src\stm32f1xx_it.o
+                0x080035aa                NMI_Handler
  .text.HardFault_Handler
-                0x08003306        0x6 src\stm32f1xx_it.o
-                0x08003306                HardFault_Handler
+                0x080035b6        0x6 src\stm32f1xx_it.o
+                0x080035b6                HardFault_Handler
  .text.MemManage_Handler
-                0x0800330c        0x6 src\stm32f1xx_it.o
-                0x0800330c                MemManage_Handler
+                0x080035bc        0x6 src\stm32f1xx_it.o
+                0x080035bc                MemManage_Handler
  .text.BusFault_Handler
-                0x08003312        0x6 src\stm32f1xx_it.o
-                0x08003312                BusFault_Handler
+                0x080035c2        0x6 src\stm32f1xx_it.o
+                0x080035c2                BusFault_Handler
  .text.UsageFault_Handler
-                0x08003318        0x6 src\stm32f1xx_it.o
-                0x08003318                UsageFault_Handler
+                0x080035c8        0x6 src\stm32f1xx_it.o
+                0x080035c8                UsageFault_Handler
  .text.DebugMon_Handler
-                0x0800331e        0xc src\stm32f1xx_it.o
-                0x0800331e                DebugMon_Handler
- *fill*         0x0800332a        0x2 
+                0x080035ce        0xc src\stm32f1xx_it.o
+                0x080035ce                DebugMon_Handler
+ *fill*         0x080035da        0x2 
  .text.SystemInit
-                0x0800332c       0x68 src\system_stm32f10x.o
-                0x0800332c                SystemInit
+                0x080035dc       0x68 src\system_stm32f10x.o
+                0x080035dc                SystemInit
  .text.SetSysClock
-                0x08003394        0xc src\system_stm32f10x.o
+                0x08003644        0xc src\system_stm32f10x.o
  .text.SetSysClockTo56
-                0x080033a0      0x100 src\system_stm32f10x.o
+                0x08003650      0x100 src\system_stm32f10x.o
  .text._Z9aTaskUartPv
-                0x080034a0      0x25c src\uart_com.o
-                0x080034a0                aTaskUart(void*)
+                0x08003750      0x304 src\uart_com.o
+                0x08003750                aTaskUart(void*)
  .text._Z9printUartPc
-                0x080036fc       0x78 src\uart_com.o
-                0x080036fc                printUart(char*)
+                0x08003a54       0x78 src\uart_com.o
+                0x08003a54                printUart(char*)
  .text._Z8rawtohexPvmPc
-                0x08003774      0x108 src\uart_com.o
-                0x08003774                rawtohex(void*, unsigned long, char*)
- .text._Znwj    0x0800387c       0x22 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_op.o)
-                0x0800387c                operator new(unsigned int)
- *fill*         0x0800389e        0x2 
- .text._ZSt15get_new_handlerv
-                0x080038a0       0x10 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_handler.o)
-                0x080038a0                std::get_new_handler()
- .text.abort    0x080038b0        0xe d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-abort.o)
-                0x080038b0                abort
- *fill*         0x080038be        0x2 
- .text.__libc_init_array
-                0x080038c0       0x48 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-init.o)
-                0x080038c0                __libc_init_array
- .text.malloc   0x08003908       0x10 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-malloc.o)
-                0x08003908                malloc
- .text.free     0x08003918       0x10 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-malloc.o)
-                0x08003918                free
- .text.memcpy   0x08003928       0x16 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-memcpy-stub.o)
-                0x08003928                memcpy
- *fill*         0x0800393e        0x2 
- .text._free_r  0x08003940       0x98 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-freer.o)
-                0x08003940                _free_r
- .text._malloc_r
-                0x080039d8       0xbc d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-mallocr.o)
-                0x080039d8                _malloc_r
- .text._sbrk_r  0x08003a94       0x20 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-sbrkr.o)
-                0x08003a94                _sbrk_r
- .text._raise_r
-                0x08003ab4       0x50 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signal.o)
-                0x08003ab4                _raise_r
- .text.raise    0x08003b04       0x10 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signal.o)
-                0x08003b04                raise
- .text._kill_r  0x08003b14       0x24 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signalr.o)
-                0x08003b14                _kill_r
- .text._getpid_r
-                0x08003b38        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signalr.o)
-                0x08003b38                _getpid_r
- .text.strcat   0x08003b3c       0x1e d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-strcat.o)
-                0x08003b3c                strcat
- .text.__malloc_lock
-                0x08003b5a        0x2 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-mlock.o)
-                0x08003b5a                __malloc_lock
- .text.__malloc_unlock
-                0x08003b5c        0x2 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-mlock.o)
-                0x08003b5c                __malloc_unlock
- *fill*         0x08003b5e        0x2 
- .text._getpid  0x08003b60       0x10 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(getpid.o)
-                0x08003b60                _getpid
- .text._kill    0x08003b70       0x10 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(kill.o)
-                0x08003b70                _kill
- .text._sbrk    0x08003b80       0x1c d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(sbrk.o)
-                0x08003b80                _sbrk
- .text._exit    0x08003b9c        0x2 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(_exit.o)
-                0x08003b9c                _exit
- *(.glue_7)
- .glue_7        0x08003b9e        0x0 linker stubs
- *(.glue_7t)
- .glue_7t       0x08003b9e        0x0 linker stubs
- *(.eh_frame)
- *fill*         0x08003b9e        0x2 
- .eh_frame      0x08003ba0        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtbegin.o
- *(.init)
- .init          0x08003ba0        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crti.o
-                0x08003ba0                _init
- .init          0x08003ba4        0x8 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtn.o
- *(.fini)
- .fini          0x08003bac        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crti.o
-                0x08003bac                _fini
- .fini          0x08003bb0        0x8 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtn.o
-                0x08003bb8                . = ALIGN (0x4)
-                0x08003bb8                _etext = .
-
-.vfp11_veneer   0x08003bb8        0x0
- .vfp11_veneer  0x08003bb8        0x0 linker stubs
-
-.v4_bx          0x08003bb8        0x0
- .v4_bx         0x08003bb8        0x0 linker stubs
-
-.iplt           0x08003bb8        0x0
- .iplt          0x08003bb8        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtbegin.o
-
-.rodata         0x08003bb8       0x60
-                0x08003bb8                . = ALIGN (0x4)
- *(.rodata)
- .rodata        0x08003bb8        0x5 FreeRTOS_Source\tasks.o
- *fill*         0x08003bbd        0x3 
- .rodata        0x08003bc0        0x8 FreeRTOS_Source\timers.o
- .rodata        0x08003bc8       0x2e src\main.o
+                0x08003acc      0x108 src\uart_com.o
+                0x08003acc                rawtohex(void*, unsigned long, char*)
+ .text._Znwj    0x08003bd4       0x22 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_op.o)
+                0x08003bd4                operator new(unsigned int)
  *fill*         0x08003bf6        0x2 
- .rodata        0x08003bf8       0x1f src\uart_com.o
- *(.rodata*)
-                0x08003c18                . = ALIGN (0x4)
- *fill*         0x08003c17        0x1 
+ .text._ZSt15get_new_handlerv
+                0x08003bf8       0x10 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_handler.o)
+                0x08003bf8                std::get_new_handler()
+ .text.abort    0x08003c08        0xe d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-abort.o)
+                0x08003c08                abort
+ *fill*         0x08003c16        0x2 
+ .text.__libc_init_array
+                0x08003c18       0x48 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-init.o)
+                0x08003c18                __libc_init_array
+ .text.__itoa   0x08003c60       0x30 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-itoa.o)
+                0x08003c60                __itoa
+ .text.itoa     0x08003c90        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-itoa.o)
+                0x08003c90                itoa
+ .text.malloc   0x08003c94       0x10 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-malloc.o)
+                0x08003c94                malloc
+ .text.free     0x08003ca4       0x10 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-malloc.o)
+                0x08003ca4                free
+ .text.memcpy   0x08003cb4       0x16 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-memcpy-stub.o)
+                0x08003cb4                memcpy
+ *fill*         0x08003cca        0x2 
+ .text._free_r  0x08003ccc       0x98 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-freer.o)
+                0x08003ccc                _free_r
+ .text._malloc_r
+                0x08003d64       0xbc d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x08003d64                _malloc_r
+ .text._sbrk_r  0x08003e20       0x20 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-sbrkr.o)
+                0x08003e20                _sbrk_r
+ .text._raise_r
+                0x08003e40       0x50 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signal.o)
+                0x08003e40                _raise_r
+ .text.raise    0x08003e90       0x10 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signal.o)
+                0x08003e90                raise
+ .text._kill_r  0x08003ea0       0x24 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signalr.o)
+                0x08003ea0                _kill_r
+ .text._getpid_r
+                0x08003ec4        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signalr.o)
+                0x08003ec4                _getpid_r
+ .text.strcat   0x08003ec8       0x1e d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-strcat.o)
+                0x08003ec8                strcat
+ *fill*         0x08003ee6        0x2 
+ .text.__utoa   0x08003ee8       0x80 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-utoa.o)
+                0x08003ee8                __utoa
+ .text.__malloc_lock
+                0x08003f68        0x2 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-mlock.o)
+                0x08003f68                __malloc_lock
+ .text.__malloc_unlock
+                0x08003f6a        0x2 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-mlock.o)
+                0x08003f6a                __malloc_unlock
+ .text._getpid  0x08003f6c       0x10 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(getpid.o)
+                0x08003f6c                _getpid
+ .text._kill    0x08003f7c       0x10 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(kill.o)
+                0x08003f7c                _kill
+ .text._sbrk    0x08003f8c       0x1c d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(sbrk.o)
+                0x08003f8c                _sbrk
+ .text._exit    0x08003fa8        0x2 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(_exit.o)
+                0x08003fa8                _exit
+ *(.glue_7)
+ .glue_7        0x08003faa        0x0 linker stubs
+ *(.glue_7t)
+ .glue_7t       0x08003faa        0x0 linker stubs
+ *(.eh_frame)
+ *fill*         0x08003faa        0x2 
+ .eh_frame      0x08003fac        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtbegin.o
+ *(.init)
+ .init          0x08003fac        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crti.o
+                0x08003fac                _init
+ .init          0x08003fb0        0x8 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtn.o
+ *(.fini)
+ .fini          0x08003fb8        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crti.o
+                0x08003fb8                _fini
+ .fini          0x08003fbc        0x8 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtn.o
+                0x08003fc4                . = ALIGN (0x4)
+                0x08003fc4                _etext = .
 
-.rel.dyn        0x08003c18        0x0
- .rel.iplt      0x08003c18        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtbegin.o
+.vfp11_veneer   0x08003fc4        0x0
+ .vfp11_veneer  0x08003fc4        0x0 linker stubs
+
+.v4_bx          0x08003fc4        0x0
+ .v4_bx         0x08003fc4        0x0 linker stubs
+
+.iplt           0x08003fc4        0x0
+ .iplt          0x08003fc4        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtbegin.o
+
+.rodata         0x08003fc4       0x94
+                0x08003fc4                . = ALIGN (0x4)
+ *(.rodata)
+ .rodata        0x08003fc4        0x5 FreeRTOS_Source\tasks.o
+ *fill*         0x08003fc9        0x3 
+ .rodata        0x08003fcc        0x8 FreeRTOS_Source\timers.o
+ .rodata        0x08003fd4       0x2e src\main.o
+ *fill*         0x08004002        0x2 
+ .rodata        0x08004004       0x2f src\uart_com.o
+ *(.rodata*)
+ .rodata.__utoa.str1.1
+                0x08004033       0x25 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-utoa.o)
+                0x08004058                . = ALIGN (0x4)
+
+.rel.dyn        0x08004058        0x0
+ .rel.iplt      0x08004058        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x08003c18        0x0
-                0x08003c18                __exidx_start = .
+.ARM            0x08004058        0x0
+                0x08004058                __exidx_start = .
  *(.ARM.exidx*)
-                0x08003c18                __exidx_end = .
+                0x08004058                __exidx_end = .
 
-.preinit_array  0x08003c18        0x0
-                0x08003c18                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x08004058        0x0
+                0x08004058                PROVIDE (__preinit_array_start, .)
  *(.preinit_array*)
-                0x08003c18                PROVIDE (__preinit_array_end, .)
+                0x08004058                PROVIDE (__preinit_array_end, .)
 
-.init_array     0x08003c18        0x4
-                0x08003c18                PROVIDE (__init_array_start, .)
+.init_array     0x08004058        0x4
+                0x08004058                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array*)
- .init_array    0x08003c18        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtbegin.o
-                0x08003c1c                PROVIDE (__init_array_end, .)
+ .init_array    0x08004058        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtbegin.o
+                0x0800405c                PROVIDE (__init_array_end, .)
 
-.fini_array     0x08003c1c        0x4
+.fini_array     0x0800405c        0x4
                 [!provide]                PROVIDE (__fini_array_start, .)
  *(SORT(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08003c1c        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtbegin.o
+ .fini_array    0x0800405c        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtbegin.o
                 [!provide]                PROVIDE (__fini_array_end, .)
-                0x08003c20                _sidata = LOADADDR (.data)
+                0x08004060                _sidata = LOADADDR (.data)
 
-.data           0x20000000       0xd0 load address 0x08003c20
+.data           0x20000000       0xd0 load address 0x08004060
                 0x20000000                . = ALIGN (0x4)
                 0x20000000                _sdata = .
  *(.data)
@@ -2356,11 +2381,11 @@ LOAD d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-
                 0x200000d0                . = ALIGN (0x4)
                 0x200000d0                _edata = .
 
-.igot.plt       0x200000d0        0x0 load address 0x08003cf0
+.igot.plt       0x200000d0        0x0 load address 0x08004130
  .igot.plt      0x200000d0        0x0 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtbegin.o
                 0x200000d0                . = ALIGN (0x4)
 
-.bss            0x200000d0      0x1b4 load address 0x08003cf0
+.bss            0x200000d0      0x1bc load address 0x08004130
                 0x200000d0                _sbss = .
                 0x200000d0                __bss_start__ = _sbss
  *(.bss)
@@ -2429,39 +2454,41 @@ LOAD d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-
  .bss.xLastTime.5440
                 0x200001f4        0x4 FreeRTOS_Source\timers.o
  .bss._ZL6pQComm
-                0x200001f8       0x10 src\main.o
- .bss.bufTx     0x20000208       0x32 src\uart_com.o
-                0x20000208                bufTx
- *fill*         0x2000023a        0x2 
- .bss.bufTmp    0x2000023c       0x32 src\uart_com.o
-                0x2000023c                bufTmp
- *fill*         0x2000026e        0x2 
+                0x200001f8       0x14 src\main.o
+ .bss.sQueue    0x2000020c        0x4 src\main.o
+                0x2000020c                sQueue
+ .bss.bufTx     0x20000210       0x32 src\uart_com.o
+                0x20000210                bufTx
+ *fill*         0x20000242        0x2 
+ .bss.bufTmp    0x20000244       0x32 src\uart_com.o
+                0x20000244                bufTmp
+ *fill*         0x20000276        0x2 
  .bss._ZN12_GLOBAL__N_113__new_handlerE
-                0x20000270        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_handler.o)
+                0x20000278        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_handler.o)
  .bss.__malloc_free_list
-                0x20000274        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-mallocr.o)
-                0x20000274                __malloc_free_list
+                0x2000027c        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x2000027c                __malloc_free_list
  .bss.__malloc_sbrk_start
-                0x20000278        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-mallocr.o)
-                0x20000278                __malloc_sbrk_start
+                0x20000280        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x20000280                __malloc_sbrk_start
  .bss.heap_end.4116
-                0x2000027c        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(sbrk.o)
+                0x20000284        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(sbrk.o)
  *(COMMON)
- COMMON         0x20000280        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-reent.o)
-                0x20000280                errno
-                0x20000284                . = ALIGN (0x4)
-                0x20000284                _ebss = .
-                0x20000284                __bss_end__ = _ebss
+ COMMON         0x20000288        0x4 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-reent.o)
+                0x20000288                errno
+                0x2000028c                . = ALIGN (0x4)
+                0x2000028c                _ebss = .
+                0x2000028c                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x20000284      0x100 load address 0x08003cf0
-                0x20000284                . = ALIGN (0x4)
-                0x20000284                PROVIDE (end, .)
+                0x2000028c      0x100 load address 0x08004130
+                0x2000028c                . = ALIGN (0x4)
+                0x2000028c                PROVIDE (end, .)
                 [!provide]                PROVIDE (_end, .)
-                0x20000284                . = (. + _Min_Heap_Size)
-                0x20000384                . = (. + _Min_Stack_Size)
- *fill*         0x20000284      0x100 
-                0x20000384                . = ALIGN (0x4)
+                0x2000028c                . = (. + _Min_Heap_Size)
+                0x2000038c                . = (. + _Min_Stack_Size)
+ *fill*         0x2000028c      0x100 
+                0x2000038c                . = ALIGN (0x4)
 
 .memory_b1_text
  *(.mb1text)
@@ -2498,60 +2525,66 @@ LOAD d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-
  .ARM.attributes
                 0x000001af       0x33 src\cc11x_class.o
  .ARM.attributes
-                0x000001e2       0x33 src\main.o
+                0x000001e2       0x33 src\i2c_sensor.o
  .ARM.attributes
-                0x00000215       0x21 src\startup_stm32f10x_md.o
+                0x00000215       0x33 src\main.o
  .ARM.attributes
-                0x00000236       0x33 src\stm32f1xx_it.o
+                0x00000248       0x21 src\startup_stm32f10x_md.o
  .ARM.attributes
-                0x00000269       0x33 src\system_stm32f10x.o
+                0x00000269       0x33 src\stm32f1xx_it.o
  .ARM.attributes
-                0x0000029c       0x33 src\uart_com.o
+                0x0000029c       0x33 src\system_stm32f10x.o
  .ARM.attributes
-                0x000002cf       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_op.o)
+                0x000002cf       0x33 src\uart_com.o
  .ARM.attributes
-                0x000002fc       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_handler.o)
+                0x00000302       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_op.o)
  .ARM.attributes
-                0x00000329       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-abort.o)
+                0x0000032f       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_handler.o)
  .ARM.attributes
-                0x00000356       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-init.o)
+                0x0000035c       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-abort.o)
  .ARM.attributes
-                0x00000383       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-malloc.o)
+                0x00000389       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-init.o)
  .ARM.attributes
-                0x000003b0       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-memcpy-stub.o)
+                0x000003b6       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-itoa.o)
  .ARM.attributes
-                0x000003dd       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-freer.o)
+                0x000003e3       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-malloc.o)
  .ARM.attributes
-                0x0000040a       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x00000410       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-memcpy-stub.o)
  .ARM.attributes
-                0x00000437       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-sbrkr.o)
+                0x0000043d       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-freer.o)
  .ARM.attributes
-                0x00000464       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signal.o)
+                0x0000046a       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-mallocr.o)
  .ARM.attributes
-                0x00000491       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signalr.o)
+                0x00000497       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-sbrkr.o)
  .ARM.attributes
-                0x000004be       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-strcat.o)
+                0x000004c4       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signal.o)
  .ARM.attributes
-                0x000004eb       0x17 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-strlen.o)
+                0x000004f1       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signalr.o)
  .ARM.attributes
-                0x00000502       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-impure.o)
+                0x0000051e       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-strcat.o)
  .ARM.attributes
-                0x0000052f       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-mlock.o)
+                0x0000054b       0x17 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-strlen.o)
  .ARM.attributes
-                0x0000055c       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-reent.o)
+                0x00000562       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-utoa.o)
  .ARM.attributes
-                0x00000589       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(getpid.o)
+                0x0000058f       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-impure.o)
  .ARM.attributes
-                0x000005b6       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(kill.o)
+                0x000005bc       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-mlock.o)
  .ARM.attributes
-                0x000005e3       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(sbrk.o)
+                0x000005e9       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-reent.o)
  .ARM.attributes
-                0x00000610       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(_exit.o)
+                0x00000616       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(getpid.o)
  .ARM.attributes
-                0x0000063d       0x1d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtn.o
+                0x00000643       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(kill.o)
+ .ARM.attributes
+                0x00000670       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(sbrk.o)
+ .ARM.attributes
+                0x0000069d       0x2d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(_exit.o)
+ .ARM.attributes
+                0x000006ca       0x1d d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtn.o
 OUTPUT(canbus.elf elf32-littlearm)
 
-.debug_info     0x00000000     0xaaa1
+.debug_info     0x00000000     0xb494
  .debug_info    0x00000000      0xac3 FreeRTOS_Source\list.o
  .debug_info    0x00000ac3      0x4ca FreeRTOS_Source\portable\GCC\ARM_CM3\port.o
  .debug_info    0x00000f8d      0x8f7 FreeRTOS_Source\portable\MemMang\heap_3.o
@@ -2560,13 +2593,14 @@ OUTPUT(canbus.elf elf32-littlearm)
  .debug_info    0x00005867     0x1456 FreeRTOS_Source\timers.o
  .debug_info    0x00006cbd     0x10be src\CC1101.o
  .debug_info    0x00007d7b      0xb5a src\cc11x_class.o
- .debug_info    0x000088d5      0xda7 src\main.o
- .debug_info    0x0000967c       0x69 src\startup_stm32f10x_md.o
- .debug_info    0x000096e5      0x121 src\stm32f1xx_it.o
- .debug_info    0x00009806      0x4a7 src\system_stm32f10x.o
- .debug_info    0x00009cad      0xdf4 src\uart_com.o
+ .debug_info    0x000088d5      0x602 src\i2c_sensor.o
+ .debug_info    0x00008ed7      0xdc4 src\main.o
+ .debug_info    0x00009c9b       0x69 src\startup_stm32f10x_md.o
+ .debug_info    0x00009d04      0x121 src\stm32f1xx_it.o
+ .debug_info    0x00009e25      0x4a7 src\system_stm32f10x.o
+ .debug_info    0x0000a2cc     0x11c8 src\uart_com.o
 
-.debug_abbrev   0x00000000     0x1a43
+.debug_abbrev   0x00000000     0x1d05
  .debug_abbrev  0x00000000      0x1cc FreeRTOS_Source\list.o
  .debug_abbrev  0x000001cc      0x1f1 FreeRTOS_Source\portable\GCC\ARM_CM3\port.o
  .debug_abbrev  0x000003bd      0x1ba FreeRTOS_Source\portable\MemMang\heap_3.o
@@ -2575,13 +2609,14 @@ OUTPUT(canbus.elf elf32-littlearm)
  .debug_abbrev  0x00000b89      0x2ab FreeRTOS_Source\timers.o
  .debug_abbrev  0x00000e34      0x28f src\CC1101.o
  .debug_abbrev  0x000010c3      0x2ea src\cc11x_class.o
- .debug_abbrev  0x000013ad      0x20c src\main.o
- .debug_abbrev  0x000015b9       0x12 src\startup_stm32f10x_md.o
- .debug_abbrev  0x000015cb       0x78 src\stm32f1xx_it.o
- .debug_abbrev  0x00001643      0x16e src\system_stm32f10x.o
- .debug_abbrev  0x000017b1      0x292 src\uart_com.o
+ .debug_abbrev  0x000013ad      0x229 src\i2c_sensor.o
+ .debug_abbrev  0x000015d6      0x21d src\main.o
+ .debug_abbrev  0x000017f3       0x12 src\startup_stm32f10x_md.o
+ .debug_abbrev  0x00001805       0x78 src\stm32f1xx_it.o
+ .debug_abbrev  0x0000187d      0x16e src\system_stm32f10x.o
+ .debug_abbrev  0x000019eb      0x31a src\uart_com.o
 
-.debug_aranges  0x00000000      0x638
+.debug_aranges  0x00000000      0x678
  .debug_aranges
                 0x00000000       0x40 FreeRTOS_Source\list.o
  .debug_aranges
@@ -2599,17 +2634,19 @@ OUTPUT(canbus.elf elf32-littlearm)
  .debug_aranges
                 0x00000478       0xa0 src\cc11x_class.o
  .debug_aranges
-                0x00000518       0x40 src\main.o
+                0x00000518       0x40 src\i2c_sensor.o
  .debug_aranges
-                0x00000558       0x28 src\startup_stm32f10x_md.o
+                0x00000558       0x40 src\main.o
  .debug_aranges
-                0x00000580       0x48 src\stm32f1xx_it.o
+                0x00000598       0x28 src\startup_stm32f10x_md.o
  .debug_aranges
-                0x000005c8       0x38 src\system_stm32f10x.o
+                0x000005c0       0x48 src\stm32f1xx_it.o
  .debug_aranges
-                0x00000600       0x38 src\uart_com.o
+                0x00000608       0x38 src\system_stm32f10x.o
+ .debug_aranges
+                0x00000640       0x38 src\uart_com.o
 
-.debug_ranges   0x00000000      0x570
+.debug_ranges   0x00000000      0x5a0
  .debug_ranges  0x00000000       0x30 FreeRTOS_Source\list.o
  .debug_ranges  0x00000030       0x68 FreeRTOS_Source\portable\GCC\ARM_CM3\port.o
  .debug_ranges  0x00000098       0x18 FreeRTOS_Source\portable\MemMang\heap_3.o
@@ -2618,13 +2655,14 @@ OUTPUT(canbus.elf elf32-littlearm)
  .debug_ranges  0x00000338       0xb8 FreeRTOS_Source\timers.o
  .debug_ranges  0x000003f0       0x18 src\CC1101.o
  .debug_ranges  0x00000408       0x90 src\cc11x_class.o
- .debug_ranges  0x00000498       0x30 src\main.o
- .debug_ranges  0x000004c8       0x20 src\startup_stm32f10x_md.o
- .debug_ranges  0x000004e8       0x38 src\stm32f1xx_it.o
- .debug_ranges  0x00000520       0x28 src\system_stm32f10x.o
- .debug_ranges  0x00000548       0x28 src\uart_com.o
+ .debug_ranges  0x00000498       0x30 src\i2c_sensor.o
+ .debug_ranges  0x000004c8       0x30 src\main.o
+ .debug_ranges  0x000004f8       0x20 src\startup_stm32f10x_md.o
+ .debug_ranges  0x00000518       0x38 src\stm32f1xx_it.o
+ .debug_ranges  0x00000550       0x28 src\system_stm32f10x.o
+ .debug_ranges  0x00000578       0x28 src\uart_com.o
 
-.debug_line     0x00000000     0x3afb
+.debug_line     0x00000000     0x3efe
  .debug_line    0x00000000      0x2ec FreeRTOS_Source\list.o
  .debug_line    0x000002ec      0x37f FreeRTOS_Source\portable\GCC\ARM_CM3\port.o
  .debug_line    0x0000066b      0x19e FreeRTOS_Source\portable\MemMang\heap_3.o
@@ -2633,37 +2671,40 @@ OUTPUT(canbus.elf elf32-littlearm)
  .debug_line    0x000020ba      0x664 FreeRTOS_Source\timers.o
  .debug_line    0x0000271e      0x29b src\CC1101.o
  .debug_line    0x000029b9      0x684 src\cc11x_class.o
- .debug_line    0x0000303d      0x2f3 src\main.o
- .debug_line    0x00003330       0x7c src\startup_stm32f10x_md.o
- .debug_line    0x000033ac      0x1d7 src\stm32f1xx_it.o
- .debug_line    0x00003583      0x224 src\system_stm32f10x.o
- .debug_line    0x000037a7      0x354 src\uart_com.o
+ .debug_line    0x0000303d      0x2a9 src\i2c_sensor.o
+ .debug_line    0x000032e6      0x2f5 src\main.o
+ .debug_line    0x000035db       0x7c src\startup_stm32f10x_md.o
+ .debug_line    0x00003657      0x1d7 src\stm32f1xx_it.o
+ .debug_line    0x0000382e      0x224 src\system_stm32f10x.o
+ .debug_line    0x00003a52      0x4ac src\uart_com.o
 
-.debug_str      0x00000000     0x26b6
- .debug_str     0x00000000      0x663 FreeRTOS_Source\list.o
+.debug_str      0x00000000     0x2943
+ .debug_str     0x00000000      0x65d FreeRTOS_Source\list.o
                                 0x6fc (size before relaxing)
- .debug_str     0x00000663      0x265 FreeRTOS_Source\portable\GCC\ARM_CM3\port.o
+ .debug_str     0x0000065d      0x265 FreeRTOS_Source\portable\GCC\ARM_CM3\port.o
                                 0x40c (size before relaxing)
- .debug_str     0x000008c8       0x60 FreeRTOS_Source\portable\MemMang\heap_3.o
+ .debug_str     0x000008c2       0x60 FreeRTOS_Source\portable\MemMang\heap_3.o
                                 0x5ef (size before relaxing)
- .debug_str     0x00000928      0x554 FreeRTOS_Source\queue.o
+ .debug_str     0x00000922      0x544 FreeRTOS_Source\queue.o
                                 0xc47 (size before relaxing)
- .debug_str     0x00000e7c      0xa6b FreeRTOS_Source\tasks.o
+ .debug_str     0x00000e66      0xa6b FreeRTOS_Source\tasks.o
                                0x125c (size before relaxing)
- .debug_str     0x000018e7      0x439 FreeRTOS_Source\timers.o
+ .debug_str     0x000018d1      0x439 FreeRTOS_Source\timers.o
                                 0xb84 (size before relaxing)
- .debug_str     0x00001d20      0x628 src\CC1101.o
+ .debug_str     0x00001d0a      0x623 src\CC1101.o
                                 0xbe4 (size before relaxing)
- .debug_str     0x00002348       0x9a src\cc11x_class.o
+ .debug_str     0x0000232d       0x9a src\cc11x_class.o
                                 0x706 (size before relaxing)
- .debug_str     0x000023e2      0x108 src\main.o
-                                0x911 (size before relaxing)
- .debug_str     0x000024ea       0x7b src\stm32f1xx_it.o
+ .debug_str     0x000023c7      0x1e0 src\i2c_sensor.o
+                                0x51c (size before relaxing)
+ .debug_str     0x000025a7      0x11a src\main.o
+                                0x923 (size before relaxing)
+ .debug_str     0x000026c1       0x7b src\stm32f1xx_it.o
                                 0x216 (size before relaxing)
- .debug_str     0x00002565       0xe4 src\system_stm32f10x.o
+ .debug_str     0x0000273c       0xe4 src\system_stm32f10x.o
                                 0x31d (size before relaxing)
- .debug_str     0x00002649       0x6d src\uart_com.o
-                                0x8c1 (size before relaxing)
+ .debug_str     0x00002820      0x123 src\uart_com.o
+                                0x9c1 (size before relaxing)
 
 .comment        0x00000000       0x7c
  .comment       0x00000000       0x7c FreeRTOS_Source\list.o
@@ -2675,12 +2716,13 @@ OUTPUT(canbus.elf elf32-littlearm)
  .comment       0x0000007c       0x7d FreeRTOS_Source\timers.o
  .comment       0x0000007c       0x7d src\CC1101.o
  .comment       0x0000007c       0x7d src\cc11x_class.o
+ .comment       0x0000007c       0x7d src\i2c_sensor.o
  .comment       0x0000007c       0x7d src\main.o
  .comment       0x0000007c       0x7d src\stm32f1xx_it.o
  .comment       0x0000007c       0x7d src\system_stm32f10x.o
  .comment       0x0000007c       0x7d src\uart_com.o
 
-.debug_frame    0x00000000     0x1ab0
+.debug_frame    0x00000000     0x1bf8
  .debug_frame   0x00000000       0xd8 FreeRTOS_Source\list.o
  .debug_frame   0x000000d8      0x198 FreeRTOS_Source\portable\GCC\ARM_CM3\port.o
  .debug_frame   0x00000270       0x58 FreeRTOS_Source\portable\MemMang\heap_3.o
@@ -2689,28 +2731,31 @@ OUTPUT(canbus.elf elf32-littlearm)
  .debug_frame   0x00000e28      0x33c FreeRTOS_Source\timers.o
  .debug_frame   0x00001164       0x50 src\CC1101.o
  .debug_frame   0x000011b4      0x294 src\cc11x_class.o
- .debug_frame   0x00001448       0xa8 src\main.o
- .debug_frame   0x000014f0       0xb0 src\stm32f1xx_it.o
- .debug_frame   0x000015a0       0x98 src\system_stm32f10x.o
- .debug_frame   0x00001638       0xa8 src\uart_com.o
- .debug_frame   0x000016e0       0x28 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_op.o)
- .debug_frame   0x00001708       0x30 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_handler.o)
- .debug_frame   0x00001738       0x28 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-abort.o)
- .debug_frame   0x00001760       0x2c d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-init.o)
- .debug_frame   0x0000178c       0x30 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-malloc.o)
- .debug_frame   0x000017bc       0x28 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-memcpy-stub.o)
- .debug_frame   0x000017e4       0x38 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-freer.o)
- .debug_frame   0x0000181c       0x2c d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-mallocr.o)
- .debug_frame   0x00001848       0x2c d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-sbrkr.o)
- .debug_frame   0x00001874       0xcc d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signal.o)
- .debug_frame   0x00001940       0x3c d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signalr.o)
- .debug_frame   0x0000197c       0x28 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-strcat.o)
- .debug_frame   0x000019a4       0x30 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-mlock.o)
- .debug_frame   0x000019d4       0x5c d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-reent.o)
- .debug_frame   0x00001a30       0x20 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(getpid.o)
- .debug_frame   0x00001a50       0x20 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(kill.o)
- .debug_frame   0x00001a70       0x20 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(sbrk.o)
- .debug_frame   0x00001a90       0x20 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(_exit.o)
+ .debug_frame   0x00001448       0xc8 src\i2c_sensor.o
+ .debug_frame   0x00001510       0xa8 src\main.o
+ .debug_frame   0x000015b8       0xb0 src\stm32f1xx_it.o
+ .debug_frame   0x00001668       0x98 src\system_stm32f10x.o
+ .debug_frame   0x00001700       0xa8 src\uart_com.o
+ .debug_frame   0x000017a8       0x28 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_op.o)
+ .debug_frame   0x000017d0       0x30 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_handler.o)
+ .debug_frame   0x00001800       0x28 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-abort.o)
+ .debug_frame   0x00001828       0x2c d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-init.o)
+ .debug_frame   0x00001854       0x38 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-itoa.o)
+ .debug_frame   0x0000188c       0x30 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-malloc.o)
+ .debug_frame   0x000018bc       0x28 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x000018e4       0x38 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-freer.o)
+ .debug_frame   0x0000191c       0x2c d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x00001948       0x2c d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-sbrkr.o)
+ .debug_frame   0x00001974       0xcc d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signal.o)
+ .debug_frame   0x00001a40       0x3c d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signalr.o)
+ .debug_frame   0x00001a7c       0x28 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-strcat.o)
+ .debug_frame   0x00001aa4       0x48 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-utoa.o)
+ .debug_frame   0x00001aec       0x30 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-mlock.o)
+ .debug_frame   0x00001b1c       0x5c d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-reent.o)
+ .debug_frame   0x00001b78       0x20 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(getpid.o)
+ .debug_frame   0x00001b98       0x20 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(kill.o)
+ .debug_frame   0x00001bb8       0x20 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(sbrk.o)
+ .debug_frame   0x00001bd8       0x20 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(_exit.o)
 
 .stab           0x00000000       0x3c
  .stab          0x00000000       0x24 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(getpid.o)
@@ -3282,6 +3327,7 @@ __deregister_frame_info                           d:/programs/truestudio for stm
 __dso_handle                                      d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtbegin.o
 __init_array_end                                  d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-init.o)
 __init_array_start                                d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-init.o)
+__itoa                                            d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-itoa.o)
 __libc_init_array                                 d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-init.o)
                                                   src\startup_stm32f10x_md.o
 __malloc_free_list                                d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-nano-mallocr.o)
@@ -3301,6 +3347,8 @@ __sf_fake_stdin                                   d:/programs/truestudio for stm
 __sf_fake_stdout                                  d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-impure.o)
 __sigtramp                                        d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signal.o)
 __sigtramp_r                                      d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signal.o)
+__utoa                                            d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-utoa.o)
+                                                  d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-itoa.o)
 _ebss                                             src\startup_stm32f10x_md.o
 _edata                                            src\startup_stm32f10x_md.o
 _estack                                           src\startup_stm32f10x_md.o
@@ -3342,6 +3390,8 @@ _sidata                                           src\startup_stm32f10x_md.o
 _signal_r                                         d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signal.o)
 _write                                            d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libnosys.a(write.o)
                                                   src\tiny_printf.o
+aIAQCore(void*)                                   src\i2c_sensor.o
+                                                  src\main.o
 aTaskUart(void*)                                  src\uart_com.o
                                                   src\main.o
 abort                                             d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-abort.o)
@@ -3386,7 +3436,14 @@ free                                              d:/programs/truestudio for stm
                                                   FreeRTOS_Source\portable\MemMang\heap_3.o
 fwrite                                            src\tiny_printf.o
 g_pfnVectors                                      src\startup_stm32f10x_md.o
+iaq_core::hookRecievePack(QueueDefinition*)       src\i2c_sensor.o
+iaq_core::i2c_init()                              src\i2c_sensor.o
+iaq_core::iaq_core()                              src\i2c_sensor.o
+iaq_core::iaq_core()                              src\i2c_sensor.o
+iaq_core::readI2C()                               src\i2c_sensor.o
 iprintf                                           src\tiny_printf.o
+itoa                                              d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-itoa.o)
+                                                  src\uart_com.o
 main                                              src\main.o
                                                   src\startup_stm32f10x_md.o
 malloc                                            d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-malloc.o)
@@ -3398,6 +3455,7 @@ memcpy                                            d:/programs/truestudio for stm
 memset                                            d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-memset.o)
                                                   FreeRTOS_Source\stream_buffer.o
 operator new(unsigned int)                        d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libstdc++_nano.a(new_op.o)
+                                                  src\i2c_sensor.o
                                                   src\cc11x_class.o
                                                   src\CC1101.o
 pack::pack()                                      src\cc11x_class.o
@@ -3433,6 +3491,7 @@ rawtohex(void*, unsigned long, char*)             src\uart_com.o
 rfSettings                                        src\CC1101.o
 run1Task(void*)                                   src\main.o
 run2Task(void*)                                   src\main.o
+sQueue                                            src\main.o
 signal                                            d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-signal.o)
 siprintf                                          src\tiny_printf.o
 sprintf                                           src\tiny_printf.o
@@ -3450,6 +3509,7 @@ ts_formatstring                                   src\tiny_printf.o
 ts_itoa                                           src\tiny_printf.o
 ulTaskNotifyTake                                  FreeRTOS_Source\tasks.o
 ulTaskNotifyValueClear                            FreeRTOS_Source\tasks.o
+utoa                                              d:/programs/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7-m\libc_nano.a(lib_a-utoa.o)
 uxListRemove                                      FreeRTOS_Source\list.o
                                                   FreeRTOS_Source\timers.o
                                                   FreeRTOS_Source\tasks.o
@@ -3458,6 +3518,7 @@ uxQueueMessagesWaiting                            FreeRTOS_Source\queue.o
 uxQueueMessagesWaitingFromISR                     FreeRTOS_Source\queue.o
 uxQueueSpacesAvailable                            FreeRTOS_Source\queue.o
                                                   src\uart_com.o
+                                                  src\i2c_sensor.o
                                                   src\cc11x_class.o
 uxTaskGetNumberOfTasks                            FreeRTOS_Source\tasks.o
 uxTaskPriorityGet                                 FreeRTOS_Source\tasks.o
@@ -3517,6 +3578,7 @@ vQueueWaitForMessageRestricted                    FreeRTOS_Source\queue.o
 vStreamBufferDelete                               FreeRTOS_Source\stream_buffer.o
 vTaskDelay                                        FreeRTOS_Source\tasks.o
                                                   src\uart_com.o
+                                                  src\i2c_sensor.o
                                                   src\cc11x_class.o
 vTaskDelayUntil                                   FreeRTOS_Source\tasks.o
 vTaskDelete                                       FreeRTOS_Source\tasks.o
@@ -3570,6 +3632,7 @@ xQueueGenericCreate                               FreeRTOS_Source\queue.o
 xQueueGenericReset                                FreeRTOS_Source\queue.o
 xQueueGenericSend                                 FreeRTOS_Source\queue.o
                                                   src\uart_com.o
+                                                  src\i2c_sensor.o
                                                   src\cc11x_class.o
                                                   FreeRTOS_Source\timers.o
 xQueueGenericSendFromISR                          FreeRTOS_Source\queue.o

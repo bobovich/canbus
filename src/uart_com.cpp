@@ -3,7 +3,7 @@
 #include "stm32f10x.h"
 #include "uart_com.h"
 #include "string.h"
-
+#include <cstdlib>
 char bufTx[50];
 char bufTmp[50];
 void printUart(char * str);
@@ -15,6 +15,7 @@ void aTaskUart(void * pvParameters)
 	//preset ports
 	pack rx;
 	pack tx;
+	iaq_data airData;
 	GPIOA->CRH&=~(0xff<<4);
 	GPIOA->CRH|=0x49<<4;
 	RCC->APB2ENR|=RCC_APB2ENR_USART1EN;
@@ -45,9 +46,9 @@ void aTaskUart(void * pvParameters)
 		//USART1->DR= 0x30;
 
 
-		if(!uxQueueSpacesAvailable(pQComm->a1RX))
+		if(xQueueReceive( pQComm->a1RX, &rx,0)==pdPASS)
 		{
-			xQueueReceive( pQComm->a1RX, &rx,0);
+			//xQueueReceive( pQComm->a1RX, &rx,0);
 			strcpy(bufTx, "APP1 data:\0");
 			strcat(bufTx, rawtohex( (void*)&rx, sizeof( pack ), bufTmp ));
 			strcat(bufTx, "\n");
@@ -60,9 +61,9 @@ void aTaskUart(void * pvParameters)
 			};
 
 
-		}else if(!uxQueueSpacesAvailable(pQComm->a2RX))
+		}else if(xQueueReceive( pQComm->a2RX, &rx,0)==pdPASS)
 		{
-			xQueueReceive( pQComm->a2RX, &rx,0);
+			//xQueueReceive( pQComm->a2RX, &rx,0);
 			strcat(bufTx, "APP2 data:\0");
 			strcat(bufTx, rawtohex( (void*)&rx, sizeof( pack ), bufTmp ));
 			strcat(bufTx, "\n\0");
@@ -74,6 +75,18 @@ void aTaskUart(void * pvParameters)
 				xQueueSend(pQComm->a2TX,&tx,0);
 			};
 		};
+		if(xQueueReceive( pQComm->qSensorIAQ, &airData,0)==pdPASS)
+		{
+			strcat(bufTx, "CO2: ");
+
+			strcat(bufTx, itoa((int)airData.co2, bufTmp, 10));
+			strcat(bufTx,"\n");
+			strcat(bufTx, "TVOC: ");
+
+			strcat(bufTx, itoa((int)airData.tvoc, bufTmp, 10));
+			strcat(bufTx,"\n");
+			printUart(bufTx);
+		}
 
 	}
 

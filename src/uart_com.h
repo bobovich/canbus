@@ -5,7 +5,7 @@
 #include "FreeRTOS.h"
 #include "queue.h"
 #include "CC1101.h"
-
+#include "i2c_sensor.h"
 
 void aTaskUart(void * pvParameters);
 struct pQueueComm
@@ -14,6 +14,7 @@ struct pQueueComm
 	QueueHandle_t a1RX;
 	QueueHandle_t a2TX;
 	QueueHandle_t a2RX;
+	QueueHandle_t qSensorIAQ;
 };
 
 
