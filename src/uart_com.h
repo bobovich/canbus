@@ -14,7 +14,7 @@ struct pQueueComm
 	QueueHandle_t a1RX;
 	QueueHandle_t a2TX;
 	QueueHandle_t a2RX;
-	QueueHandle_t qSensorIAQ;
+	QueueHandle_t qSensor;
 };
 
 

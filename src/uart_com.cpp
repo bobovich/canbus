@@ -4,6 +4,7 @@
 #include "uart_com.h"
 #include "string.h"
 #include <cstdlib>
+#include <cstdio>
 char bufTx[50];
 char bufTmp[50];
 void printUart(char * str);
@@ -15,7 +16,7 @@ void aTaskUart(void * pvParameters)
 	//preset ports
 	pack rx;
 	pack tx;
-	iaq_data airData;
+	air_condition airData;
 	GPIOA->CRH&=~(0xff<<4);
 	GPIOA->CRH|=0x49<<4;
 	RCC->APB2ENR|=RCC_APB2ENR_USART1EN;
@@ -75,17 +76,27 @@ void aTaskUart(void * pvParameters)
 				xQueueSend(pQComm->a2TX,&tx,0);
 			};
 		};
-		if(xQueueReceive( pQComm->qSensorIAQ, &airData,0)==pdPASS)
+		if(xQueueReceive( pQComm->qSensor, &airData,0)==pdPASS)
 		{
 			strcat(bufTx, "CO2: ");
 
-			strcat(bufTx, itoa((int)airData.co2, bufTmp, 10));
+			strcat(bufTx, itoa((int)airData.CO2, bufTmp, 10));
 			strcat(bufTx,"\n");
 			strcat(bufTx, "TVOC: ");
 
-			strcat(bufTx, itoa((int)airData.tvoc, bufTmp, 10));
+			strcat(bufTx, itoa((int)airData.TVOC, bufTmp, 10));
 			strcat(bufTx,"\n");
 			printUart(bufTx);
+			strcat(bufTx, "Temp: ");
+			sprintf(bufTmp, "%4.2f", airData.temp);
+			strcat(bufTx, bufTmp);
+			strcat(bufTx,"\n");
+			strcat(bufTx, "Humidity: ");
+			sprintf(bufTmp, "%4.2f",(float) -12.125);
+			strcat(bufTx, bufTmp);
+			strcat(bufTx,"\n");
+			printUart(bufTx);
+
 		}
 
 	}

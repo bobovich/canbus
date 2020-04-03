@@ -52,12 +52,12 @@ int main(void)
 	RTask1.xCommTX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
 	RTask2.xCommRX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
 	RTask2.xCommTX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
-	sQueue= xQueueCreate(3, sizeof(iaq_data));
+	sQueue= xQueueCreate(3, sizeof(air_condition));
 	pQComm.a1RX=RTask1.xCommRX;
 	pQComm.a1TX = RTask1.xCommTX;
 	pQComm.a2RX = RTask2.xCommRX;
 	pQComm.a2TX = RTask2.xCommTX;
-	pQComm.qSensorIAQ= sQueue;
+	pQComm.qSensor= sQueue;
 
 //xTaskCreate(ATaskCanBus, "CAN Task",  100, NULL, tskIDLE_PRIORITY,  NULL);
 	xTaskCreate(ARadioTask, "RF Task1",  500,(void*) &RTask1 ,2,  NULL);
