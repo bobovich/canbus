@@ -24,7 +24,7 @@ void aIAQCore(void *parameter)
 	{
 			vTaskDelay(3000/ portTICK_PERIOD_MS);
 			iaq->hookRecievePack();
-			ens210->appHook();
+			//ens210->appHook();
 			air.CO2=iaq->getCO2();
 			air.TVOC=iaq->getTVOC();
 			air.temp=ens210->getTemp();
