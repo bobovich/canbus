@@ -13,6 +13,8 @@
 #include "CC1101.h"
 #include "uart_com.h"
 #include "i2c_sensor.h"
+#include "string.h"
+#include <cstdlib>
 #define DEBUG
 #define FREERTOS
 //#define FREERTOS
@@ -46,38 +48,34 @@ QueueHandle_t sQueue;
 int main(void)
 {
 	prvClockCoreInit();
-	prvCommunicationInit();
+	//prvCommunicationInit();
 	GPIOC->CRL|= 0x4<<16;
 	RTask1.xCommRX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
 	RTask1.xCommTX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
 	RTask2.xCommRX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
 	RTask2.xCommTX=xQueueCreate(QUEUE_SIZE, sizeof(pack));
-	sQueue= xQueueCreate(3, sizeof(air_condition));
 	pQComm.a1RX=RTask1.xCommRX;
 	pQComm.a1TX = RTask1.xCommTX;
 	pQComm.a2RX = RTask2.xCommRX;
 	pQComm.a2TX = RTask2.xCommTX;
-	pQComm.qSensor= sQueue;
+	pQComm.qSensor= xQueueCreate(3, sizeof(air_condition));
 
 //xTaskCreate(ATaskCanBus, "CAN Task",  100, NULL, tskIDLE_PRIORITY,  NULL);
-	xTaskCreate(ARadioTask, "RF Task1",  500,(void*) &RTask1 ,2,  NULL);
-	xTaskCreate(ARadioTaskS, "RF Task2",  500,(void*) &RTask2 ,2,  NULL);
+	//xTaskCreate(ARadioTask, "RF Task1",  500,(void*) &RTask1 ,2,  NULL);
+	//xTaskCreate(ARadioTaskS, "RF Task2",  500,(void*) &RTask2 ,2,  NULL);
 	//delete RTask1;
-	xTaskCreate(aIAQCore, "TaskSensor",  100, (void*)sQueue, 2,  NULL);
+	xTaskCreate(aIAQCore, "TaskSensor",  100, (void*)pQComm.qSensor, 2,  NULL);
 	xTaskCreate(run1Task, "Run2 Task",  100, NULL,2,  NULL);
-	xTaskCreate(aTaskUart, "Run2 Task",  300, &pQComm,2,  NULL);
+	xTaskCreate(aTaskUart, "Run2 Task",  300, &pQComm, 2,  NULL);
 	vTaskStartScheduler();
-
-
 
   while (1)
   {
-
-	  //error loop  hook? make harvesting errors and reboots
-
-
+		   //error loop  hook? make harvesting errors and reboots
   }
 }
+
+
 
 //core  clock init function, this a critical function
 void prvClockCoreInit (void)
@@ -105,10 +103,11 @@ void prvClockCoreInit (void)
 void prvCommunicationInit(void)
 {
 	//RCC->APB1ENR|=RCC_APB1ENR_CAN1EN; //CAN clk EN
-	RCC->APB2ENR|=RCC_APB2ENR_USART1EN; //UART1 clk EN
+	//RCC->APB2ENR|=RCC_APB2ENR_USART1EN; //UART1 clk EN
 	// uart init definition
-	USART1->BRR=((0x1e<<4)|4);//115200
-	USART1->CR1|=USART_CR1_RE | USART_CR1_TE | USART_CR1_UE;
+
+	//USART1->BRR=((0x1e<<4)|4);//115200
+	//USART1->CR1|=USART_CR1_RE | USART_CR1_TE | USART_CR1_UE;
 
 	// CAN bus definition
 	//CAN1->MCR=0;

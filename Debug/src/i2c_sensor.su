@@ -8,8 +8,8 @@ i2c_sensor.cpp:119:10:uint32_t iaq_core::getTVOC()	16	static
 i2c_sensor.cpp:124:1:ens210_class::ens210_class()	16	static
 i2c_sensor.cpp:130:6:void ens210_class::i2c_init()	16	static
 i2c_sensor.cpp:144:10:uint32_t ens210_class::readI2C(uint8_t, uint8_t)	24	static
-i2c_sensor.cpp:188:10:uint32_t ens210_class::writeI2C(uint8_t, uint8_t)	24	static
-i2c_sensor.cpp:224:10:uint32_t ens210_class::sens_init()	16	static
-i2c_sensor.cpp:234:10:uint32_t ens210_class::appHook()	24	static
-i2c_sensor.cpp:243:7:float ens210_class::getTemp()	16	static
-i2c_sensor.cpp:248:7:float ens210_class::getHumidity()	16	static
+i2c_sensor.cpp:189:10:uint32_t ens210_class::writeI2C(uint8_t, uint8_t)	24	static
+i2c_sensor.cpp:225:10:uint32_t ens210_class::sens_init()	16	static
+i2c_sensor.cpp:238:10:uint32_t ens210_class::appHook()	24	static
+i2c_sensor.cpp:250:5:int ens210_class::getTemp()	16	static
+i2c_sensor.cpp:255:5:int ens210_class::getHumidity()	16	static

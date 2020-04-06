@@ -17,20 +17,20 @@ void aIAQCore(void *parameter)
 	air_condition air;
 	QueueHandle_t comQueue= (QueueHandle_t) parameter;
 	vTaskDelay(100/ portTICK_PERIOD_MS);
-	iaq->i2c_init();
+	//iaq->i2c_init();
 	ens210->i2c_init();
 	ens210->sens_init();
 	while (1)
 	{
 			vTaskDelay(3000/ portTICK_PERIOD_MS);
-			iaq->hookRecievePack();
-			//ens210->appHook();
+			//iaq->hookRecievePack();
+			ens210->appHook();
 			air.CO2=iaq->getCO2();
 			air.TVOC=iaq->getTVOC();
 			air.temp=ens210->getTemp();
 			air.humidity=ens210->getHumidity();
-			ens210->readI2C(0x00);
-			ens210->readI2C(SYS_STAT);
+			//ens210->readI2C(0x00);
+			//ens210->readI2C(UID);
 			if (uxQueueSpacesAvailable(comQueue))
 			{
 				xQueueSend(comQueue, &air , 1);
@@ -162,6 +162,7 @@ uint32_t ens210_class::readI2C(uint8_t saddr, uint8_t len)
 	while (!(I2C1->SR1 & I2C_SR1_ADDR));
 	if (I2C1->SR2);
 	I2C1->DR=saddr;
+	//I2C1->CR1|=I2C_CR1_STOP;
 	while (!(I2C1->SR1 & I2C_SR1_BTF)); //?
 	I2C1->CR1|=I2C_CR1_START;
 	while (!(I2C1->SR1 & I2C_SR1_SB));
@@ -223,6 +224,9 @@ uint32_t ens210_class::writeI2C(uint8_t saddr, uint8_t len)
 
 uint32_t ens210_class::sens_init(void)
 {
+	buffer[0]= 0x80;
+	writeI2C(SYS_CTRL);
+	vTaskDelay(10/ portTICK_PERIOD_MS);
 	buffer[0]= 0x00;
 	writeI2C(SYS_CTRL);
 	buffer[0]= 0x03;
@@ -233,19 +237,22 @@ uint32_t ens210_class::sens_init(void)
 
 uint32_t ens210_class::appHook(void)
 {
+	//buffer[0]= 0x03;
+	//writeI2C(SENS_START);
 	readI2C(T_VAL, T_VAL_SIZE);
-	temp=((float)( ( (uint32_t)((buffer[1]<<8) | buffer[2])) )/64)-273.15;
+	temp=(( ( (uint32_t)((buffer[0]<<8) | buffer[1])) )/64)-273.15;
 	readI2C(H_VAL, H_VAL_SIZE);
-	hum=((float)((buffer[1]<<8) | buffer[2])/512);
+	hum=(((buffer[0]<<8) | buffer[1])/512);
+	//readI2C(SENS_STAT);
 	return 1;
 }
 
-float ens210_class::getTemp()
+int ens210_class::getTemp()
 {
 	return this->temp;
 }
 
-float ens210_class::getHumidity()
+int ens210_class::getHumidity()
 {
 	return this->hum;
 }

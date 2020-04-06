@@ -85,8 +85,8 @@ public:
 	uint32_t appHook(void);
 	uint32_t readI2C(uint8_t saddr, uint8_t len=1);
 	uint32_t writeI2C(uint8_t saddr, uint8_t len=1);
-	float getTemp(void);
-	float getHumidity(void);
+	int getTemp(void);
+	int getHumidity(void);
 
 
 };
@@ -96,8 +96,8 @@ struct air_condition
 {
 	uint32_t CO2;
 	uint32_t TVOC;
-	float temp;
-	float humidity;
+	int temp;
+	int humidity;
 };
 
 #endif /* I2C_SENSOR_H_ */

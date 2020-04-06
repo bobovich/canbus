@@ -7,7 +7,7 @@
 
 char bufTx[50];
 char bufTmp[50];
-void printUart(char * str);
+
 char* rawtohex(void* data, uint32_t count,  char * str);
 void aTaskUart(void * pvParameters)
 {
@@ -17,11 +17,16 @@ void aTaskUart(void * pvParameters)
 	pack rx;
 	pack tx;
 	air_condition airData;
-	GPIOA->CRH&=~(0xff<<4);
-	GPIOA->CRH|=0x49<<4;
+
+	RCC->APB2ENR|= RCC_APB2ENR_IOPAEN;
 	RCC->APB2ENR|=RCC_APB2ENR_USART1EN;
+	USART1->CR1=0;
+	GPIOA->CRH&=~(0x00ff<<4);
+	GPIOA->CRH|=0x0089<<4;
+	GPIOA->BSRR=1<<10;
 	USART1->BRR=((0x1e<<4)|4);//115200
-	USART1->CR1|=USART_CR1_RE | USART_CR1_TE | USART_CR1_UE;
+	USART1->CR1=USART_CR1_RE | USART_CR1_TE;
+	USART1->CR1|= USART_CR1_UE;
 	tx.addrdst=87;
 	tx.bLeng=10;
 	tx.addrsrc=255;
@@ -34,7 +39,8 @@ void aTaskUart(void * pvParameters)
 	tx.data[5]=255;
 	tx.rssi=255;
 	bufTx[0]=0;
-	vTaskDelay(1000 / portTICK_PERIOD_MS);
+	//USART1->CR1|= USART_CR1_SBK;
+	//vTaskDelay(1000 / portTICK_PERIOD_MS);
 	if(uxQueueSpacesAvailable(pQComm->a1TX))
 				{
 					tx.addrdst=88;
@@ -43,9 +49,11 @@ void aTaskUart(void * pvParameters)
 				};
 	while(1)
 	{
-		vTaskDelay(1000 / portTICK_PERIOD_MS);
-		//USART1->DR= 0x30;
 
+		/*strcpy(bufTx, "Hello\n");
+		printUart(bufTx);
+		vTaskDelay(1000 / portTICK_PERIOD_MS);
+*/
 
 		if(xQueueReceive( pQComm->a1RX, &rx,0)==pdPASS)
 		{
@@ -79,7 +87,6 @@ void aTaskUart(void * pvParameters)
 		if(xQueueReceive( pQComm->qSensor, &airData,0)==pdPASS)
 		{
 			strcat(bufTx, "CO2: ");
-
 			strcat(bufTx, itoa((int)airData.CO2, bufTmp, 10));
 			strcat(bufTx,"\n");
 			strcat(bufTx, "TVOC: ");
@@ -88,7 +95,6 @@ void aTaskUart(void * pvParameters)
 			printUart(bufTx);
 			strcat(bufTx, "Temp: ");
 			strcat(bufTx, itoa((int)airData.temp, bufTmp, 10));
-			strcat(bufTx, bufTmp);
 			strcat(bufTx,"\n");
 			strcat(bufTx, "Humidity: ");
 			strcat(bufTx, itoa((int)airData.humidity, bufTmp, 10));
@@ -107,11 +113,13 @@ void printUart(char * str)
 	int i=0;
 	while (str[i]!=0)
 	{
-		while (!(USART1->SR & USART_SR_TXE));
+		if ((USART1->SR & USART_SR_TXE)){
 		USART1->DR=str[i];
 		i++;
+		};
 	}
 	while (!(USART1->SR & USART_SR_TXE));
+	//USART1->CR1|= USART_CR1_SBK;
 	str[0]=0;
 
 }

@@ -8,6 +8,7 @@
 #include "i2c_sensor.h"
 
 void aTaskUart(void * pvParameters);
+void printUart(char * str);
 struct pQueueComm
 {
 	QueueHandle_t a1TX;
