@@ -17,20 +17,18 @@ void aIAQCore(void *parameter)
 	air_condition air;
 	QueueHandle_t comQueue= (QueueHandle_t) parameter;
 	vTaskDelay(100/ portTICK_PERIOD_MS);
-	//iaq->i2c_init();
+	iaq->i2c_init();
 	ens210->i2c_init();
 	ens210->sens_init();
 	while (1)
 	{
 			vTaskDelay(3000/ portTICK_PERIOD_MS);
-			//iaq->hookRecievePack();
+			iaq->hookRecievePack();
 			ens210->appHook();
 			air.CO2=iaq->getCO2();
 			air.TVOC=iaq->getTVOC();
 			air.temp=ens210->getTemp();
 			air.humidity=ens210->getHumidity();
-			//ens210->readI2C(0x00);
-			//ens210->readI2C(UID);
 			if (uxQueueSpacesAvailable(comQueue))
 			{
 				xQueueSend(comQueue, &air , 1);
@@ -203,14 +201,14 @@ uint32_t ens210_class::writeI2C(uint8_t saddr, uint8_t len)
 	I2C1->CR1|=I2C_CR1_START;
 	I2C1->CR1|=I2C_CR1_ACK;
 	while (!(I2C1->SR1 & I2C_SR1_SB));
-	I2C1->DR=this->addr; // write address to read
+	I2C1->DR=this->addr; // write address
 	while (!(I2C1->SR1 & I2C_SR1_ADDR));
 	if (I2C1->SR2);
 	I2C1->DR=saddr;
-	while (!(I2C1->SR1 & I2C_SR1_TXE));
+	while (!(I2C1->SR1 & I2C_SR1_BTF));
 	while (c < len)
 	{
-		while (!(I2C1->SR1&I2C_SR1_TXE));
+		while (!(I2C1->SR1&I2C_SR1_BTF));
 		I2C1->DR=this->buffer[c];
 		c++;
 		if (c==len)
@@ -237,13 +235,15 @@ uint32_t ens210_class::sens_init(void)
 
 uint32_t ens210_class::appHook(void)
 {
-	//buffer[0]= 0x03;
-	//writeI2C(SENS_START);
+	//
+	//
 	readI2C(T_VAL, T_VAL_SIZE);
-	temp=(( ( (uint32_t)((buffer[0]<<8) | buffer[1])) )/64)-273.15;
+	temp= ( ( buffer[1]<<8) | buffer[0]  )/64-273;
 	readI2C(H_VAL, H_VAL_SIZE);
-	hum=(((buffer[0]<<8) | buffer[1])/512);
+	hum=((buffer[1]<<8) | buffer[0])/512;
 	//readI2C(SENS_STAT);
+	buffer[0]= 0x03;
+	writeI2C(SENS_START);
 	return 1;
 }
 

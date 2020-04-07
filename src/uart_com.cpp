@@ -98,7 +98,6 @@ void aTaskUart(void * pvParameters)
 			strcat(bufTx,"\n");
 			strcat(bufTx, "Humidity: ");
 			strcat(bufTx, itoa((int)airData.humidity, bufTmp, 10));
-			strcat(bufTx, bufTmp);
 			strcat(bufTx,"\n");
 			printUart(bufTx);
 
