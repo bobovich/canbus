@@ -11,5 +11,5 @@ i2c_sensor.cpp:142:10:uint32_t ens210_class::readI2C(uint8_t, uint8_t)	24	static
 i2c_sensor.cpp:187:10:uint32_t ens210_class::writeI2C(uint8_t, uint8_t)	24	static
 i2c_sensor.cpp:223:10:uint32_t ens210_class::sens_init()	16	static
 i2c_sensor.cpp:236:10:uint32_t ens210_class::appHook()	16	static
-i2c_sensor.cpp:250:5:int ens210_class::getTemp()	16	static
-i2c_sensor.cpp:255:5:int ens210_class::getHumidity()	16	static
+i2c_sensor.cpp:252:5:int ens210_class::getTemp()	16	static
+i2c_sensor.cpp:257:5:int ens210_class::getHumidity()	16	static

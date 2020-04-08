@@ -239,10 +239,12 @@ uint32_t ens210_class::appHook(void)
 	//
 	readI2C(T_VAL, T_VAL_SIZE);
 	temp= ( ( buffer[1]<<8) | buffer[0]  )/64-273;
+	vTaskDelay(10/ portTICK_PERIOD_MS);
 	readI2C(H_VAL, H_VAL_SIZE);
 	hum=((buffer[1]<<8) | buffer[0])/512;
 	//readI2C(SENS_STAT);
 	buffer[0]= 0x03;
+	vTaskDelay(10/ portTICK_PERIOD_MS);
 	writeI2C(SENS_START);
 	return 1;
 }
