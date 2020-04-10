@@ -4,10 +4,10 @@
 #include "uart_com.h"
 #include "string.h"
 #include <cstdlib>
-
-char bufTx[50];
-char bufTmp[50];
-
+#include <cmath>
+char bufTx[80];
+char bufTmp[80];
+char * ftoa(double f, uint8_t w, char * buf);
 char* rawtohex(void* data, uint32_t count,  char * str);
 void aTaskUart(void * pvParameters)
 {
@@ -94,10 +94,10 @@ void aTaskUart(void * pvParameters)
 			strcat(bufTx,"\n");
 			printUart(bufTx);
 			strcat(bufTx, "Temp: ");
-			strcat(bufTx, itoa((int)airData.temp, bufTmp, 10));
+			strcat(bufTx, ftoa(airData.temp,2, bufTmp));
 			strcat(bufTx,"\n");
 			strcat(bufTx, "Humidity: ");
-			strcat(bufTx, itoa((int)airData.humidity, bufTmp, 10));
+			strcat(bufTx, ftoa(airData.humidity,2, bufTmp));
 			strcat(bufTx,"\n");
 			printUart(bufTx);
 
@@ -155,4 +155,35 @@ char* rawtohex(void* data, uint32_t count,  char * str)
 	}
 	str[is-1]=0;
 	return str;
+}
+
+char * ftoa(double f, uint8_t w, char * buf)
+{
+	int32_t n=0, fr=0, d=pow(10,w );
+
+	char btm[10];
+	buf[0]=0;
+	if (f == 0)
+		{
+		strcpy(buf, "0.0");
+		return buf;
+		}
+	if (f<0)
+	{
+		strcpy(buf, "-");
+	}
+	btm[0]=0;
+	n=(int32_t)abs(f);
+	fr=(int32_t)( (( f - (double)n ) + (5*pow(0.1,w) )) * d);
+	if(fr >= d)
+	{
+		fr-=100;
+		n++;
+	}
+	strcat(buf, itoa(n,btm,10));
+	btm[0]=0;
+	strcat(buf, ".");
+	strcat(buf, itoa(fr,btm, 10));
+	return buf;
+
 }

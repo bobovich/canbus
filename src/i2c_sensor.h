@@ -74,8 +74,8 @@ public:
 class ens210_class
 {
 private:
-	float temp;
-	float hum;
+	double temp;
+	double hum;
 	const uint8_t addr=ENS210_ADDR;
 	volatile uint8_t buffer[10];
 public:
@@ -85,8 +85,8 @@ public:
 	uint32_t appHook(void);
 	uint32_t readI2C(uint8_t saddr, uint8_t len=1);
 	uint32_t writeI2C(uint8_t saddr, uint8_t len=1);
-	int getTemp(void);
-	int getHumidity(void);
+	double getTemp(void);
+	double getHumidity(void);
 
 
 };
@@ -96,8 +96,8 @@ struct air_condition
 {
 	uint32_t CO2;
 	uint32_t TVOC;
-	int temp;
-	int humidity;
+	double temp;
+	double humidity;
 };
 
 #endif /* I2C_SENSOR_H_ */
