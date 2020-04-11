@@ -5,8 +5,8 @@
 #include "string.h"
 #include <cstdlib>
 #include <cmath>
-char bufTx[80];
-char bufTmp[80];
+char bufTx[50];
+char bufTmp[50];
 char * ftoa(double f, uint8_t w, char * buf);
 char* rawtohex(void* data, uint32_t count,  char * str);
 void aTaskUart(void * pvParameters)
@@ -40,12 +40,12 @@ void aTaskUart(void * pvParameters)
 	tx.rssi=255;
 	bufTx[0]=0;
 	//USART1->CR1|= USART_CR1_SBK;
-	//vTaskDelay(1000 / portTICK_PERIOD_MS);
+	vTaskDelay(1000 / portTICK_PERIOD_MS);
 	if(uxQueueSpacesAvailable(pQComm->a1TX))
 				{
 					tx.addrdst=88;
 					tx.rssi=rx.rssi_r;
-					xQueueSend(pQComm->a1TX,&tx,0);
+					xQueueSend(pQComm->a1TX,&tx,1);
 				};
 	while(1)
 	{
