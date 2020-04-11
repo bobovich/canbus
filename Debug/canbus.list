@@ -8459,11 +8459,11 @@ int main(void)
  80034b4:	4602      	mov	r2, r0
  80034b6:	4b16      	ldr	r3, [pc, #88]	; (8003510 <main+0xdc>)
  80034b8:	611a      	str	r2, [r3, #16]
-
 //xTaskCreate(ATaskCanBus, "CAN Task",  100, NULL, tskIDLE_PRIORITY,  NULL);
 	//xTaskCreate(ARadioTask, "RF Task1",  500,(void*) &RTask1 ,2,  NULL);
 	//xTaskCreate(ARadioTaskS, "RF Task2",  500,(void*) &RTask2 ,2,  NULL);
 	//delete RTask1;
+	//xTaskCreate(displayTask, "Dis",  300, NULL, 2,  NULL);
 	xTaskCreate(aIAQCore, "TaskSensor",  100, (void*)pQComm.qSensor, 2,  NULL);
  80034ba:	4b15      	ldr	r3, [pc, #84]	; (8003510 <main+0xdc>)
  80034bc:	691a      	ldr	r2, [r3, #16]
@@ -8496,6 +8496,7 @@ int main(void)
  80034f4:	4909      	ldr	r1, [pc, #36]	; (800351c <main+0xe8>)
  80034f6:	480b      	ldr	r0, [pc, #44]	; (8003524 <main+0xf0>)
  80034f8:	f7fe fa00 	bl	80018fc <xTaskCreate>
+
 	vTaskStartScheduler();
  80034fc:	f7fe fb64 	bl	8001bc8 <vTaskStartScheduler>
 

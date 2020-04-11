@@ -1718,7 +1718,9 @@ Discarded input sections
  .bss.VRES_byte2
                 0x00000000        0x1 src\eink_display.o
  .text._Z11displayTaskPv
-                0x00000000       0x64 src\eink_display.o
+                0x00000000       0x68 src\eink_display.o
+ .text._Z18GPIO_Configurationv
+                0x00000000       0x68 src\eink_display.o
  .text._Z9SPI_Delayh
                 0x00000000       0x34 src\eink_display.o
  .text._Z9SPI_Writeh
@@ -1749,15 +1751,15 @@ Discarded input sections
                 0x00000000       0x4c src\eink_display.o
  .text._Z7DELAY_Mi
                 0x00000000       0x2a src\eink_display.o
- .debug_info    0x00000000      0x556 src\eink_display.o
- .debug_abbrev  0x00000000      0x1ad src\eink_display.o
+ .debug_info    0x00000000      0x637 src\eink_display.o
+ .debug_abbrev  0x00000000      0x214 src\eink_display.o
  .debug_aranges
-                0x00000000       0x98 src\eink_display.o
- .debug_ranges  0x00000000       0x88 src\eink_display.o
- .debug_line    0x00000000      0x3c9 src\eink_display.o
- .debug_str     0x00000000      0x557 src\eink_display.o
+                0x00000000       0xa0 src\eink_display.o
+ .debug_ranges  0x00000000       0x90 src\eink_display.o
+ .debug_line    0x00000000      0x429 src\eink_display.o
+ .debug_str     0x00000000      0x6d5 src\eink_display.o
  .comment       0x00000000       0x7d src\eink_display.o
- .debug_frame   0x00000000      0x23c src\eink_display.o
+ .debug_frame   0x00000000      0x260 src\eink_display.o
  .ARM.attributes
                 0x00000000       0x33 src\eink_display.o
  .text          0x00000000        0x0 src\i2c_sensor.o
@@ -3229,12 +3231,14 @@ FSMC_PCCARDDeInit                                 Libraries\STM32F10x_StdPeriph_
 FSMC_PCCARDInit                                   Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.o
 FSMC_PCCARDStructInit                             Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.o
 GPIO_AFIODeInit                                   Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.o
+GPIO_Configuration()                              src\eink_display.o
 GPIO_DeInit                                       Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.o
 GPIO_ETH_MediaInterfaceConfig                     Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.o
 GPIO_EXTILineConfig                               Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.o
 GPIO_EventOutputCmd                               Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.o
 GPIO_EventOutputConfig                            Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.o
 GPIO_Init                                         Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.o
+                                                  src\eink_display.o
 GPIO_PinLockConfig                                Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.o
 GPIO_PinRemapConfig                               Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.o
 GPIO_ReadInputData                                Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.o
@@ -3333,6 +3337,7 @@ RCC_APB1PeriphResetCmd                            Libraries\STM32F10x_StdPeriph_
                                                   Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_cec.o
                                                   Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_can.o
 RCC_APB2PeriphClockCmd                            Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.o
+                                                  src\eink_display.o
 RCC_APB2PeriphResetCmd                            Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.o
                                                   Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.o
                                                   Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_tim.o
@@ -3743,8 +3748,8 @@ abort                                             d:/programs/truestudio for stm
 bufTmp                                            src\uart_com.o
 bufTx                                             src\uart_com.o
 cc11xx_class::cc11xx_class(xTaskParam*, unsigned char, unsigned char*) src\cc11x_class.o
-cc11xx_class::cc11xx_class(xTaskParam*, unsigned char, unsigned char*) src\cc11x_class.o
                                                   src\CC1101.o
+cc11xx_class::cc11xx_class(xTaskParam*, unsigned char, unsigned char*) src\cc11x_class.o
 cc11xx_class::chekStatus()                        src\cc11x_class.o
                                                   src\CC1101.o
 cc11xx_class::crc8(unsigned char*, unsigned char) src\cc11x_class.o

@@ -13,6 +13,7 @@
 #include "CC1101.h"
 #include "uart_com.h"
 #include "i2c_sensor.h"
+#include "eink_display.h"
 #include "string.h"
 #include <cstdlib>
 #define DEBUG
@@ -64,9 +65,11 @@ int main(void)
 	//xTaskCreate(ARadioTask, "RF Task1",  500,(void*) &RTask1 ,2,  NULL);
 	//xTaskCreate(ARadioTaskS, "RF Task2",  500,(void*) &RTask2 ,2,  NULL);
 	//delete RTask1;
+	//xTaskCreate(displayTask, "Dis",  300, NULL, 2,  NULL);
 	xTaskCreate(aIAQCore, "TaskSensor",  100, (void*)pQComm.qSensor, 2,  NULL);
 	xTaskCreate(run1Task, "Run2 Task",  100, NULL,2,  NULL);
 	xTaskCreate(aTaskUart, "Run2 Task",  300, &pQComm, 2,  NULL);
+
 	vTaskStartScheduler();
 
   while (1)
