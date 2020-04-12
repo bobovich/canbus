@@ -46,28 +46,32 @@ void GPIO_Configuration(void)
 {
   GPIO_InitTypeDef  GPIO_InitStructure;
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD|RCC_APB2Periph_GPIOE, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA| RCC_APB2Periph_GPIOC, ENABLE);
 
 
-	 //CS-->PD8   SCK-->PD9  SDO--->PD10
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8|GPIO_Pin_9|GPIO_Pin_10;		//Port configuration
+	 //CS-->PA8
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8|GPIO_Pin_15|GPIO_Pin_14;		//Port configuration
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-	GPIO_Init(GPIOD, &GPIO_InitStructure);
-
-
-
-	 // D/C--->PE15	   RES-->PE14
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14|GPIO_Pin_15;		//Port configuration
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	//SCK-->PC11  SDO--->PC10
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10|GPIO_Pin_11;		//Port configuration
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-	GPIO_Init(GPIOE, &GPIO_InitStructure);
+	GPIO_Init(GPIOC, &GPIO_InitStructure);
 
-	// BUSY--->PE13
+
+	 // D/C--->PA11	   RES-->PA12
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11|GPIO_Pin_10;		//Port configuration
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+	GPIO_Init(GPIOC, &GPIO_InitStructure);
+
+	// BUSY--->PA13
 	GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_13;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;	//Pull up input
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
- 	GPIO_Init(GPIOE, &GPIO_InitStructure);				//Initialize GPIO
+ 	GPIO_Init(GPIOA, &GPIO_InitStructure);				//Initialize GPIO
 
 	/* //LED
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12;		//Port configuration

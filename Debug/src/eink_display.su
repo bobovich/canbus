@@ -1,17 +1,17 @@
 eink_display.cpp:14:6:void displayTask(void*)	16	static
 eink_display.cpp:45:6:void GPIO_Configuration()	16	static
-eink_display.cpp:80:6:void SPI_Delay(unsigned char)	24	static
-eink_display.cpp:91:6:void SPI_Write(unsigned char)	24	static
-eink_display.cpp:113:6:void EPD_W21_WriteCMD(unsigned char)	16	static
-eink_display.cpp:122:6:void EPD_W21_WriteDATA(unsigned char)	16	static
-eink_display.cpp:131:6:void EPD_W21_Init()	8	static
-eink_display.cpp:140:6:void EPD_init()	8	static
-eink_display.cpp:168:6:void EPD_refresh()	8	static
-eink_display.cpp:174:6:void EPD_sleep()	8	static
-eink_display.cpp:184:6:void PIC_display(const unsigned char*, const unsigned char*)	24	static
-eink_display.cpp:202:6:void PIC_display_Clean()	16	static
-eink_display.cpp:220:6:void lcd_chkstatus()	16	static
-eink_display.cpp:233:6:void driver_delay_us(unsigned int)	16	static
-eink_display.cpp:238:6:void driver_delay_xms(long unsigned int)	24	static
-eink_display.cpp:247:6:void DELAY_S(int)	32	static
-eink_display.cpp:259:6:void DELAY_M(int)	24	static
+eink_display.cpp:84:6:void SPI_Delay(unsigned char)	24	static
+eink_display.cpp:95:6:void SPI_Write(unsigned char)	24	static
+eink_display.cpp:117:6:void EPD_W21_WriteCMD(unsigned char)	16	static
+eink_display.cpp:126:6:void EPD_W21_WriteDATA(unsigned char)	16	static
+eink_display.cpp:135:6:void EPD_W21_Init()	8	static
+eink_display.cpp:144:6:void EPD_init()	8	static
+eink_display.cpp:172:6:void EPD_refresh()	8	static
+eink_display.cpp:178:6:void EPD_sleep()	8	static
+eink_display.cpp:188:6:void PIC_display(const unsigned char*, const unsigned char*)	24	static
+eink_display.cpp:206:6:void PIC_display_Clean()	16	static
+eink_display.cpp:224:6:void lcd_chkstatus()	16	static
+eink_display.cpp:237:6:void driver_delay_us(unsigned int)	16	static
+eink_display.cpp:242:6:void driver_delay_xms(long unsigned int)	24	static
+eink_display.cpp:251:6:void DELAY_S(int)	32	static
+eink_display.cpp:263:6:void DELAY_M(int)	24	static
