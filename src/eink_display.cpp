@@ -14,6 +14,7 @@ void GPIO_Configuration(void);
 void displayTask(void* pvParams)
 {
 	GPIO_Configuration();
+	vTaskDelay(3000/ portTICK_PERIOD_MS);
 	 EPD_init(); //EPD init
 	 PIC_display(gImage_black1,gImage_red1);//EPD_picture1
 	 EPD_refresh();//EPD_refresh
@@ -24,6 +25,11 @@ void displayTask(void* pvParams)
 	 EPD_refresh();//EPD_refresh
 	 EPD_sleep();//EPD_sleep,Sleep instruction is necessary, please do not delete!!!
 	 DELAY_S(60);
+	 EPD_init(); //EPD init
+	PIC_display(gImage_black3,gImage_red3);//EPD_picture2
+	EPD_refresh();//EPD_refresh
+	EPD_sleep();//EPD_sleep,Sleep instruction is necessary, please do not delete!!!
+	DELAY_S(60);
 			//EPD_Clean
 	 EPD_init(); //EPD init
 	 PIC_display_Clean();//EPD_Clean
@@ -46,11 +52,11 @@ void GPIO_Configuration(void)
 {
   GPIO_InitTypeDef  GPIO_InitStructure;
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA| RCC_APB2Periph_GPIOC, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC, ENABLE);
 
 
 	 //CS-->PA8
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8|GPIO_Pin_15|GPIO_Pin_14;		//Port configuration
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8|GPIO_Pin_11|GPIO_Pin_12;		//Port configuration
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
@@ -62,10 +68,10 @@ void GPIO_Configuration(void)
 
 
 	 // D/C--->PA11	   RES-->PA12
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11|GPIO_Pin_10;		//Port configuration
+	/*GPIO_InitStructure.GPIO_Pin = ;		//Port configuration
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-	GPIO_Init(GPIOC, &GPIO_InitStructure);
+	GPIO_Init(GPIOC, &GPIO_InitStructure);*/
 
 	// BUSY--->PA13
 	GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_13;
@@ -188,6 +194,7 @@ void EPD_sleep(void)
 void PIC_display(const unsigned char* picData_old,const unsigned char* picData_new)
 {
     unsigned int i;
+    uint8_t  u=1;
 		EPD_W21_WriteCMD(0x10);	       //Transfer old data
 	  for(i=0;i<4736;i++)
 	{
@@ -197,8 +204,10 @@ void PIC_display(const unsigned char* picData_old,const unsigned char* picData_n
 		EPD_W21_WriteCMD(0x13);		     //Transfer new data
 	  for(i=0;i<4736;i++)
 	{
-	  EPD_W21_WriteDATA(*picData_new);
-	  picData_new++;
+	  EPD_W21_WriteDATA(255);
+	 /* u++;
+	  if (u==255) u=0;*/
+	  //picData_new++;
 	}
 
 }
