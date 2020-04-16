@@ -8,7 +8,7 @@
 #include "eink_display.h"
 #include "Ap_29demo.h"
 #include "asciitable.h"
-
+#include "string.h"
 #define D_WIDTH 128
 #define D_HEIGHT 296
 #define FONT_H 22
@@ -21,15 +21,18 @@ void clearPix(uint32_t x, uint32_t y);
 void clearDispRAM(void);
 void setPix(uint32_t x, uint32_t y);
 void wtireString( char*str ,  uint32_t x, uint32_t y,  uint32_t mode);
+void wtireString90( char*str ,  uint32_t x, uint32_t y,  uint32_t mode);
 
-char he[]={"Hello Dasha\0"};
+char he[50];
 void displayTask(void* pvParams)
 {
 	GPIO_Configuration();
 	vTaskDelay(3000/ portTICK_PERIOD_MS);
 	clearDispRAM();
-	wtireString( he , 10, 30, 0);
-
+	strcpy(he, "I Love You Baby");
+	wtireString90( he , 00, 0, 0);
+	strcpy(he, "You is Pretty Girl");
+	wtireString90( he , 0, 30, 0);
 
 	 EPD_init(); //EPD init
 	 PIC_display(dispRam,NULL);//EPD_picture1
@@ -125,6 +128,41 @@ while ( str[i] !=0 )
 			if ( ( ((by>>bc)&0x01) == 1 ) &&((cy-y)<=FONT_H))
 			{
 				if (mode==0) setPix(cx,cy); else clearPix(cx,cy);
+			};
+
+		 cy++;
+		};
+
+		if ((cnt-(((uint32_t)(cnt/3))*3)) == 0 )
+		{
+			cy=y;
+			cx++;
+		};
+	};
+	i++;
+};
+}
+
+void wtireString90( char*str ,  uint32_t x, uint32_t y,  uint32_t mode)
+{
+uint32_t by,cx,cy;
+cx=x;
+cy=y;
+uint32_t i=0;
+while ( str[i] !=0 )
+{
+	for (char cnt=1; cnt<31; cnt++)
+	{
+		by= Consolas10x22[(str[i]-32)*31+cnt];
+		for (uint32_t bc=0; bc<8; bc++)
+		{
+			if ( ( ((by>>bc)&0x01) == 0 ) &&((cy-y)<=FONT_H))
+			{
+				if (mode==0) clearPix(cy,295-cx); else setPix(cy,cx);
+			}
+			if ( ( ((by>>bc)&0x01) == 1 ) &&((cy-y)<=FONT_H))
+			{
+				if (mode==0) setPix(cy,295-cx); else clearPix(cy,cx);
 			};
 
 		 cy++;
