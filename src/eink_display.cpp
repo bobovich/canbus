@@ -22,7 +22,7 @@ void clearDispRAM(void);
 void setPix(uint32_t x, uint32_t y);
 void wtireString( char*str ,  uint32_t x, uint32_t y,  uint32_t mode);
 
-char he[]={'A',0};
+char he[]={"Hello Dasha\0"};
 void displayTask(void* pvParams)
 {
 	GPIO_Configuration();
@@ -87,12 +87,12 @@ void GPIO_Configuration(void)
 
 void setPix(uint32_t x, uint32_t y)
 {
-	dispRam[x/8+y*16]&=~(1<<(7-((x+1)%8)));
+	dispRam[x/8+y*16]&=~(1<<(7-((x)%8)));
 }
 
 void clearPix(uint32_t x, uint32_t y)
 {
-	dispRam[(x/8+(y*16-1))]|=1<<(7-((x+1)%8));
+	dispRam[(x/8+(y*16))]|=1<<(7-(x%8));
 
 }
 
