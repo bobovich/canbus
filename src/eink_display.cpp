@@ -7,35 +7,34 @@
 
 #include "eink_display.h"
 #include "Ap_29demo.h"
+#include "asciitable.h"
+
+#define D_WIDTH 128
+#define D_HEIGHT 296
+#define FONT_H 22
+uint8_t dispRam[4736];
 
 unsigned int size;
 unsigned char HRES,VRES_byte1,VRES_byte2;
 void GPIO_Configuration(void);
+void clearPix(uint32_t x, uint32_t y);
+void clearDispRAM(void);
+void setPix(uint32_t x, uint32_t y);
+void wtireString( char*str ,  uint32_t x, uint32_t y,  uint32_t mode);
+
+char he[]={'A',0};
 void displayTask(void* pvParams)
 {
 	GPIO_Configuration();
 	vTaskDelay(3000/ portTICK_PERIOD_MS);
+	clearDispRAM();
+	wtireString( he , 10, 30, 0);
+
+
 	 EPD_init(); //EPD init
-	 PIC_display(gImage_black1,gImage_red1);//EPD_picture1
+	 PIC_display(dispRam,NULL);//EPD_picture1
 	 EPD_refresh();//EPD_refresh
 	 EPD_sleep();//EPD_sleep,Sleep instruction is necessary, please do not delete!!!
-	 DELAY_S(60);
-	 EPD_init(); //EPD init
-	 PIC_display(gImage_black2,gImage_red2);//EPD_picture2
-	 EPD_refresh();//EPD_refresh
-	 EPD_sleep();//EPD_sleep,Sleep instruction is necessary, please do not delete!!!
-	 DELAY_S(60);
-	 EPD_init(); //EPD init
-	PIC_display(gImage_black3,gImage_red3);//EPD_picture2
-	EPD_refresh();//EPD_refresh
-	EPD_sleep();//EPD_sleep,Sleep instruction is necessary, please do not delete!!!
-	DELAY_S(60);
-			//EPD_Clean
-	 EPD_init(); //EPD init
-	 PIC_display_Clean();//EPD_Clean
-	 EPD_refresh();//EPD_refresh
-	 EPD_sleep();//EPD_sleep,Sleep instruction is necessary, please do not delete!!!
-	 DELAY_S(60);
 
 
 
@@ -86,6 +85,60 @@ void GPIO_Configuration(void)
 	GPIO_Init(GPIOE, &GPIO_InitStructure);*/
 }
 
+void setPix(uint32_t x, uint32_t y)
+{
+	dispRam[x/8+y*16]&=~(1<<(7-((x+1)%8)));
+}
+
+void clearPix(uint32_t x, uint32_t y)
+{
+	dispRam[(x/8+(y*16-1))]|=1<<(7-((x+1)%8));
+
+}
+
+void clearDispRAM(void)
+{
+
+	for (int x=0; x< 4736; x++)
+	{
+		dispRam[x]=0xff;
+	}
+}
+
+void wtireString( char*str ,  uint32_t x, uint32_t y,  uint32_t mode)
+{
+uint32_t by,cx,cy;
+cx=x;
+cy=y;
+uint32_t i=0;
+while ( str[i] !=0 )
+{
+	for (char cnt=1; cnt<31; cnt++)
+	{
+		by= Consolas10x22[(str[i]-32)*31+cnt];
+		for (uint32_t bc=0; bc<8; bc++)
+		{
+			if ( ( ((by>>bc)&0x01) == 0 ) &&((cy-y)<=FONT_H))
+			{
+				if (mode==0) clearPix(cx,cy); else setPix(cx,cy);
+			}
+			if ( ( ((by>>bc)&0x01) == 1 ) &&((cy-y)<=FONT_H))
+			{
+				if (mode==0) setPix(cx,cy); else clearPix(cx,cy);
+			};
+
+		 cy++;
+		};
+
+		if ((cnt-(((uint32_t)(cnt/3))*3)) == 0 )
+		{
+			cy=y;
+			cx++;
+		};
+	};
+	i++;
+};
+}
 
 void SPI_Delay(unsigned char xrate)
 {
@@ -194,7 +247,7 @@ void EPD_sleep(void)
 void PIC_display(const unsigned char* picData_old,const unsigned char* picData_new)
 {
     unsigned int i;
-    uint8_t  u=1;
+    //uint8_t  u=1;
 		EPD_W21_WriteCMD(0x10);	       //Transfer old data
 	  for(i=0;i<4736;i++)
 	{
@@ -205,9 +258,6 @@ void PIC_display(const unsigned char* picData_old,const unsigned char* picData_n
 	  for(i=0;i<4736;i++)
 	{
 	  EPD_W21_WriteDATA(255);
-	 /* u++;
-	  if (u==255) u=0;*/
-	  //picData_new++;
 	}
 
 }
