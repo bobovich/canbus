@@ -12,6 +12,8 @@
 #include "stm32f10x.h"
 #include "FreeRTOS.h"
 #include "queue.h"
+#include "CC1101.h"
+#include "i2c_sensor.h"
 
 #define EPD_W21_SPI_SPEED 0x02
 

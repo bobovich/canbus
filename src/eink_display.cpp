@@ -9,6 +9,8 @@
 #include "Ap_29demo.h"
 #include "asciitable.h"
 #include "string.h"
+#include "uart_com.h"
+#include <cstdlib>
 #define D_WIDTH 128
 #define D_HEIGHT 296
 #define FONT_H 22
@@ -22,28 +24,41 @@ void clearDispRAM(void);
 void setPix(uint32_t x, uint32_t y);
 void wtireString( char*str ,  uint32_t x, uint32_t y,  uint32_t mode);
 void wtireString90( char*str ,  uint32_t x, uint32_t y,  uint32_t mode);
-
 char he[50];
+
+
 void displayTask(void* pvParams)
 {
 	GPIO_Configuration();
-	vTaskDelay(3000/ portTICK_PERIOD_MS);
-	clearDispRAM();
-	strcpy(he, "I Love You Baby");
-	wtireString90( he , 00, 0, 0);
-	strcpy(he, "You is Pretty Girl");
-	wtireString90( he , 0, 30, 0);
-
-	 EPD_init(); //EPD init
-	 PIC_display(dispRam,NULL);//EPD_picture1
-	 EPD_refresh();//EPD_refresh
-	 EPD_sleep();//EPD_sleep,Sleep instruction is necessary, please do not delete!!!
-
-
-
+	char bufTmp[10];
+	air_condition airData;
+	QueueHandle_t dQueue =(QueueHandle_t)pvParams;
+	vTaskDelay(10000/ portTICK_PERIOD_MS);
+	EPD_init();
 	for(;;)
 	{
 
+
+		xQueueReceive( dQueue, &airData,5);
+		clearDispRAM();
+
+		strcpy(he, "CO2: ");
+		strcat(he, itoa((int)airData.CO2, bufTmp, 10));
+		wtireString90( he , 0,0,0);
+		strcpy(he, "TVOC: ");
+		strcat(he, itoa((int)airData.TVOC, bufTmp, 10));
+		wtireString90( he , 0,30,0);
+		strcpy(he, "Temp: ");
+		strcat(he, ftoa(airData.temp,2, bufTmp));
+		wtireString90( he , 0,60,0);
+		strcpy(he, "Humidity: ");
+		strcat(he, ftoa(airData.humidity,2, bufTmp));
+		wtireString90( he , 0,90,0);
+		//EPD_init(); 	///EPD init
+		PIC_display(dispRam,NULL);//EPD_picture1
+		EPD_refresh();//EPD_refresh
+		//EPD_sleep();//EPD_sleep,Sleep instruction is necessary, please do not delete!!!
+		vTaskDelay(20000/ portTICK_PERIOD_MS);
 
 
 	};

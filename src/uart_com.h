@@ -9,6 +9,7 @@
 
 void aTaskUart(void * pvParameters);
 void printUart(char * str);
+char * ftoa(double f, uint8_t w, char * buf);
 struct pQueueComm
 {
 	QueueHandle_t a1TX;
@@ -16,6 +17,7 @@ struct pQueueComm
 	QueueHandle_t a2TX;
 	QueueHandle_t a2RX;
 	QueueHandle_t qSensor;
+	QueueHandle_t qDisplay;
 };
 
 

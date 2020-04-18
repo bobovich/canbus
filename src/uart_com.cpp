@@ -7,7 +7,7 @@
 #include <cmath>
 char bufTx[50];
 char bufTmp[50];
-char * ftoa(double f, uint8_t w, char * buf);
+
 char* rawtohex(void* data, uint32_t count,  char * str);
 void aTaskUart(void * pvParameters)
 {
@@ -96,11 +96,11 @@ void aTaskUart(void * pvParameters)
 			strcat(bufTx, "Temp: ");
 			strcat(bufTx, ftoa(airData.temp,2, bufTmp));
 			strcat(bufTx,"\n");
-			strcat(bufTx, "Humidity: ");
+			strcat(bufTx, "Влажность: ");
 			strcat(bufTx, ftoa(airData.humidity,2, bufTmp));
 			strcat(bufTx,"\n");
 			printUart(bufTx);
-
+			xQueueOverwrite(pQComm->qDisplay, &airData  );
 		}
 
 	}

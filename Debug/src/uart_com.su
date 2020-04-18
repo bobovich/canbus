@@ -1,5 +1,5 @@
 CC1101.h:69:9:pack::pack()	16	static
-uart_com.cpp:12:6:void aTaskUart(void*)	80	static
+uart_com.cpp:12:6:void aTaskUart(void*)	88	static
 uart_com.cpp:109:6:void printUart(char*)	24	static
 uart_com.cpp:126:7:char* rawtohex(void*, uint32_t, char*)	40	static
 uart_com.cpp:160:8:char* ftoa(double, uint8_t, char*)	56	static
