@@ -1,17 +1,17 @@
-CC1101.h:69:9:pack::pack()	16	static
-cc11x_class.cpp:12:1:cc11xx_class::cc11xx_class(xTaskParam*, uint8_t, uint8_t*)	32	static
-cc11x_class.cpp:104:9:btype_t cc11xx_class::selectChip()	16	static
-cc11x_class.cpp:110:9:btype_t cc11xx_class::deselectChip()	16	static
-cc11x_class.cpp:116:9:btype_t cc11xx_class::getMISO()	16	static
-cc11x_class.cpp:122:9:btype_t cc11xx_class::sendByte(uint8_t, uint8_t)	24	static
-cc11x_class.cpp:147:9:uint8_t cc11xx_class::readByte(uint8_t)	24	static
-cc11x_class.cpp:174:9:btype_t cc11xx_class::sendBurst(uint8_t, uint8_t, uint8_t*)	32	static
-cc11x_class.cpp:203:9:btype_t cc11xx_class::readBurst(uint8_t, uint8_t, uint8_t*)	32	static
-cc11x_class.cpp:231:9:btype_t cc11xx_class::chekStatus()	24	static
-cc11x_class.cpp:268:9:btype_t cc11xx_class::txPack()	24	static
-cc11x_class.cpp:295:9:btype_t cc11xx_class::rxPack()	24	static
-cc11x_class.cpp:321:7:pack* cc11xx_class::getRxPack()	16	static
-cc11x_class.cpp:326:9:btype_t cc11xx_class::sendSTB(uint8_t)	24	static
-cc11x_class.cpp:345:9:uint8_t cc11xx_class::crc8(uint8_t*, uint8_t)	32	static
-cc11x_class.cpp:359:9:btype_t cc11xx_class::rxEventHook()	16	static
-cc11x_class.cpp:380:9:btype_t cc11xx_class::txEventHook()	32	static
+CC1101.h:70:8:pack::pack()	16	static
+cc11x_class.cpp:15:1:cc11xx_class::cc11xx_class(xTaskParam*, uint8_t, uint8_t*)	32	static
+cc11x_class.cpp:110:9:btype_t cc11xx_class::selectChip()	16	static
+cc11x_class.cpp:119:9:btype_t cc11xx_class::deselectChip()	16	static
+cc11x_class.cpp:127:9:btype_t cc11xx_class::getMISO()	16	static
+cc11x_class.cpp:137:9:btype_t cc11xx_class::sendByte(uint8_t, uint8_t)	24	static
+cc11x_class.cpp:165:9:uint8_t cc11xx_class::readByte(uint8_t)	24	static
+cc11x_class.cpp:195:9:btype_t cc11xx_class::sendBurst(uint8_t, uint8_t, uint8_t*)	32	static
+cc11x_class.cpp:227:9:btype_t cc11xx_class::readBurst(uint8_t, uint8_t, uint8_t*)	32	static
+cc11x_class.cpp:258:9:btype_t cc11xx_class::chekStatus()	24	static
+cc11x_class.cpp:298:9:btype_t cc11xx_class::txPack()	24	static
+cc11x_class.cpp:328:9:btype_t cc11xx_class::rxPack()	24	static
+cc11x_class.cpp:358:7:pack* cc11xx_class::getRxPack()	16	static
+cc11x_class.cpp:367:9:btype_t cc11xx_class::sendSTB(uint8_t)	24	static
+cc11x_class.cpp:390:9:uint8_t cc11xx_class::crc8(uint8_t*, uint8_t)	32	static
+cc11x_class.cpp:407:9:btype_t cc11xx_class::rxEventHook()	16	static
+cc11x_class.cpp:431:9:btype_t cc11xx_class::txEventHook()	32	static

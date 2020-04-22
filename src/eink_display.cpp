@@ -47,13 +47,13 @@ void displayTask(void* pvParams)
 		wtireString90( he , 0,0,0);
 		strcpy(he, "TVOC: ");
 		strcat(he, itoa((int)airData.TVOC, bufTmp, 10));
-		wtireString90( he , 0,30,0);
+		wtireString90( he , 120,0,0);
 		strcpy(he, "Temp: ");
 		strcat(he, ftoa(airData.temp,2, bufTmp));
-		wtireString90( he , 0,60,0);
+		wtireString90( he , 0,25,0);
 		strcpy(he, "Humidity: ");
 		strcat(he, ftoa(airData.humidity,2, bufTmp));
-		wtireString90( he , 0,90,0);
+		wtireString90( he , 120,25,0);
 		//EPD_init(); 	///EPD init
 		PIC_display(dispRam,NULL);//EPD_picture1
 		EPD_refresh();//EPD_refresh

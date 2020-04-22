@@ -8,8 +8,11 @@
 #include "CC1101.h"
 
 
-
-cc11xx_class::cc11xx_class(xTaskParam * pPortParam, uint8_t set_len, uint8_t *rfSettings) // class constructor
+/*
+ * this metod a class contructor
+ * he setup port, target ic from port, and his queues
+ */
+cc11xx_class::cc11xx_class(xTaskParam * pPortParam, uint8_t set_len, uint8_t *rfSettings)
 {
 	SP=(SPI_TypeDef*)pPortParam->pTaskSerial;
 	xPortHW= pPortParam->xTaskPortH;
@@ -101,24 +104,36 @@ cc11xx_class::cc11xx_class(xTaskParam * pPortParam, uint8_t set_len, uint8_t *rf
 	this->sendByte(PATAB, 0x50);
 }
 
+/*
+ * chip select set to zero nss pin. use only bit bang
+ */
 btype_t cc11xx_class::selectChip()
 {
 	*NSS_reset=1;
 	return *NSS_get;
 }
 
+/*
+ * chip deselect set to hight nss pin. use only bit bang
+ */
 btype_t cc11xx_class::deselectChip()
 {
 	*NSS_set=1;
 	return *NSS_get;
 }
-
+/*
+ * return miso pin level for response ready state ic, to communication
+ */
 btype_t cc11xx_class::getMISO()
 {
 
 	return *MISO_lv;
 }
 
+/*
+ *  @Brief this private metod
+ * send byte to chip to address
+ */
 btype_t cc11xx_class::sendByte (uint8_t address, uint8_t  cmd)
 {
 	uint8_t stsb;
@@ -144,6 +159,9 @@ btype_t cc11xx_class::sendByte (uint8_t address, uint8_t  cmd)
 	return 1;
 }
 
+/*
+ *  @Brief read byte from chip from address
+ */
 uint8_t cc11xx_class::readByte (uint8_t address)
 {
 	//deselectChip();
@@ -171,6 +189,9 @@ uint8_t cc11xx_class::readByte (uint8_t address)
 	return stsb;
 }
 
+/*
+ * @Brief send flow byte to address
+ */
 btype_t cc11xx_class::sendBurst(uint8_t sAddress, uint8_t  cmdCount, uint8_t* cmds)
 {
 	uint8_t stsb;
@@ -200,6 +221,9 @@ btype_t cc11xx_class::sendBurst(uint8_t sAddress, uint8_t  cmdCount, uint8_t* cm
 	return 1;
 }
 
+/*
+ * @Brief read flow byte to address
+ */
 btype_t cc11xx_class::readBurst (uint8_t address, uint8_t  cmdCount, uint8_t* cmds)
 {
 	deselectChip();
@@ -228,6 +252,9 @@ btype_t cc11xx_class::readBurst (uint8_t address, uint8_t  cmdCount, uint8_t* cm
 	return 1;
 }
 
+/*
+ * @Brief return status of chip
+ */
 btype_t cc11xx_class::chekStatus()
 {
 	uint8_t stsb;
@@ -265,6 +292,9 @@ btype_t cc11xx_class::chekStatus()
 	return 1;
 }
 
+/*
+ * @Brief send packet to fifo and radio
+ */
 btype_t cc11xx_class::txPack(void)
 {
 	uint8_t stsb;
@@ -292,6 +322,9 @@ btype_t cc11xx_class::txPack(void)
 	return 1;
 }
 
+/*
+ * @Brief read data from fifo
+ */
 btype_t cc11xx_class::rxPack(void)
 {
 	uint8_t stsb;
@@ -318,11 +351,19 @@ btype_t cc11xx_class::rxPack(void)
 	return 1;
 }
 
+
+/*
+ * @Brief return recieved packet
+ */
 pack* cc11xx_class::getRxPack(void)
 {
 	return this->rxp;
 }
 
+
+/*
+ * @Brief send strobe
+ */
 btype_t cc11xx_class::sendSTB(uint8_t stb)
 {
 	uint8_t stsb;
@@ -342,6 +383,10 @@ btype_t cc11xx_class::sendSTB(uint8_t stb)
 	return 1;
 }
 
+
+/*
+ * @Brief crc8 calc
+ */
 uint8_t cc11xx_class::crc8(uint8_t * pcBlock, uint8_t len)
 {
 
@@ -356,6 +401,9 @@ uint8_t cc11xx_class::crc8(uint8_t * pcBlock, uint8_t len)
     return crc;
 }
 
+/*
+ * @Brief rtos function to dicountinune  read receieved data
+ */
 btype_t cc11xx_class::rxEventHook(void)
 {
 	if ((*rxEvent == RX_EVENT) || ( this->cStatus->fifo_rx_av >= sizeof(pack)) )
@@ -377,6 +425,9 @@ btype_t cc11xx_class::rxEventHook(void)
 		return 0;
 }
 
+/*
+ * @Brief rtos function to dicountinune  send  data
+ */
 btype_t cc11xx_class::txEventHook(void)
 {
 	if ( (uxQueueSpacesAvailable( this->pTX) < QUEUE_SIZE) )

@@ -66,7 +66,8 @@ void ARadioTask (void* pvParameters);
 void ARadioTaskS (void* pvParameters);
 
 // Rf settings for CC1101
- struct pack
+// communicatin format packet
+struct pack
 {
 	uint8_t bLeng=(PACK_SIZE+PACK_ADD)-3;
 	uint8_t addrdst;
@@ -77,6 +78,9 @@ void ARadioTaskS (void* pvParameters);
 	uint8_t rssi_r;
 	uint8_t lqi;
 };
+/*
+ * status of chip
+ */
  struct  cc1101Status
 {
 	uint8_t rdy;
@@ -85,9 +89,12 @@ void ARadioTaskS (void* pvParameters);
 	uint8_t fifo_tx_av;
 };
 
+ /*
+  * rtos task creation parameters
+  */
  struct xTaskParam
 {
-	uint32_t pTaskSerial;
+	uint32_t pTaskSerial;// base addres of used port
 	uint8_t xTaskPortH;
 	uint32_t* pRxEvent;//bit bang input pin of event
 	uint32_t* pTxcEvent;
