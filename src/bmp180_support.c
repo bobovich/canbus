@@ -231,32 +231,40 @@ s8 I2C_routine(void)
  */
 s8 BMP180_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 {
-    s32 iError = BMP180_INIT_VALUE;
-    /*u8 array[I2C_BUFFER_LEN];
-    u8 stringpos = BMP180_INIT_VALUE;
 
-    array[BMP180_INIT_VALUE] = reg_addr;
-    for (stringpos = BMP180_INIT_VALUE; stringpos < cnt; stringpos++)
-    {
-        array[stringpos + C_BMP180_ONE_U8X] = *(reg_data + stringpos);
-    }*/
+	uint8_t c=0;
+	if ( (cnt<0 || cnt > I2C_BUFFER_LEN) )  return 0;
+	if ((I2C1->SR1 & 0xf0) != 0)
+	{
+		I2C1->CR1 = I2C_CR1_SWRST;
+	};
+	if (I2C1->SR2&I2C_SR2_BUSY)
+	{
+		I2C1->CR1|=I2C_CR1_STOP;
+		while (!(I2C1->SR2&I2C_SR2_BUSY));
+	}
+	I2C1->CR1|=I2C_CR1_START;
+	I2C1->CR1|=I2C_CR1_ACK;
+	while (!(I2C1->SR1 & I2C_SR1_SB));
+	I2C1->DR=dev_addr<<1; // write address
+	while (!(I2C1->SR1 & I2C_SR1_ADDR));
+	if (I2C1->SR2);
+	I2C1->DR=reg_addr;
+	while (!(I2C1->SR1 & I2C_SR1_BTF));
+	while (c < cnt)
+	{
+		while (!(I2C1->SR1&I2C_SR1_BTF));
+		I2C1->DR=*(reg_data+c);
+		c++;
+		if (c==cnt)
+		{
+			//I2C1->CR1&=~I2C_CR1_ACK;
+			I2C1->CR1|=I2C_CR1_STOP;
+		}
+	};
+	return 1;
 
-    /*
-     * Please take the below function as your reference for
-     * write the data using I2C communication
-     * "IERROR = I2C_WRITE_STRING(DEV_ADDR, ARRAY, CNT+C_BMP180_ONE_U8X)"
-     * add your I2C write function here
-     * iError is an return value of I2C read function
-     * Please select your valid return value
-     * In the driver SUCCESS defined as BMP180_INIT_VALUE
-     * and FAILURE defined as -C_BMP180_ONE_U8X
-     * Note :
-     * This is a full duplex operation,
-     * The first read data is discarded, for that extra write operation
-     * have to be initiated. For that cnt+C_BMP180_ONE_U8X operation done in the I2C write string function
-     * For more information please refer data sheet SPI communication:
-     */
-    return (s8)iError;
+
 }
 
 /*  \Brief: The function is used as I2C bus read
@@ -268,28 +276,50 @@ s8 BMP180_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
  */
 s8 BMP180_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 {
-    s32 iError = BMP180_INIT_VALUE;
-    u8 array[I2C_BUFFER_LEN] = { BMP180_INIT_VALUE };
-    u8 stringpos = BMP180_INIT_VALUE;
 
-    array[BMP180_INIT_VALUE] = reg_addr;
+    uint8_t c=0;
 
-    /* Please take the below function as your reference
-     * for read the data using I2C communication
-     * add your I2C rad function here.
-     * "IERROR = I2C_WRITE_READ_STRING(DEV_ADDR, ARRAY, ARRAY, C_BMP180_ONE_U8X, CNT)"
-     * iError is an return value of SPI write function
-     * Please select your valid return value
-     * In the driver SUCCESS defined as BMP180_INIT_VALUE
-     * and FAILURE defined as -C_BMP180_ONE_U8X
-     */
-    for (stringpos = BMP180_INIT_VALUE; stringpos < cnt; stringpos++)
-    {
-        *(reg_data + stringpos) = array[stringpos];
-    }
+    if (cnt <0 || cnt > I2C_BUFFER_LEN)  return 0;
+    	if ((I2C1->SR1 & 0xf0) != 0)
+    	{
+    		I2C1->CR1 = I2C_CR1_SWRST;
 
-    return (s8)iError;
-}
+    	};
+    	if (I2C1->SR2&I2C_SR2_BUSY)
+    	{
+    		I2C1->CR1|=I2C_CR1_STOP;
+    		while (!(I2C1->SR2&I2C_SR2_BUSY));
+    	}
+    	I2C1->CR1|=I2C_CR1_START;
+    	I2C1->CR1|=I2C_CR1_ACK;
+    	while (!(I2C1->SR1 & I2C_SR1_SB));
+    	I2C1->DR=dev_addr<<1; // write address to read
+    	while (!(I2C1->SR1 & I2C_SR1_ADDR));
+    	if (I2C1->SR2);
+    	I2C1->DR=reg_addr;
+    	//I2C1->CR1|=I2C_CR1_STOP;
+    	while (!(I2C1->SR1 & I2C_SR1_BTF)); //?
+    	I2C1->CR1|=I2C_CR1_START;
+    	while (!(I2C1->SR1 & I2C_SR1_SB));
+    	I2C1->DR=(dev_addr<<1)|0x01; // address  read mode
+    	while (!(I2C1->SR1 & I2C_SR1_ADDR));
+    	if (I2C1->SR2);
+    	while (c < cnt)
+    	{
+    		if (c==(cnt-1))I2C1->CR1&=~I2C_CR1_ACK;
+    		while (!(I2C1->SR1&I2C_SR1_RXNE));
+
+    		*(reg_data+c)=I2C1->DR;
+    		c++;
+    		if (c==cnt)
+    		{
+    			I2C1->CR1|=I2C_CR1_STOP;
+    		}
+
+
+    	};
+    	return 1;
+   }
 
 /*  Brief : The delay routine
  *  \param : delay in ms

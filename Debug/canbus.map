@@ -1629,13 +1629,13 @@ Discarded input sections
                 0x00000000       0x94 src\bmp180.o
  .text.bmp180_get_uncomp_pressure
                 0x00000000      0x1b4 src\bmp180.o
- .debug_info    0x00000000      0x4be src\bmp180.o
- .debug_abbrev  0x00000000      0x135 src\bmp180.o
+ .debug_info    0x00000000      0x572 src\bmp180.o
+ .debug_abbrev  0x00000000      0x16b src\bmp180.o
  .debug_aranges
                 0x00000000       0x48 src\bmp180.o
  .debug_ranges  0x00000000       0x38 src\bmp180.o
- .debug_line    0x00000000      0x16d src\bmp180.o
- .debug_str     0x00000000      0x392 src\bmp180.o
+ .debug_line    0x00000000      0x2a9 src\bmp180.o
+ .debug_str     0x00000000      0x438 src\bmp180.o
  .comment       0x00000000       0x7d src\bmp180.o
  .debug_frame   0x00000000      0x100 src\bmp180.o
  .ARM.attributes
@@ -1648,18 +1648,18 @@ Discarded input sections
  .text.I2C_routine
                 0x00000000       0x38 src\bmp180_support.o
  .text.BMP180_I2C_bus_write
-                0x00000000       0x28 src\bmp180_support.o
+                0x00000000      0x128 src\bmp180_support.o
  .text.BMP180_I2C_bus_read
-                0x00000000       0x62 src\bmp180_support.o
+                0x00000000      0x188 src\bmp180_support.o
  .text.BMP180_delay_msek
                 0x00000000       0x12 src\bmp180_support.o
- .debug_info    0x00000000      0x3bc src\bmp180_support.o
- .debug_abbrev  0x00000000      0x18b src\bmp180_support.o
+ .debug_info    0x00000000      0x542 src\bmp180_support.o
+ .debug_abbrev  0x00000000      0x1d8 src\bmp180_support.o
  .debug_aranges
                 0x00000000       0x40 src\bmp180_support.o
  .debug_ranges  0x00000000       0x30 src\bmp180_support.o
- .debug_line    0x00000000       0xce src\bmp180_support.o
- .debug_str     0x00000000      0x2d3 src\bmp180_support.o
+ .debug_line    0x00000000      0x292 src\bmp180_support.o
+ .debug_str     0x00000000      0x3d8 src\bmp180_support.o
  .comment       0x00000000       0x7d src\bmp180_support.o
  .debug_frame   0x00000000       0xcc src\bmp180_support.o
  .ARM.attributes
