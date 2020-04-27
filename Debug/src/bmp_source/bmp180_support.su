@@ -1,0 +1,5 @@
+bmp180_support.c:107:5:bmp180_data_readout_template	24	static
+bmp180_support.c:196:4:I2C_routine	4	static
+bmp180_support.c:232:4:BMP180_I2C_bus_write	24	static
+bmp180_support.c:277:4:BMP180_I2C_bus_read	24	static
+bmp180_support.c:327:6:BMP180_delay_msek	16	static

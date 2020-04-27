@@ -32,12 +32,15 @@ struct i2c_struct_com
 	uint8_t dataSize;
 	uint8_t data[I2C_BUFFER_SIZE];
 };
+
+
 class i2c_driver_class
 {
 private:
 	i2c_struct_com* i2cBuffer;
 	uint8_t bState;
 	uint8_t ev;
+	I2C_TypeDef* i2c_port;
 	void I2C_ISR(void);
 	void I2C_ERR_ISR(void);
 

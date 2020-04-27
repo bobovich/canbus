@@ -11,6 +11,7 @@
 #include "stm32f10x.h"
 #include "FreeRTOS.h"
 #include "queue.h"
+#include "bmp180.h"
 
 #define PART_ID				0x00
 #define PART_ID_SIZE		2

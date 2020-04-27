@@ -10,9 +10,12 @@
 #include <stdio.h>
 
 #include "stm32f10x.h"
+#include "bmp180.h"
 #include "CC1101.h"
+
 #include "uart_com.h"
 #include "i2c_sensor.h"
+
 #include "eink_display.h"
 #include "string.h"
 #include <cstdlib>

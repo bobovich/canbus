@@ -19,7 +19,7 @@
 							<option id="com.atollic.truestudio.toolchain_options.mcu.1498571271" name="Microcontroller" superClass="com.atollic.truestudio.toolchain_options.mcu" value="STM32F103RB" valueType="string"/>
 							<option id="com.atollic.truestudio.toolchain_options.vendor.750840215" name="Vendor name" superClass="com.atollic.truestudio.toolchain_options.vendor" value="STMicroelectronics" valueType="string"/>
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.atollic.truestudio.exe.debug.toolchain.platform.830979701" isAbstract="false" name="Debug platform" osList="all" superClass="com.atollic.truestudio.exe.debug.toolchain.platform"/>
-							<builder buildPath="${workspace_loc:/canbus}/Debug" customBuilderProperties="toolChainpathString=D:\\programs\\TrueSTUDIO for STM32 9.3.0\\ARMTools\\bin|com.atollic.truestudio.common_options.target.mcu=STM32F103RB|toolChainpathType=1|com.atollic.truestudio.common_options.target.vendor=STMicroelectronics|" id="com.atollic.truestudio.mbs.builder1.100761634" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="com.atollic.truestudio.mbs.builder1"/>
+							<builder buildPath="${workspace_loc:/canbus}/Debug" customBuilderProperties="toolChainpathString=D:\\programs\\TrueSTUDIO for STM32 9.3.0\\ARMTools\\bin|toolChainpathType=1|com.atollic.truestudio.common_options.target.vendor=STMicroelectronics|com.atollic.truestudio.common_options.target.mcu=STM32F103RB|" id="com.atollic.truestudio.mbs.builder1.100761634" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="com.atollic.truestudio.mbs.builder1"/>
 							<tool id="com.atollic.truestudio.exe.debug.toolchain.as.1043265455" name="Assembler" superClass="com.atollic.truestudio.exe.debug.toolchain.as">
 								<option id="com.atollic.truestudio.common_options.target.endianess.707076238" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess"/>
 								<option id="com.atollic.truestudio.common_options.target.mcpu.1009264445" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32F103RB" valueType="enumerated"/>
@@ -35,6 +35,7 @@
 									<listOptionValue builtIn="false" value="../Libraries/STM32F10x_StdPeriph_Driver/inc"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Device/ST/STM32F10x/Include"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/canbus/src/bmp_source}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.common_options.target.interwork.627746879" name="Mix ARM/Thumb" superClass="com.atollic.truestudio.common_options.target.interwork"/>
 								<inputType id="com.atollic.truestudio.as.input.1907192175" name="Input" superClass="com.atollic.truestudio.as.input"/>
@@ -55,6 +56,7 @@
 									<listOptionValue builtIn="false" value="../Libraries/STM32F10x_StdPeriph_Driver/inc"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Device/ST/STM32F10x/Include"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/canbus/src/bmp_source}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.common_options.target.endianess.1931974834" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess"/>
 								<option id="com.atollic.truestudio.common_options.target.mcpu.1702016270" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32F103RB" valueType="enumerated"/>
@@ -94,6 +96,7 @@
 									<listOptionValue builtIn="false" value="../Libraries/STM32F10x_StdPeriph_Driver/inc"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Device/ST/STM32F10x/Include"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/canbus/src/bmp_source}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.common_options.target.endianess.1692203489" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess"/>
 								<option id="com.atollic.truestudio.common_options.target.mcpu.1681801130" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32F103RB" valueType="enumerated"/>
@@ -140,6 +143,7 @@
 									<listOptionValue builtIn="false" value="../Libraries/STM32F10x_StdPeriph_Driver/inc"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Device/ST/STM32F10x/Include"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/canbus/src/bmp_source}&quot;"/>
 								</option>
 								<inputType id="com.atollic.truestudio.as.input.1262611869" name="Input" superClass="com.atollic.truestudio.as.input"/>
 							</tool>
@@ -151,11 +155,11 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/FreeRTOS_Source/portable}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/FreeRTOS_Source/include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/FreeRTOS_Source}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/FreeRTOS_Source}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}&quot;"/>
 									<listOptionValue builtIn="false" value="../Libraries/STM32F10x_StdPeriph_Driver/inc"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Device/ST/STM32F10x/Include"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/canbus/src/bmp_source}&quot;"/>
 								</option>
 								<inputType id="com.atollic.truestudio.gcc.input.1221128798" superClass="com.atollic.truestudio.gcc.input"/>
 							</tool>
@@ -195,7 +199,7 @@
 							<option id="com.atollic.truestudio.toolchain_options.mcu.1190555621" name="Microcontroller" superClass="com.atollic.truestudio.toolchain_options.mcu" value="STM32F103RB" valueType="string"/>
 							<option id="com.atollic.truestudio.toolchain_options.vendor.1464599788" name="Vendor name" superClass="com.atollic.truestudio.toolchain_options.vendor" value="STMicroelectronics" valueType="string"/>
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.atollic.truestudio.exe.release.toolchain.platform.722196394" isAbstract="false" name="release platform" superClass="com.atollic.truestudio.exe.release.toolchain.platform"/>
-							<builder buildPath="${workspace_loc:/canbus}/Release" customBuilderProperties="com.atollic.truestudio.common_options.target.mcu=STM32F103RB|com.atollic.truestudio.common_options.target.vendor=STMicroelectronics|" id="com.atollic.truestudio.mbs.builder1.1900676190" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="com.atollic.truestudio.mbs.builder1"/>
+							<builder buildPath="${workspace_loc:/canbus}/Release" customBuilderProperties="com.atollic.truestudio.common_options.target.vendor=STMicroelectronics|com.atollic.truestudio.common_options.target.mcu=STM32F103RB|" id="com.atollic.truestudio.mbs.builder1.1900676190" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="com.atollic.truestudio.mbs.builder1"/>
 							<tool id="com.atollic.truestudio.exe.release.toolchain.as.32190257" name="Assembler" superClass="com.atollic.truestudio.exe.release.toolchain.as">
 								<option id="com.atollic.truestudio.common_options.target.endianess.468277357" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess"/>
 								<option id="com.atollic.truestudio.common_options.target.mcpu.835514877" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32F103RB" valueType="enumerated"/>
@@ -211,6 +215,7 @@
 									<listOptionValue builtIn="false" value="../Libraries/STM32F10x_StdPeriph_Driver/inc"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Device/ST/STM32F10x/Include"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/canbus/src/bmp_source}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.common_options.target.interwork.634079511" name="Mix ARM/Thumb" superClass="com.atollic.truestudio.common_options.target.interwork"/>
 								<inputType id="com.atollic.truestudio.as.input.656824252" name="Input" superClass="com.atollic.truestudio.as.input"/>
@@ -225,6 +230,7 @@
 									<listOptionValue builtIn="false" value="../Libraries/STM32F10x_StdPeriph_Driver/inc"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Device/ST/STM32F10x/Include"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/canbus/src/bmp_source}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.common_options.target.endianess.1277012648" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess"/>
 								<option id="com.atollic.truestudio.common_options.target.mcpu.687517632" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32F103RB" valueType="enumerated"/>
@@ -256,6 +262,7 @@
 									<listOptionValue builtIn="false" value="../Libraries/STM32F10x_StdPeriph_Driver/inc"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Device/ST/STM32F10x/Include"/>
 									<listOptionValue builtIn="false" value="../Libraries/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/canbus/src/bmp_source}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.common_options.target.endianess.559006864" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess"/>
 								<option id="com.atollic.truestudio.common_options.target.mcpu.292230950" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32F103RB" valueType="enumerated"/>
@@ -287,6 +294,26 @@
 							<tool id="com.atollic.truestudio.exe.release.toolchain.secoutput.1436247952" name="Other" superClass="com.atollic.truestudio.exe.release.toolchain.secoutput"/>
 						</toolChain>
 					</folderInfo>
+					<folderInfo id="com.atollic.truestudio.configuration.release.302496087.1258112387" name="/" resourcePath="src">
+						<toolChain id="com.atollic.truestudio.exe.release.toolchain.455305894" name="Atollic ARM Tools" superClass="com.atollic.truestudio.exe.release.toolchain" unusedChildren="">
+							<option id="com.atollic.truestudio.general.runtimelib.239772320.1080011485" name="Runtime Library" superClass="com.atollic.truestudio.general.runtimelib.239772320"/>
+							<option id="com.atollic.truestudio.toolchain_options.mcu.1190555621.451285786" name="Microcontroller" superClass="com.atollic.truestudio.toolchain_options.mcu.1190555621"/>
+							<option id="com.atollic.truestudio.toolchain_options.vendor.1464599788.1059561159" name="Vendor name" superClass="com.atollic.truestudio.toolchain_options.vendor.1464599788"/>
+							<tool id="com.atollic.truestudio.exe.release.toolchain.as.504164905" name="Assembler" superClass="com.atollic.truestudio.exe.release.toolchain.as.32190257">
+								<inputType id="com.atollic.truestudio.as.input.877471072" name="Input" superClass="com.atollic.truestudio.as.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.exe.release.toolchain.gcc.546766319" name="C Compiler" superClass="com.atollic.truestudio.exe.release.toolchain.gcc.535127131">
+								<inputType id="com.atollic.truestudio.gcc.input.2132309855" superClass="com.atollic.truestudio.gcc.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.exe.release.toolchain.ld.594429208" name="C Linker" superClass="com.atollic.truestudio.exe.release.toolchain.ld.283752149"/>
+							<tool id="com.atollic.truestudio.exe.release.toolchain.gpp.750431119" name="C++ Compiler" superClass="com.atollic.truestudio.exe.release.toolchain.gpp.1952378272">
+								<inputType id="com.atollic.truestudio.gpp.input.261681529" superClass="com.atollic.truestudio.gpp.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.exe.release.toolchain.ldcc.1077751726" name="C++ Linker" superClass="com.atollic.truestudio.exe.release.toolchain.ldcc.1637414591"/>
+							<tool id="com.atollic.truestudio.ar.base.247884110" name="Archiver" superClass="com.atollic.truestudio.ar.base.1825330918"/>
+							<tool id="com.atollic.truestudio.exe.release.toolchain.secoutput.511483938" name="Other" superClass="com.atollic.truestudio.exe.release.toolchain.secoutput.1436247952"/>
+						</toolChain>
+					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Libraries"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
@@ -314,7 +341,13 @@
 		<scannerConfigBuildInfo instanceId="com.atollic.truestudio.exe.debug.1325105268;com.atollic.truestudio.exe.debug.1325105268.;com.atollic.truestudio.exe.debug.toolchain.gcc.545383781;com.atollic.truestudio.gcc.input.268906438">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.atollic.truestudio.mbs.ARMToolsPerProjectProfileC"/>
 		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="com.atollic.truestudio.configuration.release.302496087;com.atollic.truestudio.configuration.release.302496087.;com.atollic.truestudio.exe.release.toolchain.gcc.535127131;com.atollic.truestudio.gcc.input.1046708253">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.atollic.truestudio.mbs.ARMToolsPerProjectProfileC"/>
+		</scannerConfigBuildInfo>
 		<scannerConfigBuildInfo instanceId="com.atollic.truestudio.exe.debug.1325105268;com.atollic.truestudio.exe.debug.1325105268.;com.atollic.truestudio.exe.debug.toolchain.gpp.347881072;com.atollic.truestudio.gpp.input.2036496247">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.atollic.truestudio.mbs.ARMToolsPerProjectProfileCPP"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="com.atollic.truestudio.configuration.release.302496087;com.atollic.truestudio.configuration.release.302496087.;com.atollic.truestudio.exe.release.toolchain.gpp.1952378272;com.atollic.truestudio.gpp.input.1141339775">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.atollic.truestudio.mbs.ARMToolsPerProjectProfileCPP"/>
 		</scannerConfigBuildInfo>
 	</storageModule>

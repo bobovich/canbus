@@ -7,6 +7,7 @@
 
 
 #include "i2c_sensor.h"
+#include "bmp180.h"
 
 
 void aIAQCore(void *parameter)
@@ -15,11 +16,14 @@ void aIAQCore(void *parameter)
 	iaq_core* iaq = new iaq_core();
 	ens210_class* ens210 = new ens210_class();
 	air_condition air;
+	int32_t temp, press;
 	QueueHandle_t comQueue= (QueueHandle_t) parameter;
+	bmp180_t *bmp= new bmp180_t;
 	vTaskDelay(100/ portTICK_PERIOD_MS);
 	iaq->i2c_init();
 	ens210->i2c_init();
 	ens210->sens_init();
+	//bmp180_init(bmp);
 	while (1)
 	{
 			vTaskDelay(3000/ portTICK_PERIOD_MS);
@@ -29,6 +33,10 @@ void aIAQCore(void *parameter)
 			air.TVOC=iaq->getTVOC();
 			air.temp=ens210->getTemp();
 			air.humidity=ens210->getHumidity();
+/*
+			temp= bmp180_get_temperature(bmp180_get_uncomp_temperature());
+			press=bmp180_get_pressure(bmp180_get_uncomp_pressure());*/
+
 			if (uxQueueSpacesAvailable(comQueue))
 			{
 				xQueueSend(comQueue, &air , 1);
