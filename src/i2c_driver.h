@@ -12,14 +12,20 @@
 
 
 #define WRITE_MODE	1
-#define WRITE_TO_ADDR_MODE	12
-#define READ_MODE	2
-#define READ_FROM_ADDR_MODE	21
+#define WRITE_TO_ADDR_MODE	2
+#define READ_MODE	12
+#define READ_FROM_ADDR_MODE	11
 
 #define BUS_BUSY	200
 #define BUS_ERROR	201
 #define BUS_OK	0
 
+#define EV_IDLE	0
+#define EV_START_COMPLET 1
+#define EV_BUSY_TO_BUS		2
+#define EV_SEND_ADDRES_COMPLET	3
+#define EV_SEND_REG_ADDR	4
+#define EV_DO_FOLLOW	5
 
 #define I2C_BUFFER_SIZE	5
 
@@ -39,7 +45,7 @@ class i2c_driver_class
 private:
 	i2c_struct_com* i2cBuffer;
 	uint8_t bState;
-	uint8_t ev;
+	uint8_t ev=0;
 	I2C_TypeDef* i2c_port;
 	void I2C_ISR(void);
 	void I2C_ERR_ISR(void);
