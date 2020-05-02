@@ -20,14 +20,18 @@
 #define BUS_ERROR	201
 #define BUS_OK	0
 
-#define EV_IDLE	0
-#define EV_START_COMPLET 1
-#define EV_BUSY_TO_BUS		2
-#define EV_SEND_ADDRES_COMPLET	3
-#define EV_SEND_REG_ADDR	4
-#define EV_DO_FOLLOW	5
 
-#define I2C_BUFFER_SIZE	5
+#define EV_IDLE					0
+#define EV_START_COMPLET 		1
+#define EV_BUSY_TO_BUS			2
+#define EV_SEND_ADDRES_COMPLET	3
+#define EV_SEND_REG_ADDR		4
+#define EV_DO_FOLLOW			5
+#define EV_SW_TO_RECEIVER		6
+#define EV_DO_TRANSMIT			7
+#define EV_DO_RECEIVE			8
+
+#define I2C_BUFFER_SIZE	10
 
 
 struct i2c_struct_com
