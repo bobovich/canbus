@@ -8,6 +8,10 @@
 
 #include "i2c_driver.h"
 
+
+
+
+
 i2c_driver_class::i2c_driver_class(uint32_t i2c_base_addr)
 {
 this->i2c_port=(I2C_TypeDef*)i2c_base_addr;
@@ -26,10 +30,11 @@ i2c_port->CCR=140;
 i2c_port->TRISE=29;
 i2c_port->CR2|=I2C_CR2_ITERREN |I2C_CR2_ITEVTEN;
 i2c_port->CR1|=I2C_CR1_PE;
+//I2C_P_ISR = this->I2C_ISR;
 
 }
 
-void i2c_driver_class::I2C_ISR()
+void i2c_driver_class::I2C_ISR()//is not work need re-send address for read from address
 {
 	uint32_t sr;
 	static uint32_t i=0;
@@ -39,46 +44,54 @@ void i2c_driver_class::I2C_ISR()
 
 	if (sr & I2C_SR1_SB)
 	{
+		if (this->ev == EV_DO_RESEND_ADDR_REC)
+		{
+			i2c_port->DR=(this->i2cBuffer->address<<1)|1;;
+						//this->ev=EV_SW_TO_RECEIVER;
+		};
 		if (this->ev == EV_SW_TO_RECEIVER)
 			{
 				this->ev=EV_DO_FOLLOW;
-				return;
 			}
 		else
 			{
 				this->ev=EV_START_COMPLET;
-				return;
 			};
 	}
 	else if (sr & I2C_SR1_ADDR)
 	{
-		this->ev= EV_SEND_ADDRES_COMPLET;
-		return;
+		if (this->ev == EV_DO_RESEND_ADDR_REC)
+		{
+			this->ev=EV_SW_TO_RECEIVER;
+		} else
+		{
+			this->ev= EV_SEND_ADDRES_COMPLET;
+		};
 	}
 	else if(sr & I2C_SR1_BTF)
 	{
 		if (this->ev==EV_SEND_REG_ADDR )
 		{
 
-			if (i2cBuffer->mode == READ_FROM_ADDR_MODE)
+			if (i2cBuffer->mode == READ_FROM_ADDR_MODE )
 			{
 				i2c_port->CR1|=I2C_CR1_START;
-				this->ev=EV_SW_TO_RECEIVER;
+				this->ev=EV_DO_RESEND_ADDR_REC;
 			}else
 			{
 				this->ev=EV_DO_FOLLOW;
 			}
 
-		return;
+
 		}
 		else
 		{
-			return;
+			//return;
 		};
 	}
 	else if(sr & I2C_SR1_ADD10)
 	{
-		return;
+
 	}
 	else if(sr & I2C_SR1_RXNE)
 	{
@@ -100,12 +113,10 @@ void i2c_driver_class::I2C_ISR()
 				this->bState=BUS_OK;
 			};
 		};
-
-
-
-		return;
 	}
 	else if(sr & I2C_SR1_TXE)
+	{
+	if (this->ev == EV_DO_TRANSMIT )
 	{
 		i2c_port->DR = this->i2cBuffer->data[i];
 		i++;
@@ -117,7 +128,11 @@ void i2c_driver_class::I2C_ISR()
 			i2c_port->CR2&=0x00FF;
 			this->bState=BUS_OK;
 		}
-		return;
+		else
+		{
+			return;
+		}
+	};
 	};
 
 
@@ -128,16 +143,17 @@ void i2c_driver_class::I2C_ISR()
 			if (!(i2c_port->SR2 & I2C_SR2_BUSY))
 			{
 			i2c_port->CR2|=I2C_CR2_ITERREN |I2C_CR2_ITEVTEN;
-			i2c_port->CR1|=I2C_CR1_START;
 			this->ev=EV_BUSY_TO_BUS;
-			}
 			this->bState=BUS_BUSY;
+			i2c_port->CR1|=I2C_CR1_START;
+			}
+
 			break;
 		case EV_START_COMPLET:
-			if (i2cBuffer->mode < 10)
+			if ((i2cBuffer->mode == WRITE_MODE) | (i2cBuffer->mode == WRITE_TO_ADDR_MODE) | (i2cBuffer->mode == READ_FROM_ADDR_MODE ))
 			{
 			i2c_port->DR=(this->i2cBuffer->address<<1);
-			} else if ((10 < i2cBuffer->mode) && (i2cBuffer->mode < 20))
+			} else if ((i2cBuffer->mode == READ_MODE))
 			{
 			i2c_port->DR=(this->i2cBuffer->address<<1)|1;
 			}else

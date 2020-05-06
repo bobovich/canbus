@@ -30,8 +30,12 @@
 #define EV_SW_TO_RECEIVER		6
 #define EV_DO_TRANSMIT			7
 #define EV_DO_RECEIVE			8
+#define EV_DO_RESEND_ADDR_REC	8
+
 
 #define I2C_BUFFER_SIZE	10
+
+
 
 
 struct i2c_struct_com
@@ -51,28 +55,14 @@ private:
 	uint8_t bState;
 	uint8_t ev=0;
 	I2C_TypeDef* i2c_port;
-	void I2C_ISR(void);
-	void I2C_ERR_ISR(void);
+
 
 public:
 	i2c_driver_class(uint32_t i2c_base_addr);
 	uint32_t communicate (i2c_struct_com * dataBuffer);
-
-
+	void I2C_ISR(void);
+	void I2C_ERR_ISR(void);
 };
 
-extern "C"
-{
 
-/*void I2C_ISR(void)
-{
-
-};
-
-void I2C_ERR_ISR(void)
-{
-
-}
-*/
-}
 #endif /* I2C_DRIVER_H_ */

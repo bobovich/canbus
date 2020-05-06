@@ -12,10 +12,10 @@
 #include "stm32f10x.h"
 #include "bmp180.h"
 #include "CC1101.h"
-
+#include "stm32f1xx_it.h"
 #include "uart_com.h"
 #include "i2c_sensor.h"
-
+#include "i2c_driver.h"
 #include "eink_display.h"
 #include "string.h"
 #include <cstdlib>
@@ -27,6 +27,7 @@ void prvClockCoreInit (void);
 void prvCommunicationInit(void);
 
 // application defenition
+void I2C1_EV_IRQHandler(void);
 
 void ATaskCanBus (void *pvParameters);
 void run1Task(void *pvParameters);
@@ -46,11 +47,18 @@ static  xTaskParam  RTask2 =
 };
 static pQueueComm pQComm;
 QueueHandle_t sQueue;
+i2c_driver_class* iic= new i2c_driver_class((uint32_t)I2C1_BASE);
+
+
 
 
 
 int main(void)
 {
+  //(Function_t*)I2C1_EV_IRQHandler = (Function_t*)iic->I2C_ISR;
+  // iic->I2C_ISR();
+
+
 	prvClockCoreInit();
 	//prvCommunicationInit();
 	GPIOC->CRL|= 0x4<<16;
@@ -81,7 +89,6 @@ int main(void)
 		   //error loop  hook? make harvesting errors and reboots
   }
 }
-
 
 
 //core  clock init function, this a critical function

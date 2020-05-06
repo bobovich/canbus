@@ -8,8 +8,10 @@
 
 #include "i2c_sensor.h"
 #include "bmp180.h"
+#include "i2c_driver.h"
 
-
+extern i2c_driver_class* iic;
+i2c_struct_com i2b;
 void aIAQCore(void *parameter)
 {
 
