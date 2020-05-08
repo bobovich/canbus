@@ -47,7 +47,7 @@ static  xTaskParam  RTask2 =
 };
 static pQueueComm pQComm;
 QueueHandle_t sQueue;
-i2c_driver_class* iic= new i2c_driver_class((uint32_t)I2C1_BASE);
+volatile i2c_driver_class* iic= new i2c_driver_class((uint32_t)I2C1_BASE);
 
 
 

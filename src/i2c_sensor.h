@@ -34,7 +34,8 @@
 #define H_VAL				0x33
 #define H_VAL_SIZE			3
 #define ENS210_ADDR			(0x43<<1)
-
+#define ENS210_ADDRESS		0x43
+#define IAQ_C_ADDRESS		0x5A
 
 
 /*

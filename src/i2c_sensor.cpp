@@ -10,8 +10,9 @@
 #include "bmp180.h"
 #include "i2c_driver.h"
 
+#define WORK
 extern i2c_driver_class* iic;
-i2c_struct_com i2b;
+
 void aIAQCore(void *parameter)
 {
 
@@ -19,15 +20,24 @@ void aIAQCore(void *parameter)
 	ens210_class* ens210 = new ens210_class();
 	air_condition air;
 	int32_t temp, press;
+	i2c_struct_com i2b;
 	QueueHandle_t comQueue= (QueueHandle_t) parameter;
-	bmp180_t *bmp= new bmp180_t;
+	//bmp180_t *bmp= new bmp180_t;
 	vTaskDelay(100/ portTICK_PERIOD_MS);
 	iaq->i2c_init();
 	ens210->i2c_init();
 	ens210->sens_init();
+#ifndef WORK
+	NVIC_EnableIRQ(I2C1_EV_IRQn );
+#else
+	NVIC_DisableIRQ(I2C1_EV_IRQn );
+#endif
+
 	//bmp180_init(bmp);
 	while (1)
 	{
+
+#ifdef WORK
 			vTaskDelay(3000/ portTICK_PERIOD_MS);
 			iaq->hookRecievePack();
 			ens210->appHook();
@@ -35,9 +45,33 @@ void aIAQCore(void *parameter)
 			air.TVOC=iaq->getTVOC();
 			air.temp=ens210->getTemp();
 			air.humidity=ens210->getHumidity();
-/*
-			temp= bmp180_get_temperature(bmp180_get_uncomp_temperature());
-			press=bmp180_get_pressure(bmp180_get_uncomp_pressure());*/
+#else
+			vTaskDelay(1000/ portTICK_PERIOD_MS);
+			i2b.address=ENS210_ADDRESS;
+			i2b.dataSize=1;
+			i2b.data[0]=0x03;
+			i2b.regAddr=SENS_START;//0x30;
+			i2b.mode=WRITE_TO_ADDR_MODE;
+			iic->i2cBuffer=&i2b;
+			iic->I2C_ISR();
+			while (iic->Status()!=BUS_OK);//iic->I2C_ISR();
+			//air.temp=( (double)(( i2b.data[1]<<8) | i2b.data[0] ) )/64-273.15;
+			//air.humidity=((double)((i2b.data[3]<<8) | i2b.data[2]))/512;
+			/*i2b.mode=WRITE_MODE;
+			i2b.data[0]=0x03;
+			i2b.regAddr=SENS_START;
+			i2b.dataSize=1;
+			iic->i2cBuffer=&i2b;
+			iic->I2C_ISR();
+			while (iic->Status()!=BUS_OK);
+			/*vTaskDelay(5/ portTICK_PERIOD_MS);
+			while (iic->Status()!=BUS_OK)
+				{
+				iic->I2C_ISR();
+				vTaskDelay(1000/ portTICK_PERIOD_MS);
+				}*/
+
+#endif
 
 			if (uxQueueSpacesAvailable(comQueue))
 			{
