@@ -48,13 +48,15 @@ void aIAQCore(void *parameter)
 #else
 			vTaskDelay(1000/ portTICK_PERIOD_MS);
 			i2b.address=ENS210_ADDRESS;
-			i2b.dataSize=1;
-			i2b.data[0]=0x03;
-			i2b.regAddr=SENS_START;//0x30;
-			i2b.mode=WRITE_TO_ADDR_MODE;
+			i2b.dataSize=T_VAL_SIZE;
+			//i2b.data[0]=0x03;
+			i2b.regAddr=T_VAL;//0x30;
+			i2b.mode=READ_FROM_ADDR_MODE;
 			iic->i2cBuffer=&i2b;
 			iic->I2C_ISR();
-			while (iic->Status()!=BUS_OK);//iic->I2C_ISR();
+			while (iic->Status()!=BUS_OK);
+			air.temp=( (double)(( i2b.data[1]<<8) | i2b.data[0] ) )/64-273.15;
+			//iic->I2C_ISR();
 			//air.temp=( (double)(( i2b.data[1]<<8) | i2b.data[0] ) )/64-273.15;
 			//air.humidity=((double)((i2b.data[3]<<8) | i2b.data[2]))/512;
 			/*i2b.mode=WRITE_MODE;

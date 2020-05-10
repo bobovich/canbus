@@ -30,8 +30,9 @@
 #define EV_SW_TO_RECEIVER		6
 #define EV_DO_TRANSMIT			7
 #define EV_DO_RECEIVE			8
-#define EV_DO_RESEND_ADDR_REC	8
-
+#define EV_DO_RESEND_ADDR		9
+#define	EV_DO_RESEND_ADDR_COM	10
+#define EV_DO_RESEND_ADDR_REC	11
 
 #define I2C_BUFFER_SIZE	10
 
