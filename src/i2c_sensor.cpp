@@ -10,7 +10,7 @@
 #include "bmp180.h"
 #include "i2c_driver.h"
 
-#define WORK
+//#define WORK
 extern i2c_driver_class* iic;
 
 void aIAQCore(void *parameter)
@@ -29,11 +29,21 @@ void aIAQCore(void *parameter)
 	ens210->sens_init();
 #ifndef WORK
 	NVIC_EnableIRQ(I2C1_EV_IRQn );
+	/*i2b.address=ENS210_ADDRESS;
+	i2b.dataSize=6;
+	//i2b.data[0]=0x03;
+	i2b.regAddr=T_VAL;//0x30;
+	i2b.mode=READ_FROM_ADDR_MODE;
+	iic->i2cBuffer=&i2b;
+	iic->I2C_ISR();
+	while (iic->Status()!=BUS_OK);*/
+
 #else
 	NVIC_DisableIRQ(I2C1_EV_IRQn );
 #endif
 
 	//bmp180_init(bmp);
+
 	while (1)
 	{
 
@@ -48,7 +58,7 @@ void aIAQCore(void *parameter)
 #else
 			vTaskDelay(3000/ portTICK_PERIOD_MS);
 			i2b.address=ENS210_ADDRESS;
-			i2b.dataSize=3;
+			i2b.dataSize=T_VAL_SIZE;
 			//i2b.data[0]=0x03;
 			i2b.regAddr=T_VAL;//0x30;
 			i2b.mode=READ_FROM_ADDR_MODE;
@@ -56,6 +66,35 @@ void aIAQCore(void *parameter)
 			iic->I2C_ISR();
 			while (iic->Status()!=BUS_OK);
 			air.temp=( (double)(( i2b.data[1]<<8) | i2b.data[0] ) )/64-273.15;
+
+			vTaskDelay(10/ portTICK_PERIOD_MS);
+			i2b.dataSize=H_VAL_SIZE;
+			i2b.regAddr=H_VAL;//0x30;
+			i2b.mode=READ_FROM_ADDR_MODE;
+			iic->i2cBuffer=&i2b;
+			iic->I2C_ISR();
+			while (iic->Status()!=BUS_OK);
+			air.humidity=((double)((i2b.data[1]<<8) | i2b.data[0]))/512;
+
+			vTaskDelay(30/ portTICK_PERIOD_MS);
+			i2b.address=ENS210_ADDRESS;
+			i2b.dataSize=SENS_START_SIZE;
+			i2b.data[0]=0x03;
+			i2b.regAddr=SENS_START;
+			i2b.mode=WRITE_TO_ADDR_MODE;
+			iic->i2cBuffer=&i2b;
+			iic->I2C_ISR();
+			while (iic->Status()!=BUS_OK);
+			vTaskDelay(30/ portTICK_PERIOD_MS);
+			i2b.address=IAQ_C_ADDRESS;
+			i2b.dataSize=9;
+			i2b.mode=READ_MODE;
+			iic->i2cBuffer=&i2b;
+			iic->I2C_ISR();
+			while (iic->Status()!=BUS_OK);
+			air.CO2=i2b.data[0]*256+ i2b.data[1];
+			air.TVOC=i2b.data[7]*256+ i2b.data[8];
+			//air.humidity=((double)((i2b.data[5]<<8) | i2b.data[4]))/512;
 			//iic->I2C_ISR();
 			//air.temp=( (double)(( i2b.data[1]<<8) | i2b.data[0] ) )/64-273.15;
 			//air.humidity=((double)((i2b.data[3]<<8) | i2b.data[2]))/512;
