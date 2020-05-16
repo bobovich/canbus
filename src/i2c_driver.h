@@ -34,7 +34,7 @@
 #define	EV_DO_RESEND_ADDR_COM	10
 #define EV_DO_RESEND_ADDR_REC	11
 
-#define I2C_BUFFER_SIZE	10
+#define I2C_BUFFER_SIZE	30
 
 
 

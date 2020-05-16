@@ -34,9 +34,10 @@
 #define H_VAL				0x33
 #define H_VAL_SIZE			3
 #define ENS210_ADDR			(0x43<<1)
+
 #define ENS210_ADDRESS		0x43
 #define IAQ_C_ADDRESS		0x5A
-
+#define BMP180_ADDRESS		0x77
 
 /*
  * definition about iAQ-Core sensor
@@ -66,6 +67,8 @@ private:
 
 
 
+
+
 public:
 	int16_t 	AC1;
 	int16_t 	AC2;
@@ -80,8 +83,8 @@ public:
 	int16_t 	MD;
 	int32_t 	UT;
 	int32_t 	UP;
-
-
+	int16_t		oss=0;
+	void calc(void);
 
 };
 
@@ -133,6 +136,8 @@ struct air_condition
 	uint32_t TVOC;
 	double temp;
 	double humidity;
+	uint32_t pressure;
+	double temp2;
 };
 
 #endif /* I2C_SENSOR_H_ */

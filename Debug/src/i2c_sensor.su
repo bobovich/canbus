@@ -1,16 +1,18 @@
 core_cm3.h:930:22:void NVIC_EnableIRQ(IRQn_Type)	16	static
-i2c_sensor.cpp:16:6:void aIAQCore(void*)	72	static
-i2c_sensor.cpp:153:1:iaq_core::iaq_core()	16	static
-i2c_sensor.cpp:160:6:void iaq_core::i2c_init()	16	static
-i2c_sensor.cpp:175:10:uint32_t iaq_core::readI2C()	24	static
-i2c_sensor.cpp:214:10:uint32_t iaq_core::hookRecievePack()	16	static
-i2c_sensor.cpp:223:10:uint32_t iaq_core::getCO2()	16	static
-i2c_sensor.cpp:228:10:uint32_t iaq_core::getTVOC()	16	static
-i2c_sensor.cpp:233:1:ens210_class::ens210_class()	16	static
-i2c_sensor.cpp:239:6:void ens210_class::i2c_init()	16	static
-i2c_sensor.cpp:253:10:uint32_t ens210_class::readI2C(uint8_t, uint8_t)	24	static
-i2c_sensor.cpp:298:10:uint32_t ens210_class::writeI2C(uint8_t, uint8_t)	24	static
-i2c_sensor.cpp:334:10:uint32_t ens210_class::sens_init()	16	static
-i2c_sensor.cpp:347:10:uint32_t ens210_class::appHook()	24	static
-i2c_sensor.cpp:363:8:double ens210_class::getTemp()	16	static
-i2c_sensor.cpp:368:8:double ens210_class::getHumidity()	16	static
+i2c_sensor.h:54:7:bmp180_class::bmp180_class()	16	static
+i2c_sensor.cpp:16:6:void aIAQCore(void*)	184	static
+i2c_sensor.cpp:253:1:iaq_core::iaq_core()	16	static
+i2c_sensor.cpp:260:6:void iaq_core::i2c_init()	16	static
+i2c_sensor.cpp:275:10:uint32_t iaq_core::readI2C()	24	static
+i2c_sensor.cpp:314:10:uint32_t iaq_core::hookRecievePack()	16	static
+i2c_sensor.cpp:323:10:uint32_t iaq_core::getCO2()	16	static
+i2c_sensor.cpp:328:10:uint32_t iaq_core::getTVOC()	16	static
+i2c_sensor.cpp:333:1:ens210_class::ens210_class()	16	static
+i2c_sensor.cpp:339:6:void ens210_class::i2c_init()	16	static
+i2c_sensor.cpp:353:10:uint32_t ens210_class::readI2C(uint8_t, uint8_t)	24	static
+i2c_sensor.cpp:398:10:uint32_t ens210_class::writeI2C(uint8_t, uint8_t)	24	static
+i2c_sensor.cpp:434:10:uint32_t ens210_class::sens_init()	16	static
+i2c_sensor.cpp:447:10:uint32_t ens210_class::appHook()	24	static
+i2c_sensor.cpp:463:8:double ens210_class::getTemp()	16	static
+i2c_sensor.cpp:468:8:double ens210_class::getHumidity()	16	static
+i2c_sensor.cpp:474:6:void bmp180_class::calc()	16	static

@@ -1,4 +1,4 @@
-eink_display.cpp:30:6:void displayTask(void*)	56	static
+eink_display.cpp:30:6:void displayTask(void*)	72	static
 eink_display.cpp:68:6:void GPIO_Configuration()	16	static
 eink_display.cpp:106:6:void setPix(uint32_t, uint32_t)	16	static
 eink_display.cpp:111:6:void clearPix(uint32_t, uint32_t)	16	static

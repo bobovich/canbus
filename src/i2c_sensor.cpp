@@ -19,16 +19,10 @@ void aIAQCore(void *parameter)
 	//iaq_core* iaq = new iaq_core();
 	//ens210_class* ens210 = new ens210_class();
 	air_condition air;
-	//int32_t temp, press;
+	bmp180_class bmp180;
 	i2c_struct_com i2b;
 	QueueHandle_t comQueue= (QueueHandle_t) parameter;
-	//bmp180_t *bmp= new bmp180_t;
 	vTaskDelay(100/ portTICK_PERIOD_MS);
-	//iaq->i2c_init();
-	//ens210->i2c_init();
-
-	//ens210->sens_init();
-
 
 
 
@@ -41,6 +35,7 @@ void aIAQCore(void *parameter)
 	/*
 	 * begin init ens210
 	 */
+
 	i2b.address=ENS210_ADDRESS;
 	iic->i2cBuffer=&i2b;
 	i2b.mode=WRITE_TO_ADDR_MODE;
@@ -71,6 +66,68 @@ void aIAQCore(void *parameter)
 	iic->I2C_ISR();
 	while (iic->Status()!=BUS_OK);
 	vTaskDelay(10/ portTICK_PERIOD_MS);
+
+	//begin read bmp180
+	//
+	i2b.address=BMP180_ADDRESS;
+	i2b.regAddr=0xAA;
+	i2b.mode=READ_FROM_ADDR_MODE;
+	i2b.dataSize=22;
+	iic->I2C_ISR();
+	while (iic->Status()!=BUS_OK);
+	if (i2b.dataSize)
+	{
+		bmp180.AC1=	i2b.data[0]<<8|i2b.data[1];
+		bmp180.AC2=	i2b.data[2]<<8|i2b.data[3];
+		bmp180.AC3=	i2b.data[4]<<8|i2b.data[5];
+		bmp180.AC4=	i2b.data[6]<<8|i2b.data[7];
+		bmp180.AC5=	i2b.data[8]<<8|i2b.data[9];
+		bmp180.AC6=	i2b.data[10]<<8|i2b.data[11];
+		bmp180.B1=	i2b.data[12]<<8|i2b.data[13];
+		bmp180.B2=	i2b.data[14]<<8|i2b.data[15];
+		bmp180.MB=	i2b.data[16]<<8|i2b.data[17];
+		bmp180.MC=	i2b.data[18]<<8|i2b.data[19];
+		bmp180.MD=	i2b.data[20]<<8|i2b.data[21];
+	}
+	//temp
+	vTaskDelay(6/ portTICK_PERIOD_MS);
+	i2b.regAddr=0xF4;
+	i2b.mode=WRITE_TO_ADDR_MODE;
+	i2b.dataSize=1;
+	i2b.data[0]=0x2E;
+	iic->I2C_ISR();
+	while (iic->Status()!=BUS_OK);
+	vTaskDelay(6/ portTICK_PERIOD_MS);
+
+	i2b.regAddr=0xF6;
+	i2b.mode=READ_FROM_ADDR_MODE;
+	i2b.dataSize=3;////
+	iic->I2C_ISR();
+	while (iic->Status()!=BUS_OK);
+	if (i2b.dataSize)
+	{
+		bmp180.UT=i2b.data[0]<<8 | i2b.data[1];
+	}
+	//press
+	vTaskDelay(6/ portTICK_PERIOD_MS);
+	i2b.regAddr=0xF4;
+	i2b.mode=WRITE_TO_ADDR_MODE;
+	i2b.dataSize=1;
+	i2b.data[0]=0x34 + (bmp180.oss<<6);
+	iic->I2C_ISR();
+	while (iic->Status()!=BUS_OK);
+	vTaskDelay(6/ portTICK_PERIOD_MS);
+
+	i2b.regAddr=0xF6;
+	i2b.mode=READ_FROM_ADDR_MODE;
+	i2b.dataSize=3;
+	iic->I2C_ISR();
+	while (iic->Status()!=BUS_OK);
+	if (i2b.dataSize)
+	{
+		bmp180.UP=(i2b.data[0]<<16 | i2b.data[1]<<8 | i2b.data[2])>>(8-bmp180.oss);
+	}
+	bmp180.calc();
 
 #else
 	NVIC_DisableIRQ(I2C1_EV_IRQn );
@@ -137,6 +194,49 @@ void aIAQCore(void *parameter)
 			air.CO2=i2b.data[0]*256+ i2b.data[1];
 			air.TVOC=i2b.data[7]*256+ i2b.data[8];
 			}
+			// bmp180
+			//temp
+
+	/*		 vTaskDelay(6/ portTICK_PERIOD_MS);
+				i2b.regAddr=0xF4;
+				i2b.mode=WRITE_TO_ADDR_MODE;
+				i2b.dataSize=1;
+				i2b.data[0]=0x2E;
+				iic->I2C_ISR();
+				while (iic->Status()!=BUS_OK);
+				vTaskDelay(6/ portTICK_PERIOD_MS);
+
+				i2b.regAddr=0xF6;
+				i2b.mode=READ_FROM_ADDR_MODE;
+				i2b.dataSize=3;
+				iic->I2C_ISR();
+				while (iic->Status()!=BUS_OK);
+				if (i2b.dataSize)
+				{
+					bmp180.UT=i2b.data[0]<<8 | i2b.data[1];
+				}
+				//press
+				vTaskDelay(6/ portTICK_PERIOD_MS);
+				i2b.regAddr=0xF4;
+				i2b.mode=WRITE_TO_ADDR_MODE;
+				i2b.dataSize=1;
+				i2b.data[0]=0x34 + (bmp180.oss<<6);
+				iic->I2C_ISR();
+				while (iic->Status()!=BUS_OK);
+				vTaskDelay(6/ portTICK_PERIOD_MS);
+
+				i2b.regAddr=0xF6;
+				i2b.mode=READ_FROM_ADDR_MODE;
+				i2b.dataSize=3;
+				iic->I2C_ISR();
+				while (iic->Status()!=BUS_OK);
+				if (i2b.dataSize)
+				{
+					bmp180.UP=(i2b.data[0]<<16 | i2b.data[1]<<8 | i2b.data[2])>>(8-bmp180.oss);
+				}
+				bmp180.calc();
+*/
+
 
 #endif
 
@@ -368,4 +468,38 @@ double ens210_class::getTemp()
 double ens210_class::getHumidity()
 {
 	return this->hum;
+}
+
+
+void bmp180_class::calc()
+{
+	// CALCULATE TEMPERATURE
+	X1=(UT-AC6)*AC5/2^15;
+	X2=MC*2^11/(X1+MD);
+	B5=X1+X2;
+	T=(B5+8)/2^4;
+	// CALCULATE PRESSURE
+	B6=B5-4000;
+	X1=(B2*(B6*B6/2^12))/2^11;
+	X2=AC2*B6/2^11;
+	X3=X1+X2;
+	B3=(((AC1*4+X3)<<oss)+2)/4;
+	X1=AC3*B6/2^13;
+	X2=(B1*(B6*B6/2^12))/2^16;
+	X3=((X1+X2)+2)/2^2;
+	B4=AC4*(uint32_t)(X3+32768)/2^15;
+	B7=((uint32_t)UP-B3)*(50000>>oss);
+	if (B7 < 0x80000000)
+	{
+		p=(B7*2)/B4;
+	}else
+	{
+		p=(B7/B4)*2;
+	}
+	X1=(p/2^8)^2;
+	X1=(X1*3038)/2^16;
+	X2=(-7357*p)/2^16;
+	p=p+(X1+X2+3791)/2^4;
+
+
 }
