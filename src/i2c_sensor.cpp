@@ -16,27 +16,61 @@ extern i2c_driver_class* iic;
 void aIAQCore(void *parameter)
 {
 
-	iaq_core* iaq = new iaq_core();
-	ens210_class* ens210 = new ens210_class();
+	//iaq_core* iaq = new iaq_core();
+	//ens210_class* ens210 = new ens210_class();
 	air_condition air;
-	int32_t temp, press;
+	//int32_t temp, press;
 	i2c_struct_com i2b;
 	QueueHandle_t comQueue= (QueueHandle_t) parameter;
 	//bmp180_t *bmp= new bmp180_t;
 	vTaskDelay(100/ portTICK_PERIOD_MS);
-	iaq->i2c_init();
-	ens210->i2c_init();
-	ens210->sens_init();
+	//iaq->i2c_init();
+	//ens210->i2c_init();
+
+	//ens210->sens_init();
+
+
+
+
 #ifndef WORK
+
+
 	NVIC_EnableIRQ(I2C1_EV_IRQn );
-	/*i2b.address=ENS210_ADDRESS;
-	i2b.dataSize=6;
-	//i2b.data[0]=0x03;
-	i2b.regAddr=T_VAL;//0x30;
-	i2b.mode=READ_FROM_ADDR_MODE;
+	NVIC_EnableIRQ(I2C1_ER_IRQn );
+
+	/*
+	 * begin init ens210
+	 */
+	i2b.address=ENS210_ADDRESS;
 	iic->i2cBuffer=&i2b;
+	i2b.mode=WRITE_TO_ADDR_MODE;
+	i2b.regAddr=SYS_CTRL;
+	i2b.data[0]= 0x80;
+	i2b.dataSize=1;
 	iic->I2C_ISR();
-	while (iic->Status()!=BUS_OK);*/
+	while (iic->Status()!=BUS_OK);
+	vTaskDelay(10/ portTICK_PERIOD_MS);
+
+	i2b.regAddr=SYS_CTRL;
+	i2b.data[0]= 0x00;
+	i2b.dataSize=1;
+	iic->I2C_ISR();
+	while (iic->Status()!=BUS_OK);
+	vTaskDelay(10/ portTICK_PERIOD_MS);
+
+	i2b.regAddr=SENS_RUN;
+	i2b.data[0]= 0x03;
+	i2b.dataSize=1;
+	iic->I2C_ISR();
+	while (iic->Status()!=BUS_OK);
+	vTaskDelay(10/ portTICK_PERIOD_MS);
+
+	i2b.regAddr=SENS_START;
+	i2b.data[0]= 0x03;
+	i2b.dataSize=1;
+	iic->I2C_ISR();
+	while (iic->Status()!=BUS_OK);
+	vTaskDelay(10/ portTICK_PERIOD_MS);
 
 #else
 	NVIC_DisableIRQ(I2C1_EV_IRQn );
@@ -57,6 +91,7 @@ void aIAQCore(void *parameter)
 			air.humidity=ens210->getHumidity();
 #else
 			vTaskDelay(3000/ portTICK_PERIOD_MS);
+			//ENS210 READ
 			i2b.address=ENS210_ADDRESS;
 			i2b.dataSize=T_VAL_SIZE;
 			//i2b.data[0]=0x03;
@@ -65,8 +100,10 @@ void aIAQCore(void *parameter)
 			iic->i2cBuffer=&i2b;
 			iic->I2C_ISR();
 			while (iic->Status()!=BUS_OK);
-			air.temp=( (double)(( i2b.data[1]<<8) | i2b.data[0] ) )/64-273.15;
-
+			if (i2b.dataSize)
+			{
+				air.temp=( (double)(( i2b.data[1]<<8) | i2b.data[0] ) )/64-273.15;
+			}
 			vTaskDelay(10/ portTICK_PERIOD_MS);
 			i2b.dataSize=H_VAL_SIZE;
 			i2b.regAddr=H_VAL;//0x30;
@@ -74,8 +111,10 @@ void aIAQCore(void *parameter)
 			iic->i2cBuffer=&i2b;
 			iic->I2C_ISR();
 			while (iic->Status()!=BUS_OK);
+			if (i2b.dataSize)
+			{
 			air.humidity=((double)((i2b.data[1]<<8) | i2b.data[0]))/512;
-
+			}
 			vTaskDelay(30/ portTICK_PERIOD_MS);
 			i2b.address=ENS210_ADDRESS;
 			i2b.dataSize=SENS_START_SIZE;
@@ -86,31 +125,18 @@ void aIAQCore(void *parameter)
 			iic->I2C_ISR();
 			while (iic->Status()!=BUS_OK);
 			vTaskDelay(30/ portTICK_PERIOD_MS);
+			//IAQ CORE READ
 			i2b.address=IAQ_C_ADDRESS;
 			i2b.dataSize=9;
 			i2b.mode=READ_MODE;
 			iic->i2cBuffer=&i2b;
 			iic->I2C_ISR();
 			while (iic->Status()!=BUS_OK);
+			if (i2b.dataSize)
+			{
 			air.CO2=i2b.data[0]*256+ i2b.data[1];
 			air.TVOC=i2b.data[7]*256+ i2b.data[8];
-			//air.humidity=((double)((i2b.data[5]<<8) | i2b.data[4]))/512;
-			//iic->I2C_ISR();
-			//air.temp=( (double)(( i2b.data[1]<<8) | i2b.data[0] ) )/64-273.15;
-			//air.humidity=((double)((i2b.data[3]<<8) | i2b.data[2]))/512;
-			/*i2b.mode=WRITE_MODE;
-			i2b.data[0]=0x03;
-			i2b.regAddr=SENS_START;
-			i2b.dataSize=1;
-			iic->i2cBuffer=&i2b;
-			iic->I2C_ISR();
-			while (iic->Status()!=BUS_OK);
-			/*vTaskDelay(5/ portTICK_PERIOD_MS);
-			while (iic->Status()!=BUS_OK)
-				{
-				iic->I2C_ISR();
-				vTaskDelay(1000/ portTICK_PERIOD_MS);
-				}*/
+			}
 
 #endif
 

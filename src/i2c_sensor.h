@@ -50,7 +50,40 @@ struct iaq_data {
 	uint32_t tvoc;
 };
 
+class bmp180_class
+{
+private:
+	int32_t 	X1;
+	int32_t 	X2;
+	int32_t 	X3;
+	int32_t		B3;
+	uint32_t	B4;
+	int32_t		B5;
+	int32_t		B6;
+	uint32_t	B7;
+	int32_t		T;
+	int32_t		p;
 
+
+
+public:
+	int16_t 	AC1;
+	int16_t 	AC2;
+	int16_t 	AC3;
+	uint16_t	AC4;
+	uint16_t 	AC5;
+	uint16_t 	AC6;
+	int16_t 	B1;
+	int16_t		B2;
+	int16_t 	MB;
+	int16_t 	MC;
+	int16_t 	MD;
+	int32_t 	UT;
+	int32_t 	UP;
+
+
+
+};
 
 
 class iaq_core

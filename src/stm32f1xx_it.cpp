@@ -135,6 +135,15 @@ iic->I2C_ISR();
 //vPortExitCritical(  );
 return;
 }
+extern "C"
+void I2C1_ER_IRQHandler(void)
+{
+	NVIC_ClearPendingIRQ(I2C1_ER_IRQn);
+	iic->I2C_ERR_ISR();
+	return;
+}
+
+
 /**
   * @brief  This function handles PendSVC exception.
   * @param  None

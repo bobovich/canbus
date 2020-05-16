@@ -28,7 +28,7 @@ i2c_port->CR1=0;
 i2c_port->CR2=28;
 i2c_port->CCR=140;
 i2c_port->TRISE=29;
-i2c_port->CR2|=I2C_CR2_ITERREN |I2C_CR2_ITEVTEN;
+//i2c_port->CR2|=I2C_CR2_ITERREN |I2C_CR2_ITEVTEN;
 i2c_port->CR1|=I2C_CR1_PE;
 
 
@@ -61,7 +61,31 @@ if (this->ev == EV_IDLE)
 		this->ev=EV_BUSY_TO_BUS;
 		this->bState=BUS_BUSY;
 		i2c_port->CR1|=I2C_CR1_START;
+	}else if(i2c_port->SR2 & I2C_SR2_BUSY)
+	{
+		i2c_port->CR1 = I2C_CR1_SWRST;
+		i2c_port->CR1=0;
+		i2c_port->CR2=28;
+		i2c_port->CCR=140;
+		i2c_port->TRISE=29;
+		i2c_port->CR1|=I2C_CR1_PE;
+		if ((i2cBuffer->dataSize == 0) || (this->i2cBuffer == 0 ) )
+		{
+			I2C1->CR1|=I2C_CR1_STOP;
+			this->ev=EV_IDLE;
+			i=0;
+			this->i2cBuffer=0;
+			i2c_port->CR2&=0x00FF;
+			this->bState=BUS_OK;
+			return;
+		}
+		i2c_port->CR2|=I2C_CR2_ITERREN |I2C_CR2_ITEVTEN;
+		this->ev=EV_BUSY_TO_BUS;
+		this->bState=BUS_BUSY;
+		i2c_port->CR1|=I2C_CR1_START;
 	}
+
+
 	return;
 };
 
@@ -242,6 +266,7 @@ void i2c_driver_class::I2C_ERR_ISR()
 {
 	uint32_t sr;
 	sr=i2c_port->SR1;
+	if (i2c_port->SR2)
 	if (sr&I2C_SR1_BERR)
 	{
 
@@ -258,6 +283,28 @@ void i2c_driver_class::I2C_ERR_ISR()
 	{
 
 	};
+
+	i2c_port->CR2&=0x00FF;
+	i2c_port->CR1|=I2C_CR1_STOP;
+	this->i2cBuffer->dataSize=0;
+	RCC->APB2ENR|=RCC_APB2ENR_IOPBEN;
+	RCC->APB1ENR|=RCC_APB1ENR_I2C1EN;
+	i2c_port->CR1 = I2C_CR1_SWRST;
+	i2c_port->CR1=0;
+	i2c_port->CR2=28;
+	i2c_port->CCR=140;
+	i2c_port->TRISE=29;
+	i2c_port->CR1|=I2C_CR1_PE;
+	/*
+	 * Port he spec!!!!!!!!!!!!!!!!!! fix it
+	 * */
+	GPIOB->CRL&=0x00FFFFFF;
+	GPIOB->CRL|=0xDD000000;
+
+	this->ev=EV_IDLE;
+	this->bState=BUS_OK;
+	return;
+
 }
 
 

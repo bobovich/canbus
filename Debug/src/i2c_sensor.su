@@ -1,16 +1,16 @@
 core_cm3.h:930:22:void NVIC_EnableIRQ(IRQn_Type)	16	static
-i2c_sensor.cpp:16:6:void aIAQCore(void*)	80	static
-i2c_sensor.cpp:127:1:iaq_core::iaq_core()	16	static
-i2c_sensor.cpp:134:6:void iaq_core::i2c_init()	16	static
-i2c_sensor.cpp:149:10:uint32_t iaq_core::readI2C()	24	static
-i2c_sensor.cpp:188:10:uint32_t iaq_core::hookRecievePack()	16	static
-i2c_sensor.cpp:197:10:uint32_t iaq_core::getCO2()	16	static
-i2c_sensor.cpp:202:10:uint32_t iaq_core::getTVOC()	16	static
-i2c_sensor.cpp:207:1:ens210_class::ens210_class()	16	static
-i2c_sensor.cpp:213:6:void ens210_class::i2c_init()	16	static
-i2c_sensor.cpp:227:10:uint32_t ens210_class::readI2C(uint8_t, uint8_t)	24	static
-i2c_sensor.cpp:272:10:uint32_t ens210_class::writeI2C(uint8_t, uint8_t)	24	static
-i2c_sensor.cpp:308:10:uint32_t ens210_class::sens_init()	16	static
-i2c_sensor.cpp:321:10:uint32_t ens210_class::appHook()	24	static
-i2c_sensor.cpp:337:8:double ens210_class::getTemp()	16	static
-i2c_sensor.cpp:342:8:double ens210_class::getHumidity()	16	static
+i2c_sensor.cpp:16:6:void aIAQCore(void*)	72	static
+i2c_sensor.cpp:153:1:iaq_core::iaq_core()	16	static
+i2c_sensor.cpp:160:6:void iaq_core::i2c_init()	16	static
+i2c_sensor.cpp:175:10:uint32_t iaq_core::readI2C()	24	static
+i2c_sensor.cpp:214:10:uint32_t iaq_core::hookRecievePack()	16	static
+i2c_sensor.cpp:223:10:uint32_t iaq_core::getCO2()	16	static
+i2c_sensor.cpp:228:10:uint32_t iaq_core::getTVOC()	16	static
+i2c_sensor.cpp:233:1:ens210_class::ens210_class()	16	static
+i2c_sensor.cpp:239:6:void ens210_class::i2c_init()	16	static
+i2c_sensor.cpp:253:10:uint32_t ens210_class::readI2C(uint8_t, uint8_t)	24	static
+i2c_sensor.cpp:298:10:uint32_t ens210_class::writeI2C(uint8_t, uint8_t)	24	static
+i2c_sensor.cpp:334:10:uint32_t ens210_class::sens_init()	16	static
+i2c_sensor.cpp:347:10:uint32_t ens210_class::appHook()	24	static
+i2c_sensor.cpp:363:8:double ens210_class::getTemp()	16	static
+i2c_sensor.cpp:368:8:double ens210_class::getHumidity()	16	static
