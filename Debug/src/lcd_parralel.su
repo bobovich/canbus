@@ -1,0 +1,4 @@
+lcd_parralel.cpp:10:6:void lcdTask(void*)	32	static
+lcd_parralel.cpp:23:1:lcd_parallel::lcd_parallel()	40	static
+lcd_parralel.cpp:36:10:uint32_t lcd_parallel::lcd_w_cmd(uint16_t, uint16_t)	48	static
+lcd_parralel.cpp:67:10:uint16_t lcd_parallel::lcd_r_cmd(uint16_t)	56	static
