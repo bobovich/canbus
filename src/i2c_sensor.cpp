@@ -12,7 +12,7 @@
 
 //#define WORK
 extern i2c_driver_class* iic;
-
+uint8_t bittwist (uint8_t b);
 void aIAQCore(void *parameter)
 {
 
@@ -72,23 +72,24 @@ void aIAQCore(void *parameter)
 	i2b.address=BMP180_ADDRESS;
 	i2b.regAddr=0xAA;
 	i2b.mode=READ_FROM_ADDR_MODE;
-	i2b.dataSize=22;
+	i2b.dataSize=24;
 	iic->I2C_ISR();
 	while (iic->Status()!=BUS_OK);
 	if (i2b.dataSize)
 	{
-		bmp180.AC1=	i2b.data[0]<<8|i2b.data[1];
-		bmp180.AC2=	i2b.data[2]<<8|i2b.data[3];
-		bmp180.AC3=	i2b.data[4]<<8|i2b.data[5];
-		bmp180.AC4=	i2b.data[6]<<8|i2b.data[7];
-		bmp180.AC5=	i2b.data[8]<<8|i2b.data[9];
-		bmp180.AC6=	i2b.data[10]<<8|i2b.data[11];
-		bmp180.B1=	i2b.data[12]<<8|i2b.data[13];
-		bmp180.B2=	i2b.data[14]<<8|i2b.data[15];
-		bmp180.MB=	i2b.data[16]<<8|i2b.data[17];
-		bmp180.MC=	i2b.data[18]<<8|i2b.data[19];
-		bmp180.MD=	i2b.data[20]<<8|i2b.data[21];
+		bmp180.AC1=	(uint32_t)(i2b.data[0]<<8) | i2b.data[1];
+		bmp180.AC2=	(uint32_t)(i2b.data[2]<<8)| i2b.data[3];
+		bmp180.AC3=	(uint32_t)(i2b.data[4]<<8)|i2b.data[5];
+		bmp180.AC4= (uint32_t)	(i2b.data[6]<<8)|i2b.data[7];
+		bmp180.AC5=(uint32_t)	(i2b.data[8]<<8)|i2b.data[9];
+		bmp180.AC6=	(uint32_t)(i2b.data[10]<<8)|i2b.data[11];
+		bmp180.B1=	(uint32_t)(i2b.data[12]<<8)|i2b.data[13];
+		bmp180.B2=	(uint32_t)(i2b.data[14]<<8)|i2b.data[15];
+		bmp180.MB=	(uint32_t)(i2b.data[16]<<8)|i2b.data[17];
+		bmp180.MC=	(uint32_t)(i2b.data[18]<<8)|i2b.data[19];
+		bmp180.MD=	(uint32_t)(i2b.data[20]<<8)|i2b.data[21];
 	}
+
 	//temp
 	vTaskDelay(6/ portTICK_PERIOD_MS);
 	i2b.regAddr=0xF4;
@@ -106,7 +107,8 @@ void aIAQCore(void *parameter)
 	while (iic->Status()!=BUS_OK);
 	if (i2b.dataSize)
 	{
-		bmp180.UT=i2b.data[0]<<8 | i2b.data[1];
+
+		bmp180.UT=(uint32_t)i2b.data[0]<<8 | i2b.data[1];
 	}
 	//press
 	vTaskDelay(6/ portTICK_PERIOD_MS);
@@ -125,7 +127,8 @@ void aIAQCore(void *parameter)
 	while (iic->Status()!=BUS_OK);
 	if (i2b.dataSize)
 	{
-		bmp180.UP=(i2b.data[0]<<16 | i2b.data[1]<<8 | i2b.data[2])>>(8-bmp180.oss);
+
+		bmp180.UP=((uint32_t)i2b.data[0]<<16 | (uint32_t)i2b.data[1]<<8 | i2b.data[2])>>(8-bmp180.oss);
 	}
 	bmp180.calc();
 
@@ -181,7 +184,7 @@ void aIAQCore(void *parameter)
 			iic->i2cBuffer=&i2b;
 			iic->I2C_ISR();
 			while (iic->Status()!=BUS_OK);
-			vTaskDelay(30/ portTICK_PERIOD_MS);
+			vTaskDelay(10/ portTICK_PERIOD_MS);
 			//IAQ CORE READ
 			i2b.address=IAQ_C_ADDRESS;
 			i2b.dataSize=9;
@@ -193,18 +196,19 @@ void aIAQCore(void *parameter)
 			{
 			air.CO2=i2b.data[0]*256+ i2b.data[1];
 			air.TVOC=i2b.data[7]*256+ i2b.data[8];
-			}
+			};
 			// bmp180
 			//temp
 
-	/*		 vTaskDelay(6/ portTICK_PERIOD_MS);
+			 vTaskDelay(10/ portTICK_PERIOD_MS);
+				i2b.address=BMP180_ADDRESS;
 				i2b.regAddr=0xF4;
 				i2b.mode=WRITE_TO_ADDR_MODE;
 				i2b.dataSize=1;
 				i2b.data[0]=0x2E;
 				iic->I2C_ISR();
 				while (iic->Status()!=BUS_OK);
-				vTaskDelay(6/ portTICK_PERIOD_MS);
+				vTaskDelay(10/ portTICK_PERIOD_MS);
 
 				i2b.regAddr=0xF6;
 				i2b.mode=READ_FROM_ADDR_MODE;
@@ -213,10 +217,11 @@ void aIAQCore(void *parameter)
 				while (iic->Status()!=BUS_OK);
 				if (i2b.dataSize)
 				{
-					bmp180.UT=i2b.data[0]<<8 | i2b.data[1];
+
+					bmp180.UT=(i2b.data[0]<<8) | i2b.data[1];
 				}
 				//press
-				vTaskDelay(6/ portTICK_PERIOD_MS);
+				vTaskDelay(10/ portTICK_PERIOD_MS);
 				i2b.regAddr=0xF4;
 				i2b.mode=WRITE_TO_ADDR_MODE;
 				i2b.dataSize=1;
@@ -232,10 +237,13 @@ void aIAQCore(void *parameter)
 				while (iic->Status()!=BUS_OK);
 				if (i2b.dataSize)
 				{
-					bmp180.UP=(i2b.data[0]<<16 | i2b.data[1]<<8 | i2b.data[2])>>(8-bmp180.oss);
+
+					bmp180.UP=((i2b.data[0]<<16) | (i2b.data[1]<<8) | i2b.data[2])>>(8-bmp180.oss);
 				}
 				bmp180.calc();
-*/
+				air.pressure=bmp180.p/133.3;
+				air.temp2=bmp180.T/10;
+
 
 
 #endif
@@ -474,20 +482,20 @@ double ens210_class::getHumidity()
 void bmp180_class::calc()
 {
 	// CALCULATE TEMPERATURE
-	X1=(UT-AC6)*AC5/2^15;
-	X2=MC*2^11/(X1+MD);
-	B5=X1+X2;
-	T=(B5+8)/2^4;
+	X1=((UT-AC6)*AC5)/32768;
+	X2=(MC*2048)/(X1+MD);
+	B5=(int32_t)X1+X2;
+	T=(B5+8)/(16);
 	// CALCULATE PRESSURE
 	B6=B5-4000;
-	X1=(B2*(B6*B6/2^12))/2^11;
-	X2=AC2*B6/2^11;
+	X1=(B2*(B6*B6/4096))/(2048);
+	X2=AC2*B6/2048;
 	X3=X1+X2;
 	B3=(((AC1*4+X3)<<oss)+2)/4;
-	X1=AC3*B6/2^13;
-	X2=(B1*(B6*B6/2^12))/2^16;
-	X3=((X1+X2)+2)/2^2;
-	B4=AC4*(uint32_t)(X3+32768)/2^15;
+	X1=AC3*B6/8192;
+	X2=(B1*(B6*B6/4096))/(65536);
+	X3=((X1+X2)+2)/4;
+	B4=AC4*(uint32_t)(X3+32768)/32768;
 	B7=((uint32_t)UP-B3)*(50000>>oss);
 	if (B7 < 0x80000000)
 	{
@@ -496,10 +504,23 @@ void bmp180_class::calc()
 	{
 		p=(B7/B4)*2;
 	}
-	X1=(p/2^8)^2;
-	X1=(X1*3038)/2^16;
-	X2=(-7357*p)/2^16;
-	p=p+(X1+X2+3791)/2^4;
+	X1=(p/256)*(p/256);
+	X1=(X1*3038)/65536;
+	X2=(-7357*p)/65536;
+	p=p+(X1+X2+3791)/16;
 
 
 }
+
+uint8_t bittwist (uint8_t b)
+{
+	uint8_t tm=0,tl=0, t0=0;
+	for (uint32_t i=0;i<4; i++ )
+	{
+		tm= (b>>(7-i*2))&(1<<i);
+		tl= (b<<(7-(i*2)))&(1<<(7-i));
+		t0|=tl|tm;
+	}
+	return t0;
+}
+

@@ -19,6 +19,8 @@
 #include "eink_display.h"
 #include "string.h"
 #include <cstdlib>
+#include "lcd_parralel.h"
+
 #define DEBUG
 #define FREERTOS
 //#define FREERTOS
@@ -36,14 +38,14 @@ static  xTaskParam  RTask1 =
 {
 		.pTaskSerial= SPI1_BASE,
 		.xTaskPortH=PORT_NORMAL,
-		.pRxEvent=	(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x08)  * 32) + (4 * 4)),
-		.pTxcEvent=	(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x08)  * 32) + (4 * 4))
+		//.pRxEvent=	(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x08)  * 32) + (4 * 4)),
+		//.pTxcEvent=	(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x08)  * 32) + (4 * 4))
 };
 static  xTaskParam  RTask2 =
 {
 		.pTaskSerial= SPI2_BASE,
 		.xTaskPortH=PORT_NORMAL,
-		.pRxEvent=	(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x08)  * 32) + (6 * 4))
+		//.pRxEvent=	(uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x08)  * 32) + (6 * 4))
 };
 static pQueueComm pQComm;
 QueueHandle_t sQueue;
@@ -79,9 +81,9 @@ int main(void)
 	//delete RTask1;
 	xTaskCreate(displayTask, "Dis",  300, (void*)pQComm.qDisplay, 2,  NULL);
 	xTaskCreate(aIAQCore, "TaskSensor",  100, (void*)pQComm.qSensor, 2,  NULL);
-	xTaskCreate(run1Task, "Run2 Task",  100, NULL,2,  NULL);
+	//xTaskCreate(run1Task, "Run2 Task",  100, NULL,2,  NULL);
 	xTaskCreate(aTaskUart, "Run2 Task",  300, &pQComm, 2,  NULL);
-
+	xTaskCreate(lcdTask, "Run2 Task",  300, &pQComm, 2,  NULL);
 	vTaskStartScheduler();
 
   while (1)

@@ -1,7 +1,7 @@
-main.cpp:56:5:int main()	16	static
-main.cpp:95:6:void prvClockCoreInit()	4	static
-main.cpp:117:6:void prvCommunicationInit()	4	static
-main.cpp:137:6:void run1Task(void*)	24	static
-main.cpp:150:6:void run2Task(void*)	24	static
-main.cpp:160:1:void __static_initialization_and_destruction_0(int, int)	24	static
-main.cpp:160:1:cpp)	8	static
+main.cpp:58:5:int main()	16	static
+main.cpp:97:6:void prvClockCoreInit()	4	static
+main.cpp:119:6:void prvCommunicationInit()	4	static
+main.cpp:139:6:void run1Task(void*)	24	static
+main.cpp:152:6:void run2Task(void*)	24	static
+main.cpp:162:1:void __static_initialization_and_destruction_0(int, int)	24	static
+main.cpp:162:1:cpp)	8	static

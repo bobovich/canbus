@@ -39,7 +39,7 @@ uint8_t i2c_driver_class::Status()
 	return this->bState;
 }
 
-void i2c_driver_class::I2C_ISR()//is not work need re-send address for read from address
+void i2c_driver_class::I2C_ISR()//is work
 {
 	uint32_t sr;
 	static uint32_t i=0;

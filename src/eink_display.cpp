@@ -54,6 +54,12 @@ void displayTask(void* pvParams)
 		strcpy(he, "Humidity: ");
 		strcat(he, ftoa(airData.humidity,2, bufTmp));
 		wtireString90( he , 130,25,0);
+		strcpy(he, "T2: ");
+		strcat(he, ftoa(airData.temp2,2, bufTmp));
+		wtireString90( he , 0,50,0);
+		strcpy(he, "Press: ");
+		strcat(he, ftoa(airData.pressure,2, bufTmp));
+		wtireString90( he , 130,50,0);
 		//EPD_init(); 	///EPD init
 		PIC_display(dispRam,NULL);//EPD_picture1
 		EPD_refresh();//EPD_refresh

@@ -3,6 +3,7 @@
  *
  *  Created on: 21 апр. 2020 г.
  *      Author: Иван
+ *      this a testing driver for i2c master interface stm32
  */
 
 #ifndef I2C_DRIVER_H_

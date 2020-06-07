@@ -62,28 +62,29 @@ private:
 	int32_t		B5;
 	int32_t		B6;
 	uint32_t	B7;
-	int32_t		T;
-	int32_t		p;
+
 
 
 
 
 
 public:
-	int16_t 	AC1;
-	int16_t 	AC2;
-	int16_t 	AC3;
-	uint16_t	AC4;
-	uint16_t 	AC5;
-	uint16_t 	AC6;
-	int16_t 	B1;
-	int16_t		B2;
-	int16_t 	MB;
-	int16_t 	MC;
-	int16_t 	MD;
+	int16_t 	AC1=408;
+	int16_t 	AC2=-72;
+	int16_t 	AC3=-14383;
+	uint16_t	AC4=32741;
+	uint16_t 	AC5=32757;
+	uint16_t 	AC6=23153;
+	int16_t 	B1=6190;
+	int16_t		B2=4;
+	int16_t 	MB=-32768;
+	int16_t 	MC=-8711;
+	int16_t 	MD=2868;
 	int32_t 	UT;
 	int32_t 	UP;
 	int16_t		oss=0;
+	int32_t		T;
+	int32_t		p;
 	void calc(void);
 
 };
@@ -136,7 +137,7 @@ struct air_condition
 	uint32_t TVOC;
 	double temp;
 	double humidity;
-	uint32_t pressure;
+	double pressure;
 	double temp2;
 };
 
