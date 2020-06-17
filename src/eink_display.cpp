@@ -33,7 +33,7 @@ void displayTask(void* pvParams)
 	char bufTmp[10];
 	air_condition airData;
 	QueueHandle_t dQueue =(QueueHandle_t)pvParams;
-	vTaskDelay(10000/ portTICK_PERIOD_MS);
+	vTaskDelay(1000/ portTICK_PERIOD_MS);
 	EPD_init();
 	for(;;)
 	{
