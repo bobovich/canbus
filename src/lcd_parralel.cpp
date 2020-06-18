@@ -16,8 +16,9 @@ void lcdTask(void *p)
 char he[50];
 char bufTmp[10];
 	lcd_parallel *lcd=new lcd_parallel();
-	pixelcolor col={255,0,0};
+	pixelcolor col={63,0,0};
 	pixelcolor bg={0,0,0};
+	pixelcolor h1={0,63,0};
 	lcd->lcd_init();
 	lcd->lcd_flush(bg);
 
@@ -31,30 +32,43 @@ char bufTmp[10];
 	{
 		vTaskDelay(500/ portTICK_PERIOD_MS);
 		xQueueReceive( dQueue, &airData,5);
+		//CO2
 		strcpy(he, "CO2: ");
 		strcat(he, itoa((int)airData.CO2, bufTmp, 10));
-		lcd->lcd_write_str90(he,0,0,col, bg, 0);
-	//	wtireString90( he , 0,0,0);
+		strcat(he, "  ");
+		lcd->lcd_write_str90(he,0,0,col, bg, Consolas10x22);
+	//	TVOC
 		strcpy(he, "TVOC: ");
 		strcat(he, itoa((int)airData.TVOC, bufTmp, 10));
-		lcd->lcd_write_str90(he,130,0,col, bg, 0);
-		//wtireString90( he , 130,0,0);
+		strcat(he, "  ");
+		lcd->lcd_write_str90(he,130,0,col, bg, Consolas10x22);
+		//TEMP
 		strcpy(he, "Temp: ");
 		strcat(he, ftoa(airData.temp,2, bufTmp));
-		lcd->lcd_write_str90(he,0,25,col, bg, 0);
-		//wtireString90( he , 0,25,0);
+		strcat(he, "  ");
+		lcd->lcd_write_str90(he,0,25,col, bg, Consolas10x22);
+		//HUMI
 		strcpy(he, "Humidity: ");
 		strcat(he, ftoa(airData.humidity,2, bufTmp));
-		lcd->lcd_write_str90(he,130,25,col, bg, 0);
-		//wtireString90( he , 130,25,0);
+		strcat(he, "  ");
+		lcd->lcd_write_str90(he,130,25,col, bg, Consolas10x22);
+		//T2
 		strcpy(he, "T2: ");
 		strcat(he, ftoa(airData.temp2,2, bufTmp));
-		lcd->lcd_write_str90(he,0,50,col, bg, 0);
-		//wtireString90( he , 0,50,0);
+		strcat(he, "  ");
+		lcd->lcd_write_str90(he,0,50,col, bg, Consolas10x22);
+		//PRESSURE
 		strcpy(he, "Press: ");
 		strcat(he, ftoa(airData.pressure,2, bufTmp));
-		lcd->lcd_write_str90(he,130,50,col, bg, 0);
-		//wtireString90( he , 130,50,0);
+		strcat(he, "  ");
+		lcd->lcd_write_str90(he,130,50,col, bg, Consolas10x22);
+
+
+		lcd->lcd_write_str90("PS: HELLO PUPSIKI :)\0",0,100,h1, bg,  Comic_Sans_MS25x33);
+
+		h1.B=(uint8_t)rand();
+		h1.R=(uint8_t)rand();
+		h1.G=(uint8_t)rand();
 	}
 }
 
@@ -276,20 +290,20 @@ uint32_t lcd_parallel::lcd_draw_XY(uint16_t x, uint16_t y, pixelcolor color)// n
 	WAIT_150NS;
 
 	LCD_PORT->ODR&=0xFF00;
-	LCD_PORT->ODR|=(0x00FF&color.B);
+	LCD_PORT->ODR|=(0x00FF&(color.B<<2));
 	LCD_nWR_SET;
 	WAIT_150NS;
 	LCD_nWR_RESET;
 
 	LCD_PORT->ODR&=0xFF00;
-	LCD_PORT->ODR|=(0x00FF&color.G);
+	LCD_PORT->ODR|=(0x00FF&(color.G<<2));
 	LCD_nWR_SET;
 	WAIT_150NS;
 	LCD_nWR_RESET;
 	WAIT_150NS;
 
 	LCD_PORT->ODR&=0xFF00;
-	LCD_PORT->ODR|=(0x00FF&color.R);
+	LCD_PORT->ODR|=(0x00FF&(color.R<<2));
 	LCD_nWR_SET;
 	WAIT_150NS;
 	LCD_nWR_RESET;
@@ -337,7 +351,7 @@ uint16_t lcd_parallel::lcd_r_cmd(uint16_t address)
 }
 
 #define FONT_H 22
-uint32_t lcd_parallel::lcd_write_str(char *str, uint16_t x, uint16_t y, pixelcolor text_color, pixelcolor back_color,  void* font)
+uint32_t lcd_parallel::lcd_write_str(char *str, uint16_t x, uint16_t y, pixelcolor text_color, pixelcolor back_color,  const  uint8_t* font)
 {
 	uint32_t by,cx,cy;
 	cx=x;
@@ -373,7 +387,7 @@ uint32_t lcd_parallel::lcd_write_str(char *str, uint16_t x, uint16_t y, pixelcol
 	return 1;
 }
 
-uint32_t lcd_parallel::lcd_write_str90(char *str, uint16_t x, uint16_t y, pixelcolor text_color, pixelcolor back_color,  void* font)
+/*uint32_t lcd_parallel::lcd_write_str90(char *str, uint16_t x, uint16_t y, pixelcolor text_color, pixelcolor back_color,  const uint8_t* font)
 {
 	uint32_t by,cx,cy;
 	cx=x;
@@ -383,7 +397,7 @@ uint32_t lcd_parallel::lcd_write_str90(char *str, uint16_t x, uint16_t y, pixelc
 	{
 		for (char cnt=1; cnt<31; cnt++)
 		{
-			by= Consolas10x22[(str[i]-32)*31+cnt];
+			by= Consolas10x22[(str[i]-32)*31+cnt+2];
 			for (uint32_t bc=0; bc<8; bc++)
 			{
 				if ( ( ((by>>bc)&0x01) == 0 ) &&((cy-y)<=FONT_H))
@@ -406,7 +420,43 @@ uint32_t lcd_parallel::lcd_write_str90(char *str, uint16_t x, uint16_t y, pixelc
 		};
 		i++;
 	};
-}
+}*/
+uint32_t lcd_parallel::lcd_write_str90(char *str, uint16_t x, uint16_t y, pixelcolor text_color, pixelcolor back_color,  const  uint8_t* font)
+{
+	uint32_t by,cx,cy;
+	u8 bpc;
+	bpc=(u8)*(font+1)/8;
+	if ((*(font+1)%8)>0)bpc++;
+	cx=x;
+	cy=y;
+	uint32_t i=0;
+	while ( str[i] !=0 )
+	{
+		for (char cnt=1; cnt< (font[(str[i]-32)*((font[0] * bpc)+1)+2] * bpc)+1; cnt++)
+		{
+			by= font[(str[i]-32)*((font[0] * bpc)+1)+cnt+2];
+			for (uint32_t bc=0; bc<8; bc++)
+			{
+				if ( ( ((by>>bc)&0x01) == 0 ) &&((cy-y)<=font[1]))
+				{
+					this->lcd_draw_XY(cy,dW-1-cx, back_color);
+				}
+				if ( ( ((by>>bc)&0x01) == 1 ) &&((cy-y)<=font[1]))
+				{
+					this->lcd_draw_XY(cy,dW-1-cx, text_color);
+				};
 
+			 cy++;
+			};
+
+			if ((cnt-(((uint32_t)(cnt/bpc))*bpc)) == 0 )
+			{
+				cy=y;
+				cx++;
+			};
+		};
+		i++;
+	};
+}
 
 

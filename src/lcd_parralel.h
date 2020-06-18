@@ -55,8 +55,8 @@ struct pixelcolor
 class lcd_parallel
 {
 private:
-	u8 dW;//dfl 320
-	u8 dH;//dfl 240
+	const u16 dW=320;//dfl 320
+	const u16 dH=240;//dfl 240
 
 public:
 	lcd_parallel(void);
@@ -66,9 +66,9 @@ public:
 	uint32_t lcd_flush(pixelcolor color);
 	uint32_t lcd_draw_XY(uint16_t x, uint16_t y, pixelcolor color);
 	uint32_t lcd_draw_line(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, pixelcolor color);
-	uint32_t lcd_print_XY(uint32_t x, uint32_t y, pixelcolor color, void* font);
-	uint32_t lcd_write_str(char *str, uint16_t x, uint16_t y, pixelcolor text_color, pixelcolor back_color,  void* font);
-	uint32_t lcd_write_str90(char *str, uint16_t x, uint16_t y, pixelcolor text_color, pixelcolor back_color,  void* font);
+//	uint32_t lcd_print_XY(uint32_t x, uint32_t y, pixelcolor color, void* font);
+	uint32_t lcd_write_str(char *str, uint16_t x, uint16_t y, pixelcolor text_color, pixelcolor back_color, const  uint8_t* font);
+	uint32_t lcd_write_str90(char *str, uint16_t x, uint16_t y, pixelcolor text_color, pixelcolor back_color, const  uint8_t* font);
 };
 
 

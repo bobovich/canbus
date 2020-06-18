@@ -14,7 +14,7 @@
 #include "queue.h"
 #include "CC1101.h"
 #include "i2c_sensor.h"
-
+#include "asciitable.h"
 #define EPD_W21_SPI_SPEED 0x02
 
 #define EPD_W21_MOSI_0	GPIO_ResetBits(GPIOC, GPIO_Pin_10)

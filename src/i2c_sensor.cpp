@@ -150,7 +150,7 @@ void aIAQCore(void *parameter)
 			air.temp=ens210->getTemp();
 			air.humidity=ens210->getHumidity();
 #else
-			vTaskDelay(3000/ portTICK_PERIOD_MS);
+			vTaskDelay(1000/ portTICK_PERIOD_MS);
 			//ENS210 READ
 			i2b.address=ENS210_ADDRESS;
 			i2b.dataSize=T_VAL_SIZE;

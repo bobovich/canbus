@@ -7,7 +7,7 @@
 
 #include "eink_display.h"
 #include "Ap_29demo.h"
-#include "asciitable.h"
+
 #include "string.h"
 #include "uart_com.h"
 #include <cstdlib>
