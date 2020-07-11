@@ -1,9 +1,13 @@
 lcd_parralel.cpp:13:6:void lcdTask(void*)	168	static
-lcd_parralel.cpp:76:1:lcd_parallel::lcd_parallel()	24	static
-lcd_parralel.cpp:102:10:uint32_t lcd_parallel::lcd_flush(pixelcolor)	24	static
-lcd_parralel.cpp:149:6:void lcd_parallel::lcd_init()	32	static
-lcd_parralel.cpp:236:10:uint32_t lcd_parallel::lcd_w_cmd(uint16_t, uint16_t)	16	static
-lcd_parralel.cpp:270:10:uint32_t lcd_parallel::lcd_draw_XY(uint16_t, uint16_t, pixelcolor)	24	static
-lcd_parralel.cpp:316:10:uint16_t lcd_parallel::lcd_r_cmd(uint16_t)	24	static
-lcd_parralel.cpp:354:10:uint32_t lcd_parallel::lcd_write_str(char*, uint16_t, uint16_t, pixelcolor, pixelcolor, const uint8_t*)	48	static
-lcd_parralel.cpp:424:10:uint32_t lcd_parallel::lcd_write_str90(char*, uint16_t, uint16_t, pixelcolor, pixelcolor, const uint8_t*)	56	static
+lcd_parralel.cpp:90:1:lcd_parallel::lcd_parallel()	24	static
+lcd_parralel.cpp:116:10:uint32_t lcd_parallel::flush(pixelcolor)	24	static
+lcd_parralel.cpp:163:6:void lcd_parallel::lcd_init()	32	static
+lcd_parralel.cpp:206:10:uint32_t lcd_parallel::w_cmd(uint16_t, uint16_t)	16	static
+lcd_parralel.cpp:240:10:uint32_t lcd_parallel::draw_XY(uint16_t, uint16_t, pixelcolor)	24	static
+lcd_parralel.cpp:286:10:uint16_t lcd_parallel::r_cmd(uint16_t)	24	static
+lcd_parralel.cpp:321:10:uint32_t lcd_parallel::write_str(char*, uint16_t, uint16_t, pixelcolor, pixelcolor, const uint8_t*)	48	static
+lcd_parralel.cpp:391:10:uint32_t lcd_parallel::write_str90(char*, uint16_t, uint16_t, pixelcolor, pixelcolor, const uint8_t*)	56	static
+lcd_parralel.cpp:434:10:uint32_t lcd_parallel::draw_bitmap(uint16_t, uint16_t, const uint8_t*)	48	static
+lcd_parralel.cpp:455:10:uint32_t lcd_parallel::draw_bitmap90(uint16_t, uint16_t, const uint8_t*)	48	static
+lcd_parralel.cpp:476:6:void lcd_parallel::touch_init()	24	static
+lcd_parralel.cpp:487:10:uint32_t lcd_parallel::touch_loop(putXY*)	16	static

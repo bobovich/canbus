@@ -32,8 +32,8 @@
 #define LCD_RES_SET		*((uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x14)  * 32) + (4 * 4)))=1 //PC.4
 #define LCD_RES_RESET	*((uint32_t*)(PERIPH_BB_BASE + ((GPIOC_BASE-PERIPH_BASE+0x10)  * 32) + (4 * 4)))=1
 
-#define WAIT_150NS		asm("nop")//for (int i=0; i<2; i++)
-#define WAIT_50NS		asm("nop")//for (int i=0; i<1; i++)
+#define WAIT_150NS		asm("nop")					//for (int i=0; i<9; i++)
+#define WAIT_50NS		asm("nop")					//for (int i=0; i<3; i++)
 #define WAIT_40MS		for (int i=0; i<1800; i++)
 
 #define PORT_INIT 		RCC->APB2ENR|= RCC_APB2ENR_IOPAEN; \
@@ -51,7 +51,11 @@ struct pixelcolor
 	uint8_t G;
 	uint8_t B;
 };
-
+struct putXY
+{
+	uint16_t x;
+	uint16_t y;
+};
 class lcd_parallel
 {
 private:
@@ -61,14 +65,18 @@ private:
 public:
 	lcd_parallel(void);
 	void lcd_init(void);
-	uint32_t lcd_w_cmd(uint16_t address, uint16_t data);
-	uint16_t lcd_r_cmd(uint16_t address);
-	uint32_t lcd_flush(pixelcolor color);
-	uint32_t lcd_draw_XY(uint16_t x, uint16_t y, pixelcolor color);
-	uint32_t lcd_draw_line(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, pixelcolor color);
+	void touch_init(void);
+	uint32_t touch_loop(putXY* touch);
+	uint32_t w_cmd(uint16_t address, uint16_t data);
+	uint16_t r_cmd(uint16_t address);
+	uint32_t flush(pixelcolor color);
+	uint32_t draw_XY(uint16_t x, uint16_t y, pixelcolor color);
+	uint32_t draw_bitmap(uint16_t x, uint16_t y, const uint8_t* bmp);
+	uint32_t draw_bitmap90(uint16_t x, uint16_t y, const uint8_t* bmp);
+	uint32_t draw_line(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, pixelcolor color);
 //	uint32_t lcd_print_XY(uint32_t x, uint32_t y, pixelcolor color, void* font);
-	uint32_t lcd_write_str(char *str, uint16_t x, uint16_t y, pixelcolor text_color, pixelcolor back_color, const  uint8_t* font);
-	uint32_t lcd_write_str90(char *str, uint16_t x, uint16_t y, pixelcolor text_color, pixelcolor back_color, const  uint8_t* font);
+	uint32_t write_str(char *str, uint16_t x, uint16_t y, pixelcolor text_color, pixelcolor back_color, const  uint8_t* font);
+	uint32_t write_str90(char *str, uint16_t x, uint16_t y, pixelcolor text_color, pixelcolor back_color, const  uint8_t* font);
 };
 
 
